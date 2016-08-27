@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		EA8DA9641D5A171A00487BF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9631D5A171A00487BF4 /* main.m */; };
 		EA8DA9671D5A171A00487BF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9661D5A171A00487BF4 /* AppDelegate.m */; };
-		EA8DA96A1D5A171A00487BF4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9691D5A171A00487BF4 /* ViewController.m */; };
+		EA8DA96A1D5A171A00487BF4 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9691D5A171A00487BF4 /* ViewController.mm */; };
 		EA8DA96D1D5A171A00487BF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8DA96B1D5A171A00487BF4 /* Main.storyboard */; };
 		EA8DA96F1D5A171A00487BF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8DA96E1D5A171A00487BF4 /* Assets.xcassets */; };
 		EA8DA9721D5A171A00487BF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8DA9701D5A171A00487BF4 /* LaunchScreen.storyboard */; };
@@ -448,6 +448,17 @@
 		EA8DAED51D5A190100487BF4 /* loading_anim1.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAED11D5A190100487BF4 /* loading_anim1.png */; };
 		EA8DAED61D5A190100487BF4 /* loading_anim2.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAED21D5A190100487BF4 /* loading_anim2.png */; };
 		EA8DAED71D5A190100487BF4 /* Waiting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAED41D5A190100487BF4 /* Waiting.m */; };
+		EAC718B91D71315200BBC106 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B01D71315100BBC106 /* BaiduMapAPI_Base.framework */; };
+		EAC718BA1D71315200BBC106 /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B11D71315100BBC106 /* BaiduMapAPI_Cloud.framework */; };
+		EAC718BB1D71315200BBC106 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B21D71315100BBC106 /* BaiduMapAPI_Location.framework */; };
+		EAC718BC1D71315200BBC106 /* BaiduMapAPI_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B31D71315100BBC106 /* BaiduMapAPI_Map.framework */; };
+		EAC718BD1D71315200BBC106 /* BaiduMapAPI_Radar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B41D71315100BBC106 /* BaiduMapAPI_Radar.framework */; };
+		EAC718BE1D71315200BBC106 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B51D71315100BBC106 /* BaiduMapAPI_Search.framework */; };
+		EAC718BF1D71315200BBC106 /* BaiduMapAPI_Utils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B61D71315200BBC106 /* BaiduMapAPI_Utils.framework */; };
+		EAC718C01D71315200BBC106 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EAC718B81D71315200BBC106 /* mapapi.bundle */; };
+		EAC718C41D71324100BBC106 /* HeInstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC718C31D71324100BBC106 /* HeInstructionView.m */; };
+		EAC718C91D71326600BBC106 /* HeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC718C71D71326600BBC106 /* HeLoginVC.m */; };
+		EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC718C81D71326600BBC106 /* HeLoginVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -473,7 +484,7 @@
 		EA8DA9651D5A171A00487BF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA8DA9661D5A171A00487BF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EA8DA9681D5A171A00487BF4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EA8DA9691D5A171A00487BF4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EA8DA9691D5A171A00487BF4 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		EA8DA96C1D5A171A00487BF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA8DA96E1D5A171A00487BF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA8DA9711D5A171A00487BF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1295,6 +1306,19 @@
 		EA8DAEDB1D5A19A300487BF4 /* appAPIDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appAPIDefine.h; sourceTree = "<group>"; };
 		EA8DAEDC1D5A19C400487BF4 /* sishiDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sishiDefine.h; sourceTree = "<group>"; };
 		EA8DAEDD1D5A19F400487BF4 /* sishi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sishi-Prefix.pch"; sourceTree = "<group>"; };
+		EAC718B01D71315100BBC106 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
+		EAC718B11D71315100BBC106 /* BaiduMapAPI_Cloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Cloud.framework; sourceTree = "<group>"; };
+		EAC718B21D71315100BBC106 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
+		EAC718B31D71315100BBC106 /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
+		EAC718B41D71315100BBC106 /* BaiduMapAPI_Radar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Radar.framework; sourceTree = "<group>"; };
+		EAC718B51D71315100BBC106 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
+		EAC718B61D71315200BBC106 /* BaiduMapAPI_Utils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Utils.framework; sourceTree = "<group>"; };
+		EAC718B81D71315200BBC106 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		EAC718C21D71324100BBC106 /* HeInstructionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeInstructionView.h; sourceTree = "<group>"; };
+		EAC718C31D71324100BBC106 /* HeInstructionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeInstructionView.m; sourceTree = "<group>"; };
+		EAC718C61D71326600BBC106 /* HeLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeLoginVC.h; sourceTree = "<group>"; };
+		EAC718C71D71326600BBC106 /* HeLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeLoginVC.m; sourceTree = "<group>"; };
+		EAC718C81D71326600BBC106 /* HeLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeLoginVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1322,8 +1346,12 @@
 				EA8DA9B81D5A182300487BF4 /* JavaScriptCore.framework in Frameworks */,
 				EA8DA9B61D5A181A00487BF4 /* libstdc++.tbd in Frameworks */,
 				EA8DAD171D5A18D000487BF4 /* lame.framework in Frameworks */,
+				EAC718BF1D71315200BBC106 /* BaiduMapAPI_Utils.framework in Frameworks */,
+				EAC718BA1D71315200BBC106 /* BaiduMapAPI_Cloud.framework in Frameworks */,
 				EA8DA9B41D5A181000487BF4 /* libicucore.tbd in Frameworks */,
 				EA8DA9B21D5A17FE00487BF4 /* QuartzCore.framework in Frameworks */,
+				EAC718BD1D71315200BBC106 /* BaiduMapAPI_Radar.framework in Frameworks */,
+				EAC718BC1D71315200BBC106 /* BaiduMapAPI_Map.framework in Frameworks */,
 				EA8DAEB11D5A18F200487BF4 /* jpush-ios-2.1.7.a in Frameworks */,
 				EA8DAEC71D5A18F200487BF4 /* UMMobClick.framework in Frameworks */,
 				EA8DA9B01D5A17F700487BF4 /* CoreVideo.framework in Frameworks */,
@@ -1332,6 +1360,8 @@
 				EA8DAEC61D5A18F200487BF4 /* ShareSDKConnector.framework in Frameworks */,
 				EA8DA9AC1D5A17DA00487BF4 /* libstdc++.6.0.9.tbd in Frameworks */,
 				EA8DA9AA1D5A17D100487BF4 /* libresolv.tbd in Frameworks */,
+				EAC718BB1D71315200BBC106 /* BaiduMapAPI_Location.framework in Frameworks */,
+				EAC718BE1D71315200BBC106 /* BaiduMapAPI_Search.framework in Frameworks */,
 				EA8DA9A81D5A17C400487BF4 /* libz.tbd in Frameworks */,
 				EA8DA9A61D5A17BD00487BF4 /* libiconv.tbd in Frameworks */,
 				EA8DA9A41D5A17B400487BF4 /* CoreMedia.framework in Frameworks */,
@@ -1341,6 +1371,7 @@
 				EA8DAEC01D5A18F200487BF4 /* libWeiboSDK.a in Frameworks */,
 				EA8DA99C1D5A179000487BF4 /* libc++abi.tbd in Frameworks */,
 				EA8DA99A1D5A177B00487BF4 /* OpenGLES.framework in Frameworks */,
+				EAC718B91D71315200BBC106 /* BaiduMapAPI_Base.framework in Frameworks */,
 				EA8DA9981D5A177000487BF4 /* SystemConfiguration.framework in Frameworks */,
 				EA8DA9961D5A176000487BF4 /* Contacts.framework in Frameworks */,
 			);
@@ -1398,7 +1429,7 @@
 				EA8DA9651D5A171A00487BF4 /* AppDelegate.h */,
 				EA8DA9661D5A171A00487BF4 /* AppDelegate.m */,
 				EA8DA9681D5A171A00487BF4 /* ViewController.h */,
-				EA8DA9691D5A171A00487BF4 /* ViewController.m */,
+				EA8DA9691D5A171A00487BF4 /* ViewController.mm */,
 				EA8DA96B1D5A171A00487BF4 /* Main.storyboard */,
 				EA8DA96E1D5A171A00487BF4 /* Assets.xcassets */,
 				EA8DA9701D5A171A00487BF4 /* LaunchScreen.storyboard */,
@@ -1497,6 +1528,7 @@
 		EA8DA9E61D5A18C700487BF4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EAC718C51D71325600BBC106 /* User */,
 				EA8DA9E71D5A18C700487BF4 /* Base */,
 				EA8DA9ED1D5A18C700487BF4 /* HeTabBarVC.h */,
 				EA8DA9EE1D5A18C700487BF4 /* HeTabBarVC.m */,
@@ -1534,6 +1566,7 @@
 		EA8DA9FF1D5A18CF00487BF4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				EAC718C11D71324100BBC106 /* HeInstructionView */,
 				EA8DAECF1D5A190100487BF4 /* Waiting */,
 				EA8DAA001D5A18CF00487BF4 /* AFNetworking */,
 				EA8DAA2C1D5A18CF00487BF4 /* ALAssetsLibrary+CustomPhotoAlbum.h */,
@@ -2840,6 +2873,7 @@
 		EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */ = {
 			isa = PBXGroup;
 			children = (
+				EAC718AF1D71315100BBC106 /* BaiduMap_SDK_v3.0 */,
 				EA8DAE591D5A18F200487BF4 /* JPush-iOS-SDK-2.1.7 */,
 				EA8DAE5D1D5A18F200487BF4 /* libqrencode */,
 				EA8DAE6E1D5A18F200487BF4 /* ShareSDK3.3.0 */,
@@ -3084,6 +3118,48 @@
 			path = loading_anim_Resource;
 			sourceTree = "<group>";
 		};
+		EAC718AF1D71315100BBC106 /* BaiduMap_SDK_v3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				EAC718B01D71315100BBC106 /* BaiduMapAPI_Base.framework */,
+				EAC718B11D71315100BBC106 /* BaiduMapAPI_Cloud.framework */,
+				EAC718B21D71315100BBC106 /* BaiduMapAPI_Location.framework */,
+				EAC718B31D71315100BBC106 /* BaiduMapAPI_Map.framework */,
+				EAC718B41D71315100BBC106 /* BaiduMapAPI_Radar.framework */,
+				EAC718B51D71315100BBC106 /* BaiduMapAPI_Search.framework */,
+				EAC718B61D71315200BBC106 /* BaiduMapAPI_Utils.framework */,
+				EAC718B71D71315200BBC106 /* Resources */,
+			);
+			path = BaiduMap_SDK_v3.0;
+			sourceTree = "<group>";
+		};
+		EAC718B71D71315200BBC106 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EAC718B81D71315200BBC106 /* mapapi.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EAC718C11D71324100BBC106 /* HeInstructionView */ = {
+			isa = PBXGroup;
+			children = (
+				EAC718C21D71324100BBC106 /* HeInstructionView.h */,
+				EAC718C31D71324100BBC106 /* HeInstructionView.m */,
+			);
+			path = HeInstructionView;
+			sourceTree = "<group>";
+		};
+		EAC718C51D71325600BBC106 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				EAC718C61D71326600BBC106 /* HeLoginVC.h */,
+				EAC718C71D71326600BBC106 /* HeLoginVC.m */,
+				EAC718C81D71326600BBC106 /* HeLoginVC.xib */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3152,6 +3228,7 @@
 				TargetAttributes = {
 					EA8DA95E1D5A171A00487BF4 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = E6CUH72B23;
 					};
 					EA8DA9771D5A171A00487BF4 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3219,6 +3296,7 @@
 				EA8DA96F1D5A171A00487BF4 /* Assets.xcassets in Resources */,
 				EA8DAE3F1D5A18D000487BF4 /* LICENSE in Resources */,
 				EA8DA9FB1D5A18C700487BF4 /* HeTabBarVC.xib in Resources */,
+				EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */,
 				EA8DAD371D5A18D000487BF4 /* down_dark.png in Resources */,
 				EA8DAEC31D5A18F200487BF4 /* README.txt in Resources */,
 				EA8DAD631D5A18D000487BF4 /* MBProgressHUD.bundle in Resources */,
@@ -3250,6 +3328,7 @@
 				EA8DAD031D5A18D000487BF4 /* BrowserView.xib in Resources */,
 				EA8DAD911D5A18D000487BF4 /* arrow_down.png in Resources */,
 				EA8DAD2D1D5A18D000487BF4 /* fail@2x.png in Resources */,
+				EAC718C01D71315200BBC106 /* mapapi.bundle in Resources */,
 				EA8DAD3B1D5A18D000487BF4 /* i2KEPCDatePickerView.xib in Resources */,
 				EA8DAD2B1D5A18D000487BF4 /* ClippedExpression.bundle in Resources */,
 				EA8DAD2A1D5A18D000487BF4 /* back-arrow@3x.png in Resources */,
@@ -3415,6 +3494,7 @@
 				EA8DAD781D5A18D000487BF4 /* MJRefreshBackNormalFooter.m in Sources */,
 				EA8DAD521D5A18D000487BF4 /* IQActionSheetPickerView.m in Sources */,
 				EA8DA9F81D5A18C700487BF4 /* HeBaseViewController.m in Sources */,
+				EAC718C41D71324100BBC106 /* HeInstructionView.m in Sources */,
 				EA8DADF91D5A18D000487BF4 /* UIStepper+RACSignalSupport.m in Sources */,
 				EA8DAD381D5A18D000487BF4 /* DropDownListView.m in Sources */,
 				EA8DAD881D5A18D000487BF4 /* MLTextAttachment.m in Sources */,
@@ -3455,7 +3535,7 @@
 				EA8DADF51D5A18D000487BF4 /* UIImagePickerController+RACSignalSupport.m in Sources */,
 				EA8DAD351D5A18D000487BF4 /* DFUserDefaultStorageService.m in Sources */,
 				EA8DADE61D5A18D000487BF4 /* RACTestScheduler.m in Sources */,
-				EA8DA96A1D5A171A00487BF4 /* ViewController.m in Sources */,
+				EA8DA96A1D5A171A00487BF4 /* ViewController.mm in Sources */,
 				EA8DAD441D5A18D000487BF4 /* EGORefreshTableFootView.m in Sources */,
 				EA8DAE0A1D5A18D000487BF4 /* SDWebImageManager.m in Sources */,
 				EA8DAE301D5A18D000487BF4 /* UIView+Layout.m in Sources */,
@@ -3568,6 +3648,7 @@
 				EA8DAE501D5A18DF00487BF4 /* UIImageUploader.m in Sources */,
 				EA8DAD281D5A18D000487BF4 /* DFTableViewRefreshControl.m in Sources */,
 				EA8DAD511D5A18D000487BF4 /* GTMBase64.m in Sources */,
+				EAC718C91D71326600BBC106 /* HeLoginVC.m in Sources */,
 				EA8DAD3C1D5A18D000487BF4 /* i2KEPCMultiComponentPickerView.m in Sources */,
 				EA8DA9641D5A171A00487BF4 /* main.m in Sources */,
 				EA8DACE61D5A18D000487BF4 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -3750,6 +3831,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3759,6 +3841,7 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/Required",
 					"$(PROJECT_DIR)/ThirdPartySDK/umsdk_IOS_analyics_no-idfa_v4.0.5",
+					"$(PROJECT_DIR)/ThirdPartySDK/BaiduMap_SDK_v3.0",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
@@ -3772,8 +3855,10 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/ThirdPartySDK/ZBarSDK",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.yu;
 				PRODUCT_NAME = "遇";
+				PROVISIONING_PROFILE = "ef1a2d03-cb4b-42cd-bc07-644af9d335f3";
 			};
 			name = Debug;
 		};
@@ -3781,6 +3866,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3790,6 +3876,7 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/Required",
 					"$(PROJECT_DIR)/ThirdPartySDK/umsdk_IOS_analyics_no-idfa_v4.0.5",
+					"$(PROJECT_DIR)/ThirdPartySDK/BaiduMap_SDK_v3.0",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
@@ -3803,8 +3890,10 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/ThirdPartySDK/ZBarSDK",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.yu;
 				PRODUCT_NAME = "遇";
+				PROVISIONING_PROFILE = "cdfac892-97fb-4c7a-8de4-8be4612b7ad3";
 			};
 			name = Release;
 		};
@@ -3858,6 +3947,104 @@
 			};
 			name = Release;
 		};
+		EAC718CB1D7136EB00BBC106 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		EAC718CC1D7136EB00BBC106 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Custom/DFCommon/DFCommon/DFCommon/Lib/lame",
+					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0",
+					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/Optional",
+					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/Required",
+					"$(PROJECT_DIR)/ThirdPartySDK/umsdk_IOS_analyics_no-idfa_v4.0.5",
+					"$(PROJECT_DIR)/ThirdPartySDK/BaiduMap_SDK_v3.0",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
+				INFOPLIST_FILE = sishi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThirdPartySDK/JPush-iOS-SDK-2.1.7/lib",
+					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/PlatformSDK/SinaWeiboSDK",
+					"$(PROJECT_DIR)/ThirdPartySDK/ShareSDK3.3.0/Support/PlatformSDK/WeChatSDK",
+					"$(PROJECT_DIR)/ThirdPartySDK/ZBarSDK",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.channce.yu;
+				PRODUCT_NAME = "遇";
+				PROVISIONING_PROFILE = "8d16529a-e289-48ba-9237-8ff4c36d3f4e";
+			};
+			name = Distribution;
+		};
+		EAC718CD1D7136EB00BBC106 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = sishiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sishi.app/sishi";
+			};
+			name = Distribution;
+		};
+		EAC718CE1D7136EB00BBC106 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = sishiUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.channce.sishiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = sishi;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3866,6 +4053,7 @@
 			buildConfigurations = (
 				EA8DA98A1D5A171A00487BF4 /* Debug */,
 				EA8DA98B1D5A171A00487BF4 /* Release */,
+				EAC718CB1D7136EB00BBC106 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3875,6 +4063,7 @@
 			buildConfigurations = (
 				EA8DA98D1D5A171A00487BF4 /* Debug */,
 				EA8DA98E1D5A171A00487BF4 /* Release */,
+				EAC718CC1D7136EB00BBC106 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3884,6 +4073,7 @@
 			buildConfigurations = (
 				EA8DA9901D5A171A00487BF4 /* Debug */,
 				EA8DA9911D5A171A00487BF4 /* Release */,
+				EAC718CD1D7136EB00BBC106 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3893,6 +4083,7 @@
 			buildConfigurations = (
 				EA8DA9931D5A171A00487BF4 /* Debug */,
 				EA8DA9941D5A171A00487BF4 /* Release */,
+				EAC718CE1D7136EB00BBC106 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
