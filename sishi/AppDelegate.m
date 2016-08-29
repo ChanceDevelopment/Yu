@@ -173,8 +173,8 @@ BMKMapManager* _mapManager;
     BOOL haveLogin = (userToken == nil) ? NO : YES;
     
     if (1) {//登陆成功加载主窗口控制器
-        //        UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7_white"];
-        //        [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
+        UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7"];
+        [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         [[UINavigationBar appearance] setTitleTextAttributes:
