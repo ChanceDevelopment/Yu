@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA02295D1D741CFC00F57965 /* LXDisplayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0229551D741CFC00F57965 /* LXDisplayTitleLabel.m */; };
+		EA02295E1D741CFC00F57965 /* LXFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0229571D741CFC00F57965 /* LXFlowLayout.m */; };
+		EA02295F1D741CFC00F57965 /* LXSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0229591D741CFC00F57965 /* LXSegmentController.m */; };
+		EA0229601D741CFC00F57965 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EA02295C1D741CFC00F57965 /* UIView+Frame.m */; };
 		EA8DA9641D5A171A00487BF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9631D5A171A00487BF4 /* main.m */; };
 		EA8DA9671D5A171A00487BF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9661D5A171A00487BF4 /* AppDelegate.m */; };
 		EA8DA96A1D5A171A00487BF4 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9691D5A171A00487BF4 /* ViewController.mm */; };
@@ -479,6 +483,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA0229541D741CFC00F57965 /* LXDisplayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDisplayTitleLabel.h; sourceTree = "<group>"; };
+		EA0229551D741CFC00F57965 /* LXDisplayTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDisplayTitleLabel.m; sourceTree = "<group>"; };
+		EA0229561D741CFC00F57965 /* LXFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFlowLayout.h; sourceTree = "<group>"; };
+		EA0229571D741CFC00F57965 /* LXFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFlowLayout.m; sourceTree = "<group>"; };
+		EA0229581D741CFC00F57965 /* LXSegmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSegmentController.h; sourceTree = "<group>"; };
+		EA0229591D741CFC00F57965 /* LXSegmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSegmentController.m; sourceTree = "<group>"; };
+		EA02295A1D741CFC00F57965 /* LXSegmentControllerConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSegmentControllerConst.h; sourceTree = "<group>"; };
+		EA02295B1D741CFC00F57965 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		EA02295C1D741CFC00F57965 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		EA8DA95F1D5A171A00487BF4 /* 遇.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "遇.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8DA9631D5A171A00487BF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EA8DA9651D5A171A00487BF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1394,6 +1407,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA0229531D741CFC00F57965 /* LXSegmentController */ = {
+			isa = PBXGroup;
+			children = (
+				EA0229541D741CFC00F57965 /* LXDisplayTitleLabel.h */,
+				EA0229551D741CFC00F57965 /* LXDisplayTitleLabel.m */,
+				EA0229561D741CFC00F57965 /* LXFlowLayout.h */,
+				EA0229571D741CFC00F57965 /* LXFlowLayout.m */,
+				EA0229581D741CFC00F57965 /* LXSegmentController.h */,
+				EA0229591D741CFC00F57965 /* LXSegmentController.m */,
+				EA02295A1D741CFC00F57965 /* LXSegmentControllerConst.h */,
+				EA02295B1D741CFC00F57965 /* UIView+Frame.h */,
+				EA02295C1D741CFC00F57965 /* UIView+Frame.m */,
+			);
+			path = LXSegmentController;
+			sourceTree = "<group>";
+		};
 		EA8DA9561D5A171A00487BF4 = {
 			isa = PBXGroup;
 			children = (
@@ -1566,6 +1595,7 @@
 		EA8DA9FF1D5A18CF00487BF4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				EA0229531D741CFC00F57965 /* LXSegmentController */,
 				EAC718C11D71324100BBC106 /* HeInstructionView */,
 				EA8DAECF1D5A190100487BF4 /* Waiting */,
 				EA8DAA001D5A18CF00487BF4 /* AFNetworking */,
@@ -3502,6 +3532,7 @@
 				EA8DAE0D1D5A18D000487BF4 /* UIImage+GIF.m in Sources */,
 				EA8DAD831D5A18D000487BF4 /* MLExpressionManager.m in Sources */,
 				EA8DADF11D5A18D000487BF4 /* UIControl+RACSignalSupport.m in Sources */,
+				EA02295D1D741CFC00F57965 /* LXDisplayTitleLabel.m in Sources */,
 				EA8DAD9E1D5A18D000487BF4 /* NYSegmentedControl.m in Sources */,
 				EA8DACF71D5A18D000487BF4 /* UIWebView+AFNetworking.m in Sources */,
 				EA8DADCE1D5A18D000487BF4 /* RACKVOChannel.m in Sources */,
@@ -3550,6 +3581,7 @@
 				EA8DAD151D5A18D000487BF4 /* DFBaseUploadDataService.m in Sources */,
 				EA8DAD571D5A18D000487BF4 /* IQTextView.m in Sources */,
 				EA8DADC51D5A18D000487BF4 /* RACDynamicSignal.m in Sources */,
+				EA02295F1D741CFC00F57965 /* LXSegmentController.m in Sources */,
 				EA8DAD091D5A18D000487BF4 /* NSMutableDictionary+JSON.m in Sources */,
 				EA8DADFB1D5A18D000487BF4 /* UITableViewCell+RACSignalSupport.m in Sources */,
 				EA8DAD601D5A18D000487BF4 /* README.md in Sources */,
@@ -3577,6 +3609,8 @@
 				EA8DAE181D5A18D000487BF4 /* README.md in Sources */,
 				EA8DADC71D5A18D000487BF4 /* RACEmptySequence.m in Sources */,
 				EA8DAE2E1D5A18D000487BF4 /* TZPhotoPreviewController.m in Sources */,
+				EA0229601D741CFC00F57965 /* UIView+Frame.m in Sources */,
+				EA02295E1D741CFC00F57965 /* LXFlowLayout.m in Sources */,
 				EA8DAE2C1D5A18D000487BF4 /* TZPhotoPickerController.m in Sources */,
 				EA8DADF71D5A18D000487BF4 /* UISegmentedControl+RACSignalSupport.m in Sources */,
 				EA8DACEB1D5A18D000487BF4 /* AFURLRequestSerialization.m in Sources */,
