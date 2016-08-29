@@ -33,7 +33,7 @@
         label.text = @"消息";
         
         [label sizeToFit];
-        self.title = @"";
+        self.title = @"消息";
     }
     return self;
 }
@@ -60,7 +60,7 @@
 - (void)initView
 {
     [super initView];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor whiteColor];

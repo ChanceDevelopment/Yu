@@ -29,7 +29,7 @@
         CGFloat headW = 60;
         CGFloat headH = headW;
         headImage = [[UIImageView alloc] initWithFrame:CGRectMake(headX, headY, headW, headH)];
-        headImage.image = [UIImage imageNamed:@"demo_nearBgImage.jpg"];
+        headImage.image = [UIImage imageNamed:@"userDefalut_icon"];
         headImage.layer.masksToBounds = YES;
         headImage.layer.cornerRadius = headW / 2.0;
         headImage.layer.borderColor = [UIColor whiteColor].CGColor;

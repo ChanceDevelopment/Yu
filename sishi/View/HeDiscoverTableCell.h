@@ -9,5 +9,9 @@
 #import "HeBaseTableViewCell.h"
 
 @interface HeDiscoverTableCell : HeBaseTableViewCell
+@property(strong,nonatomic)UIView *headInfoBg;
+@property(strong,nonatomic)UIView *imageInfoBg;
+@property(strong,nonatomic)UIView *contentTextInfoBg;
+@property(strong,nonatomic)UIView *otherInfoBg;
 
 @end

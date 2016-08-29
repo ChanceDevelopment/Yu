@@ -79,4 +79,6 @@
 + (NSData *)deleteErrorStringInData:(NSData *)inputData;
 + (NSString *)replaceUnicode:(NSString *)unicodeStr;
 
++ (UIButton *) getButton:(CGRect) frame title:(NSString *) title image:(NSString *) image;
+
 @end

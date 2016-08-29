@@ -10,6 +10,7 @@
 #import "HeUserVC.h"
 #import "HeDiscoverVC.h"
 #import "HeNewsVC.h"
+#import "HeChatVC.h"
 
 @interface HeRootSegmentVC ()<UISearchBarDelegate>
 @property(strong,nonatomic)UISearchBar *searchBar;
@@ -52,7 +53,7 @@
     HeDiscoverVC *discoverVC = [[HeDiscoverVC alloc] init];
     [self addChildViewController:discoverVC];
     
-    HeNewsVC *newsVC = [[HeNewsVC alloc] init];
+    HeChatVC *newsVC = [[HeChatVC alloc] init];
     [self addChildViewController:newsVC];
     
     

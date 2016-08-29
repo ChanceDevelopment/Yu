@@ -1070,4 +1070,54 @@
     
 }
 
++ (UIButton *) getButton:(CGRect) frame title:(NSString *) title image:(NSString *) image
+{
+    UIButton *btn = [[UIButton alloc] initWithFrame:frame];
+    //btn.backgroundColor = [UIColor redColor];
+    //    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 6, 0, 0)];
+    //    [btn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    CGFloat iconY = 5;
+    CGFloat iconH = frame.size.height - 2 * iconY;
+    
+    CGFloat labelX = frame.size.width / 2.0;
+    CGFloat labelW = frame.size.width / 2.0;
+    
+    if (frame.size.height >= 40) {
+        iconH = frame.size.height / 2.0;
+        iconY = (frame.size.height - iconH) / 2.0;
+    }
+    
+    CGFloat iconW = iconH;
+    CGFloat iconX = (frame.size.width / 2.0 - iconW) / 2.0;
+    if (frame.size.width >= 60) {
+        iconX = (frame.size.width / 3.0 - iconW) / 2.0 + 5;
+        labelX = iconX + iconW + 5;
+        labelW = 2 * frame.size.width / 3.0;
+    }
+    
+    UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:image]];
+    if (image == nil) {
+        iconW = frame.size.width;
+    }
+    icon.frame = CGRectMake(iconX, iconY, iconW, iconH);
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.text = title;
+    titleLabel.font = [UIFont systemFontOfSize:15.0];
+    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.frame = CGRectMake(labelX , iconY, labelW , iconH);
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    [btn addSubview:titleLabel];
+    [titleLabel sizeToFit];
+    [btn addSubview:icon];
+    if (image == nil) {
+        titleLabel.frame = CGRectMake(0, iconY, frame.size.width, iconH);
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    
+    return btn;
+}
+
 @end

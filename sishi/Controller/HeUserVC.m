@@ -11,10 +11,12 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 @interface HeUserVC ()
+@property(strong,nonatomic)IBOutlet UIView *topicBgView;
 
 @end
 
 @implementation HeUserVC
+@synthesize topicBgView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,6 +83,43 @@
 {
     [super initializaiton];
     _locService = [[BMKLocationService alloc]init];
+}
+
+- (void)initView
+{
+    [super initView];
+    
+    CGFloat buttonW = (SCREENWIDTH - 40) / 2.0;
+    CGFloat buttonX = 0;
+    CGFloat buttonY = 0;
+    CGFloat buttonH = 40;
+    UIButton *myTopicButton = [Tool getButton:CGRectMake(buttonX, buttonY, buttonW, buttonH) title:@"我的话题" image:@"icon_topic"];
+    [topicBgView addSubview:myTopicButton];
+    
+    UIButton *myReplyButton = [Tool getButton:CGRectMake(buttonX + buttonW, buttonY, buttonW, buttonH) title:@"我回复的话题" image:@"icon_reply"];
+    [topicBgView addSubview:myReplyButton];
+    
+    [myTopicButton addTarget:self action:@selector(topicButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [myReplyButton addTarget:self action:@selector(topicButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    myTopicButton.tag = 1;
+    myReplyButton.tag = 1;
+}
+
+- (void)topicButtonClick:(UIButton *)button
+{
+    NSInteger tag = button.tag;
+    switch (tag) {
+        case 1:
+        {
+            break;
+        }
+        case 2:
+        {
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 /**

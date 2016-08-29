@@ -23,7 +23,11 @@
 //百度地图的appKey
 #define BAIDUMAPKEY @"Nhiuwh4kqnGBAIGTOfcaHFjhQNnRI5Oz"
 //自己服务器的通信模块
-#define EASEMOBKEY @"godchance#aishangfuyang"
+#define EASEMOBKEY @"	godchance#meetingapp"
+//Client Id:	YXA6ksUBQG3tEeaCpctLxk-EQg
+//Client Secret:	YXA6S2njzHZ-IDI3Fus2QpCMPz_zIGM
+//meetingAppPushServiceDev	开发
+//meetingAppPushServiceDistribution 生产
 //parse
 #define PARSEID @"0UMEqqvx8ykfdxtmlGjOmpEmALI6P3htEFG36wbl"
 #define PARSEKEY @"eniHIEQDWZxmPlBRRF71105eoaioEGUotgUK2ryS"

@@ -375,10 +375,17 @@
     // 计算尺寸
     CGFloat titleH = _titleHeight ? _titleHeight : LXTitleScrollViewH;
     CGFloat titleY = _isfullScreen ? contentY : 0;
+    //假设上移64
+    titleY = -64;
+    self.titleScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarIOS7"]];
+    self.titleScrollView.tintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarIOS7"]];
+    
     self.titleScrollView.frame = CGRectMake(0, titleY, contentW, titleH);
-
+   
     // 设置内容滚动视图frame
     CGFloat contentScrollY = CGRectGetMaxY(self.titleScrollView.frame);
+    //假设上移20
+    contentScrollY = -20;
     self.contentScrollView.frame = _isfullScreen ? CGRectMake(0, 0, contentW, LXScreenH) : CGRectMake(0, contentScrollY, contentW, self.contentView.height - contentScrollY);
 }
 
