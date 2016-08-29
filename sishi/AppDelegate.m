@@ -21,6 +21,8 @@
 #import "WeiboSDK.h"
 #import "BrowserView.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import "HeRootSegmentVC.h"
+#import "CustomNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -144,7 +146,7 @@ BMKMapManager* _mapManager;
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     if (ISIOS7) {
         [[UINavigationBar appearance] setTintColor:NAVTINTCOLOR];
-        UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7_white"];
+        UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7"];
         [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
         NSDictionary *attributeDict = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:20.0]};
         [[UINavigationBar appearance] setTitleTextAttributes:attributeDict];
@@ -179,12 +181,9 @@ BMKMapManager* _mapManager;
          [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:20.0], NSFontAttributeName, nil]];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         
-        
-        HeTabBarVC *tabBarVC = [[HeTabBarVC alloc] init];
-        
-        
-        
-        self.viewController = tabBarVC;
+        HeRootSegmentVC *tabBarVC = [[HeRootSegmentVC alloc] init];
+        CustomNavigationController *rootNavigationVC = [[CustomNavigationController alloc] initWithRootViewController:tabBarVC];
+        self.viewController = rootNavigationVC;
         
     }
     else{

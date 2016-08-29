@@ -1,18 +1,18 @@
 //
-//  HeLoginVC.m
+//  HeUserVC.m
 //  yu
 //
-//  Created by HeDongMing on 16/8/27.
+//  Created by Tony on 16/8/29.
 //  Copyright © 2016年 Channce. All rights reserved.
 //
 
-#import "HeLoginVC.h"
+#import "HeUserVC.h"
 
-@interface HeLoginVC ()
+@interface HeUserVC ()
 
 @end
 
-@implementation HeLoginVC
+@implementation HeUserVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,10 +25,10 @@
         label.textColor = APPDEFAULTTITLECOLOR;
         label.textAlignment = NSTextAlignmentCenter;
         self.navigationItem.titleView = label;
-        label.text = @"登录";
+        label.text = @"我的";
         
         [label sizeToFit];
-        self.title = @"登录";
+        self.title = @"我的";
     }
     return self;
 }
@@ -48,6 +48,8 @@
 - (void)initView
 {
     [super initView];
+    self.view.backgroundColor = [UIColor blueColor];
+    
 }
 
 - (void)didReceiveMemoryWarning {

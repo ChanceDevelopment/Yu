@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HeBaseViewController.h"
 /* 
 **************用法*****************
 
@@ -39,7 +39,7 @@ typedef enum : NSUInteger {
  
  */
 
-@interface LXSegmentController : UIViewController
+@interface LXSegmentController : HeBaseViewController
 
 
 
