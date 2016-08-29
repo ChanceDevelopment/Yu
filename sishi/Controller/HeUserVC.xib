@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeUserVC">
             <connections>
+                <outlet property="_mapView" destination="PjQ-7t-Ih6" id="Qxh-hh-bfT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +15,41 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjQ-7t-Ih6" customClass="BMKMapView">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="PjQ-7t-Ih6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3yc-zu-76x"/>
+                <constraint firstAttribute="bottom" secondItem="PjQ-7t-Ih6" secondAttribute="bottom" id="6vG-qQ-hfC"/>
+                <constraint firstItem="PjQ-7t-Ih6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="atE-YJ-mwH"/>
+                <constraint firstAttribute="trailing" secondItem="PjQ-7t-Ih6" secondAttribute="trailing" id="ypt-mp-w8T"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="PjQ-7t-Ih6"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="3yc-zu-76x"/>
+                    <exclude reference="6vG-qQ-hfC"/>
+                    <exclude reference="atE-YJ-mwH"/>
+                    <exclude reference="ypt-mp-w8T"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="PjQ-7t-Ih6"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="3yc-zu-76x"/>
+                    <include reference="6vG-qQ-hfC"/>
+                    <include reference="atE-YJ-mwH"/>
+                    <include reference="ypt-mp-w8T"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

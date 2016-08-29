@@ -36,8 +36,17 @@
 #import "HeSysbsModel.h"
 #import "Waiting.h"
 #import "UIImageView+AFNetworking.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+EMWebCache.h"
 #import "MLLinkLabel.h"
+
+#import "ChatDemoUIDefine.h"
+#import "EMAlertView.h"
+#import "TTGlobalUICommon.h"
+
+#import "EMSDKFull.h"
+#import "EaseUI.h"
+
+#define DEMO_CALL 1
 
 #endif
 

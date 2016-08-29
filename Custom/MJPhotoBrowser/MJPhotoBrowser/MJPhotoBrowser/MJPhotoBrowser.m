@@ -8,7 +8,7 @@
 #import "MJPhoto.h"
 #import "MJPhotoView.h"
 #import "MJPhotoToolbar.h"
-#import "SDWebImagePrefetcher.h"
+#import "EMSDWebImagePrefetcher.h"
 //#import <SDWebImage/SDWebImagePrefetcher.h>
 
 #define kPadding 10
@@ -76,7 +76,7 @@
 - (void)show
 {
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
-
+    
     //初始化数据
     {
         if (!_visiblePhotoViews) {
@@ -199,14 +199,14 @@
 {
     if (index > 0) {
         MJPhoto *photo = _photos[index - 1];
-        [[SDWebImageManager sharedManager] downloadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        [[EMSDWebImageManager sharedManager] downloadImageWithURL:photo.url options:EMSDWebImageRetryFailed|EMSDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             //do nothing
         }];
     }
     
     if (index < _photos.count - 1) {
         MJPhoto *photo = _photos[index + 1];
-        [[SDWebImageManager sharedManager] downloadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        [[EMSDWebImageManager sharedManager] downloadImageWithURL:photo.url options:EMSDWebImageRetryFailed|EMSDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             //do nothing
         }];
     }
@@ -261,7 +261,7 @@
 
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	[self showPhotos];
+    [self showPhotos];
     [self updateTollbarState];
 }
 

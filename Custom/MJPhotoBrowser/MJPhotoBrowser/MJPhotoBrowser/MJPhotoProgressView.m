@@ -20,7 +20,7 @@
 }
 
 - (void)drawRect:(CGRect)rect
-{    
+{
     CGPoint centerPoint = CGPointMake(rect.size.height / 2, rect.size.width / 2);
     CGFloat radius = MIN(rect.size.height, rect.size.width) / 2;
     
@@ -59,9 +59,9 @@
     
     CGContextSetBlendMode(context, kCGBlendModeClear);;
     CGFloat innerRadius = radius * 0.7;
-	CGPoint newCenterPoint = CGPointMake(centerPoint.x - innerRadius, centerPoint.y - innerRadius);    
-	CGContextAddEllipseInRect(context, CGRectMake(newCenterPoint.x, newCenterPoint.y, innerRadius*2, innerRadius*2));
-	CGContextFillPath(context);
+    CGPoint newCenterPoint = CGPointMake(centerPoint.x - innerRadius, centerPoint.y - innerRadius);
+    CGContextAddEllipseInRect(context, CGRectMake(newCenterPoint.x, newCenterPoint.y, innerRadius*2, innerRadius*2));
+    CGContextFillPath(context);
 }
 
 #pragma mark - Property Methods

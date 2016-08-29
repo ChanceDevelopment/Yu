@@ -10,7 +10,7 @@
 
 #import "YLGIFImage.h"
 #import "YLImageView.h"
-#import "SDImageCache.h"
+#import "EMSDImageCache.h"
 #import "SVProgressHUD.h"
 //#import <SDWebImage/UIImageView+WebCache.h>
 //#import <SVProgressHUD/SVProgressHUD.h>

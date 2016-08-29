@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeDiscoverVC">
             <connections>
+                <outlet property="tableview" destination="eug-Xh-jfm" id="hDZ-nh-T9a"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +15,45 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eug-Xh-jfm">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="eAV-8m-h7q"/>
+                        <outlet property="delegate" destination="-1" id="rwn-38-d7L"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="eug-Xh-jfm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nlu-h9-8cQ"/>
+                <constraint firstAttribute="bottom" secondItem="eug-Xh-jfm" secondAttribute="bottom" id="Xp3-Bz-GHw"/>
+                <constraint firstAttribute="trailing" secondItem="eug-Xh-jfm" secondAttribute="trailing" id="atY-d0-H3a"/>
+                <constraint firstItem="eug-Xh-jfm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ggA-ue-aLG"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="eug-Xh-jfm"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="Nlu-h9-8cQ"/>
+                    <exclude reference="Xp3-Bz-GHw"/>
+                    <exclude reference="atY-d0-H3a"/>
+                    <exclude reference="ggA-ue-aLG"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="eug-Xh-jfm"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="Nlu-h9-8cQ"/>
+                    <include reference="Xp3-Bz-GHw"/>
+                    <include reference="atY-d0-H3a"/>
+                    <include reference="ggA-ue-aLG"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

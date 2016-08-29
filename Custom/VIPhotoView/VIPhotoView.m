@@ -7,7 +7,7 @@
 //
 
 #import "VIPhotoView.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+EMWebCache.h"
 #import "AsynImageView.h"
 
 @interface UIImage (VIUtil)
@@ -126,9 +126,9 @@
         imageView.userInteractionEnabled = YES;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [imageView sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"loading"]];
-//        [imageView setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"loading"]];
+        //        [imageView setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"loading"]];
         imageView.frame = containerView.bounds;
-//        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        //        imageView.contentMode = UIViewContentModeScaleAspectFit;
         [containerView addSubview:imageView];
         _imageView = imageView;
         
@@ -242,7 +242,7 @@
     CGSize imageSize = self.imageView.image.size;
     CGSize imagePresentationSize = self.imageView.contentSize;
     CGFloat maxScale = 3.0;
-//    MAX(imageSize.height / imagePresentationSize.height, imageSize.width / imagePresentationSize.width);
+    //    MAX(imageSize.height / imagePresentationSize.height, imageSize.width / imagePresentationSize.width);
     self.maximumZoomScale = MAX(1, maxScale); // Should not less than 1
     self.minimumZoomScale = 1.0;
 }
