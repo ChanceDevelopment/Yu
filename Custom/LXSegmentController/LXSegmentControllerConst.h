@@ -13,10 +13,10 @@
 #import "LXSegmentController.h"
 
 // 导航条高度
-static CGFloat const LXNavBarH = 64;
+static CGFloat const LXNavBarH = 0;
 
 // 标题滚动视图的高度
-static CGFloat const LXTitleScrollViewH = 44;
+static CGFloat const LXTitleScrollViewH = 50;
 
 // 标题缩放比例
 static CGFloat const LXTitleTransformScale = 1.3;

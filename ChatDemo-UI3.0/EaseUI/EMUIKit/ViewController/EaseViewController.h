@@ -11,8 +11,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "HeBaseViewController.h"
 
-@interface EaseViewController : UIViewController
+@interface EaseViewController : HeBaseViewController
 
 @property (strong, nonatomic) NSArray *rightItems;
 

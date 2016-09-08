@@ -12,6 +12,7 @@
 #import "UIView+Frame.h"
 #import "LXFlowLayout.h"
 
+#define BGVIEWTAG 200 //每个tab的背景图的其实tag值
 @interface LXSegmentController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 /** 整体内容View 包含标题好内容滚动视图 */
@@ -28,6 +29,8 @@
 
 /** 所有标题View数组 */
 @property (nonatomic, strong) NSArray *titleViews;
+/** 所有选中状态标题View数组 */
+@property (nonatomic, strong) NSArray *selectedTitleViews;
 
 /** 所以标题宽度数组 */
 @property (nonatomic, strong) NSMutableArray *titleWidths;
@@ -354,6 +357,10 @@
     _underLineW = _underLineW ? _underLineW : size.width;
 }
 
+- (void)setSelectedTitleViewArrayWith:(NSArray *)array size:(CGSize)size
+{
+    _selectedTitleViews = [[NSArray alloc] initWithArray:array];
+}
 
 #pragma mark - 控制器view生命周期方法
 
@@ -376,7 +383,7 @@
     CGFloat titleH = _titleHeight ? _titleHeight : LXTitleScrollViewH;
     CGFloat titleY = _isfullScreen ? contentY : 0;
     //假设上移64
-    titleY = -64;
+//    titleY = -64;
     self.titleScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarIOS7"]];
     self.titleScrollView.tintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarIOS7"]];
     
@@ -385,7 +392,7 @@
     // 设置内容滚动视图frame
     CGFloat contentScrollY = CGRectGetMaxY(self.titleScrollView.frame);
     //假设上移20
-    contentScrollY = -20;
+//    contentScrollY = -20;
     self.contentScrollView.frame = _isfullScreen ? CGRectMake(0, 0, contentW, LXScreenH) : CGRectMake(0, contentScrollY, contentW, self.contentView.height - contentScrollY);
 }
 
@@ -585,6 +592,8 @@
             
             label.frame = CGRectMake(viewX, viewY, viewW, viewH);
             
+            
+            
             // 监听标题的点击
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleViewClick:)];
             [label addGestureRecognizer:tap];
@@ -593,6 +602,21 @@
             [self.titleLabels addObject:label];
             [self.titleScrollView addSubview:label];
             [self.titleScrollView insertSubview:label belowSubview:self.underLine];
+            
+            if (self.selectedTitleViews) {
+                UIView *bgView = [[UIView alloc] initWithFrame:label.bounds];
+                bgView.tag = BGVIEWTAG + i;
+                bgView.hidden = YES;
+                bgView.backgroundColor = APPDEFAULTORANGE;
+                [label addSubview:bgView];
+                CGFloat imageH = viewH / 2.0;
+                CGFloat imageY = (viewH - imageH) / 2.0;
+                CGFloat imageW = imageH;
+                CGFloat imageX = (viewW - imageW) / 2.0;
+                UIImageView *imageIcon = [[UIImageView alloc] initWithFrame:CGRectMake(imageX, imageY, imageW, imageH)];
+                imageIcon.image = [UIImage imageNamed:self.selectedTitleViews[i]];
+                [bgView addSubview:imageIcon];
+            }
             
             if (i == _selectIndex) {
                 [self titleViewClick:tap];
@@ -937,6 +961,23 @@
         self.underLine.width = underLineW;
         self.underLine.center = CGPointMake(label.centerX, self.underLine.center.y);
 //        self.underLine.x = label.x;
+        NSInteger searchIndex = BGVIEWTAG;
+        for (NSInteger index = 0; index < [self.childViewControllers count]; index++) {
+            UIView *bgView = [self.titleScrollView viewWithTag:BGVIEWTAG + index];
+            if (searchIndex == BGVIEWTAG + index) {
+                bgView.hidden = NO;
+                UILabel *myLbael = (UILabel *)label;
+//                myLbael.hidden = YES;
+                CGRect labelFrame = myLbael.frame;
+                labelFrame.size.height = labelFrame.size.height - underLineH;
+                bgView.frame = labelFrame;
+                [myLbael.superview addSubview:bgView];
+            }
+            else{
+                bgView.hidden = YES;
+            }
+            
+        }
         return;
     }
     
@@ -945,6 +986,23 @@
         self.underLine.width = underLineW;
         self.underLine.center = CGPointMake(label.centerX, self.underLine.center.y);
 //        self.underLine.x = label.x;
+        NSInteger searchIndex = BGVIEWTAG + label.tag;
+        for (NSInteger index = 0; index < [self.childViewControllers count]; index++) {
+            UIView *bgView = [self.titleScrollView viewWithTag:BGVIEWTAG + index];
+            if (searchIndex == BGVIEWTAG + index) {
+                bgView.hidden = NO;
+                UILabel *myLbael = (UILabel *)label;
+//                myLbael.hidden = YES;
+                CGRect labelFrame = myLbael.frame;
+                labelFrame.size.height = labelFrame.size.height - underLineH;
+                bgView.frame = labelFrame;
+                [myLbael.superview addSubview:bgView];
+            }
+            else{
+                bgView.hidden = YES;
+            }
+            
+        }
     }];
     
 }

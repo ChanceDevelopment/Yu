@@ -236,7 +236,7 @@ typedef enum : NSUInteger {
 #pragma mark 🍉🍎🍊🍌 传入View数组 🍉🍎🍊🍌
 
 - (void)setTitleViewArrayWith:(NSArray *)array size:(CGSize)size;
-
+- (void)setSelectedTitleViewArrayWith:(NSArray *)array size:(CGSize)size;
 /**********************************传入View数组************************************/
 
 

@@ -1,32 +1,45 @@
 //
-//  HeNearbyVC.m
-//  beautyContest
+//  HeInfoVC.m
+//  carTune
 //
-//  Created by Tony on 16/8/3.
-//  Copyright © 2016年 iMac. All rights reserved.
+//  Created by HeDongMing on 16/6/18.
+//  Copyright © 2016年 Jitsun. All rights reserved.
 //
 
-#import "HeDiscoverVC.h"
-#import "HeDiscoverTableCell.h"
-#import "ChatViewController.h"
+#import "HeSearchInfoCell.h"
+#import "DCPicScrollView.h"
+#import "DCWebImageManager.h"
+#import "HeSearchInfoVC.h"
+#import "AppDelegate.h"
 
-@interface HeDiscoverVC ()<UITableViewDelegate,UITableViewDataSource>
-@property(strong,nonatomic)IBOutlet UITableView *tableview;
-@property(strong,nonatomic)UIView *sectionHeaderView;
+#define HEADVIEWHEIGH 150
+#define SCROLLTAG 300
+#define LEFTVIEWTAG 200
+#define LOADRECORDNUM 20
+
+@interface HeSearchInfoVC ()<UISearchBarDelegate>
+{
+    NSInteger limit;
+    NSInteger offset;
+}
+@property(strong,nonatomic)IBOutlet UITableView *infoTable;
+@property(strong,nonatomic)UISearchBar *searchBar;
 @property(strong,nonatomic)NSMutableArray *dataSource;
+@property(strong,nonatomic)NSMutableArray *headerArray;
+@property(strong,nonatomic)NSCache *imageCache;
 @property(strong,nonatomic)EGORefreshTableHeaderView *refreshHeaderView;
 @property(strong,nonatomic)EGORefreshTableFootView *refreshFooterView;
-@property(assign,nonatomic)NSInteger pageNo;
 
 @end
 
-@implementation HeDiscoverVC
-@synthesize tableview;
-@synthesize sectionHeaderView;
+@implementation HeSearchInfoVC
+@synthesize infoTable;
 @synthesize dataSource;
+@synthesize headerArray;
+@synthesize imageCache;
 @synthesize refreshFooterView;
 @synthesize refreshHeaderView;
-@synthesize pageNo;
+@synthesize searchBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,21 +48,20 @@
         // Custom initialization
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.backgroundColor = [UIColor clearColor];
-        label.font = APPDEFAULTTITLETEXTFONT;
-        label.textColor = APPDEFAULTTITLECOLOR;
+        label.font = [UIFont boldSystemFontOfSize:20.0];
+        label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         self.navigationItem.titleView = label;
-        label.text = @"遇";
+        label.text = @"搜索";
         [label sizeToFit];
-        
-        self.title = @"遇";
+        self.title = @"搜索";
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
     [self initializaiton];
     [self initView];
 }
@@ -57,63 +69,62 @@
 - (void)initializaiton
 {
     [super initializaiton];
+    
     dataSource = [[NSMutableArray alloc] initWithCapacity:0];
-    pageNo = 1;
-    updateOption = 1;
+    imageCache = [[NSCache alloc] init];
+    headerArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    limit = LOADRECORDNUM;
+    offset = [dataSource count];
+    
+    isShowLeft = NO;
+    dataSource = [[NSMutableArray alloc] initWithCapacity:0];
 }
 
 - (void)initView
 {
     [super initView];
-    tableview.backgroundView = nil;
-    tableview.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
-    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [Tool setExtraCellLineHidden:infoTable];
+    CGFloat itembuttonW = 25;
+    CGFloat itembuttonH = 25;
     
-    [Tool setExtraCellLineHidden:tableview];
-    [self pullUpUpdate];
-    
-    sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 40)];
-    sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
-    sectionHeaderView.userInteractionEnabled = YES;
-    
-    UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 80)];
-    self.tableview.tableFooterView = footerview;
-}
-
-- (void)loadNearbyUserShow:(BOOL)show
-{
-    
-}
-
-- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
-{
-    if ([eventName isEqualToString:@"chatUserEvent"]) {
-        ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:@"马天宇" conversationType:EMConversationTypeChat];
-        chatView.title = @"马天宇";
-        chatView.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:chatView animated:YES];
-        return;
+    UIImage *searchIcon = [UIImage imageNamed:@"icon_search"];
+    @try {
+        itembuttonW = searchIcon.size.width / searchIcon.size.height * itembuttonH;
+    } @catch (NSException *exception) {
+        itembuttonW = 25;
+    } @finally {
+        
     }
-    [super routerEventWithName:eventName userInfo:userInfo];
-}
-
-- (IBAction)distribuetButtonClick:(id)sender
-{
-    NSLog(@"distribuetButtonClick");
+    
+    CGFloat searchX = 30;
+    CGFloat searchY = 5;
+    CGFloat searchW = SCREENWIDTH - 2 * searchX;
+    CGFloat searchH = SCREENHEIGH - 2 * searchY;
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(searchX, searchY, searchW, searchH)];
+    searchBar.tintColor = [UIColor blueColor];
+    searchBar.delegate = self;
+    searchBar.barStyle = UIBarStyleDefault;
+    searchBar.placeholder = @"搜索话题、用户";
+    self.navigationItem.titleView = searchBar;
+    
+    [searchBar becomeFirstResponder];
+    
+    [self pullUpUpdate];
 }
 
 - (void)addFooterView
 {
-    if (tableview.contentSize.height >= SCREENHEIGH) {
+    if (infoTable.contentSize.height >= SCREENHEIGH) {
         [self pullDownUpdate];
     }
 }
 
 -(void)pullUpUpdate
 {
-    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableview.bounds.size.height, SCREENWIDTH, self.tableview.bounds.size.height)];
+    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.infoTable.bounds.size.height, SCREENWIDTH, self.infoTable.bounds.size.height)];
     refreshHeaderView.delegate = self;
-    [tableview addSubview:refreshHeaderView];
+    [infoTable addSubview:refreshHeaderView];
     [refreshHeaderView refreshLastUpdatedDate];
 }
 -(void)pullDownUpdate
@@ -121,10 +132,51 @@
     if (refreshFooterView == nil) {
         self.refreshFooterView = [[EGORefreshTableFootView alloc] init];
     }
-    refreshFooterView.frame = CGRectMake(0, tableview.contentSize.height, SCREENWIDTH, 650);
+    refreshFooterView.frame = CGRectMake(0, infoTable.contentSize.height, SCREENWIDTH, 650);
     refreshFooterView.delegate = self;
-    [tableview addSubview:refreshFooterView];
+    [infoTable addSubview:refreshFooterView];
     [refreshFooterView refreshLastUpdatedDate];
+    
+}
+
+- (void)updateInfo:(NSNotification *)notificaition
+{
+    
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchbar
+{
+    if ([searchbar isFirstResponder]) {
+        [searchbar resignFirstResponder];
+    }
+    return YES;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchbar
+{
+    if ([searchbar isFirstResponder]) {
+        [searchbar resignFirstResponder];
+    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchbar
+{
+    if ([searchbar isFirstResponder]) {
+        [searchbar resignFirstResponder];
+    }
+    NSString *searchKey = searchBar.text;
+    if (searchKey == nil || [searchKey isEqualToString:@""]) {
+        [self showHint:@"请输入搜索关键字"];
+        return;
+    }
+    limit = 20;
+    offset = 0;
+    NSLog(@"searchKey = %@",searchKey);
+    [self loadInfoDataWithKey:searchKey];
+}
+
+- (void)loadInfoDataWithKey:(NSString *)searchKey
+{
     
 }
 
@@ -134,8 +186,8 @@
 
 - (void)reloadTableViewDataSource{
     _reloading = YES;
-    //刷新列表
-    [self loadNearbyUserShow:NO];
+    
+    [self loadInfoDataWithKey:searchBar.text];
     [self updateDataSource];
 }
 
@@ -150,10 +202,10 @@
     _reloading = NO;
     switch (updateOption) {
         case 1:
-            [refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tableview];
+            [refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:infoTable];
             break;
         case 2:
-            [refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:tableview];
+            [refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:infoTable];
             break;
         default:
             break;
@@ -180,8 +232,8 @@
 - (void)egoRefreshTableFootDidTriggerRefresh:(EGORefreshTableFootView*)view
 {
     updateOption = 2;//加载历史标志
-    pageNo++;
-    
+    offset = [dataSource count] + [headerArray count];
+    limit = LOADRECORDNUM;
     @try {
         
     }
@@ -209,8 +261,10 @@
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
     updateOption = 1;//刷新加载标志
-    pageNo = 1;
+    limit = [dataSource count]; //保持不变，刷新原来的所有记录
+    offset = 0;
     @try {
+        
     }
     @catch (NSException *exception) {
         //抛出异常不应当处理dateline
@@ -232,52 +286,63 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 1;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [dataSource count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = indexPath.row;
-    
-    static NSString *cellIndentifier = @"HeDiscoverTableCell";
-    CGSize cellSize = [tableView rectForRowAtIndexPath:indexPath].size;
-    NSDictionary *dict = nil;
-//    @try {
-//        dict = [dataSource objectAtIndex:row];
-//    }
-//    @catch (NSException *exception) {
-//        
-//    }
-//    @finally {
-//        
-//    }
-    
-    HeDiscoverTableCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
+    NSInteger section = indexPath.section;
+    CGSize cellsize = [tableView rectForRowAtIndexPath:indexPath].size;
+    static NSString *cellIndentifier = @"HeSearchInfoCell";
+    HeSearchInfoCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
-        cell = [[HeDiscoverTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell = [[HeSearchInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellsize];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        
+    }
+    NSDictionary *dict = nil;
+    @try {
+        dict = dataSource[section];
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
     }
     
     
     return cell;
+    
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 250;
+    
+    return 100.0;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
+    NSDictionary *dict = nil;
+    @try {
+        dict = dataSource[section];
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

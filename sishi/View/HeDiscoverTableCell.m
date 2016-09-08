@@ -7,6 +7,10 @@
 //
 
 #import "HeDiscoverTableCell.h"
+#import "MLLabel+Size.h"
+#import "MLLinkLabel.h"
+
+#define TextLineHeight 1.2f
 
 @implementation HeDiscoverTableCell
 @synthesize headInfoBg;
@@ -38,19 +42,30 @@
         headImage.layer.cornerRadius = 3.0;
         headImage.contentMode = UIViewContentModeScaleAspectFill;
         headImage.image = [UIImage imageNamed:@"userDefalut_icon"];
-        [headInfoBg addSubview:headImage];
+//        [headInfoBg addSubview:headImage];
         
-        CGFloat nameX = CGRectGetMaxX(headImage.frame) + 5;
+        NSString *name = @"马天宇";
+        CGFloat nameX = 10;
         CGFloat nameY = headImageY;
-        CGFloat nameH = headImageH / 2.0;
-        CGFloat nameW = 200;
+        CGFloat nameH = headImageH;
+        CGFloat nameW = SCREENWIDTH - 2 * nameX;
+        UIFont *textFont = [UIFont systemFontOfSize:18.0];
+        CGSize nameSize = [MLLinkLabel getViewSizeByString:name maxWidth:nameW font:textFont lineHeight:TextLineHeight lines:0];
+        nameW = nameSize.width;
+        
         UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(nameX, nameY, nameW, nameH)];
-        nameLabel.text = @"马天宇";
+        nameLabel.text = name;
         nameLabel.textAlignment = NSTextAlignmentLeft;
         nameLabel.backgroundColor = [UIColor clearColor];
-        nameLabel.font = [UIFont systemFontOfSize:13.0];
+        nameLabel.font = textFont;
         nameLabel.textColor = [UIColor blackColor];
+        nameLabel.userInteractionEnabled = YES;
         [headInfoBg addSubview:nameLabel];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chatWithUser:)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [nameLabel addGestureRecognizer:tap];
         
         CGFloat timeW = 100;
         CGFloat timeX = SCREENWIDTH - headImageX - timeW;
@@ -71,7 +86,7 @@
         CGFloat subInfoBgH = nameH;
         UIView *subInfoBg = [[UIView alloc] initWithFrame:CGRectMake(subInfoBgX, subInfoBgY, subInfoBgW, subInfoBgH)];
         subInfoBg.backgroundColor = [UIColor colorWithRed:254.0 /255.0 green:178.0 /255.0 blue:196.0 /255.0 alpha:1.0];
-        [headInfoBg addSubview:subInfoBg];
+//        [headInfoBg addSubview:subInfoBg];
         
         CGFloat iconY = 5;
         CGFloat iconH = subInfoBgH - 2 * iconY;
@@ -80,7 +95,7 @@
         UIImageView *sexIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_man"]];
         sexIcon.frame = CGRectMake(iconX, iconY, iconW, iconH);
         sexIcon.backgroundColor = [UIColor clearColor];
-        [subInfoBg addSubview:sexIcon];
+//        [subInfoBg addSubview:sexIcon];
         
         CGFloat ageX = subInfoBgW / 2.0;
         CGFloat ageY = 0;
@@ -93,7 +108,7 @@
         ageLabel.backgroundColor = [UIColor clearColor];
         ageLabel.font = [UIFont systemFontOfSize:11.0];
         ageLabel.textColor = [UIColor whiteColor];
-        [subInfoBg addSubview:ageLabel];
+//        [subInfoBg addSubview:ageLabel];
         
         /********图片区域*******/
         CGFloat imageX = 0;
@@ -165,9 +180,9 @@
         [otherInfoBg addSubview:forwardButton];
         
         
-        CGFloat downY = 10;
+        CGFloat downY = 12;
         CGFloat downH = otherH - 2 * downY;
-        CGFloat downW = downH;
+        CGFloat downW = downH * 1.1;
         CGFloat downX = SCREENWIDTH - 10 - downW;
         UIImageView *downIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_down"]];
         downIcon.frame = CGRectMake(downX, downY, downW, downH);
@@ -186,9 +201,9 @@
         rankNumLabel.textColor = [UIColor grayColor];
         [otherInfoBg addSubview:rankNumLabel];
         
-        CGFloat upY = 10;
-        CGFloat upH = otherH - 2 * downY;
-        CGFloat upW = downH;
+        CGFloat upY = 12;
+        CGFloat upH = otherH - 2 * upY;
+        CGFloat upW = downH * 1.1;
         CGFloat upX = CGRectGetMinX(rankNumLabel.frame) - upW;
         UIImageView *upIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_up"]];
         upIcon.frame = CGRectMake(upX, upY, upW, upH);
@@ -206,6 +221,11 @@
 - (void)foward:(UIButton *)sender
 {
     
+}
+
+- (void)chatWithUser:(id)sender
+{
+    [self routerEventWithName:@"chatUserEvent" userInfo:nil];
 }
 
 - (void)drawRect:(CGRect)rect

@@ -66,6 +66,9 @@
     tableview.backgroundColor = [UIColor whiteColor];
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [Tool setExtraCellLineHidden:tableview];
+    
+    UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 80)];
+    self.tableview.tableFooterView = footerview;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

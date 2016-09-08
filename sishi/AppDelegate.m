@@ -23,6 +23,7 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "HeRootSegmentVC.h"
 #import "CustomNavigationController.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -65,6 +66,7 @@ BMKMapManager* _mapManager;
     [queue addOperation:operation];
     [queue setMaxConcurrentOperationCount:1];
     //配置根控制器
+//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HeRootSegmentVC new]];
     [self loginStateChange:nil];
     [self.window makeKeyAndVisible];
     return YES;
@@ -171,7 +173,6 @@ BMKMapManager* _mapManager;
 {
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
     BOOL haveLogin = (userToken == nil) ? NO : YES;
-    
     if (1) {//登陆成功加载主窗口控制器
         UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7"];
         [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
@@ -182,6 +183,8 @@ BMKMapManager* _mapManager;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         
         HeRootSegmentVC *tabBarVC = [[HeRootSegmentVC alloc] init];
+        
+//        tabBarVC.underLineColor = [UIColor whiteColor];
         CustomNavigationController *rootNavigationVC = [[CustomNavigationController alloc] initWithRootViewController:tabBarVC];
         self.viewController = rootNavigationVC;
         

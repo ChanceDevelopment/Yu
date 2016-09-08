@@ -347,7 +347,7 @@
 		EA89883D1D746D0C00A2A392 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA8987221D746D0C00A2A392 /* Settings.bundle */; };
 		EA8DA9641D5A171A00487BF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9631D5A171A00487BF4 /* main.m */; };
 		EA8DA9671D5A171A00487BF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9661D5A171A00487BF4 /* AppDelegate.m */; };
-		EA8DA96A1D5A171A00487BF4 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9691D5A171A00487BF4 /* ViewController.mm */; };
+		EA8DA96A1D5A171A00487BF4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DA9691D5A171A00487BF4 /* ViewController.m */; };
 		EA8DA96D1D5A171A00487BF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8DA96B1D5A171A00487BF4 /* Main.storyboard */; };
 		EA8DA96F1D5A171A00487BF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8DA96E1D5A171A00487BF4 /* Assets.xcassets */; };
 		EA8DA9721D5A171A00487BF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8DA9701D5A171A00487BF4 /* LaunchScreen.storyboard */; };
@@ -756,6 +756,11 @@
 		EAC718C41D71324100BBC106 /* HeInstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC718C31D71324100BBC106 /* HeInstructionView.m */; };
 		EAC718C91D71326600BBC106 /* HeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC718C71D71326600BBC106 /* HeLoginVC.m */; };
 		EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC718C81D71326600BBC106 /* HeLoginVC.xib */; };
+		EAF95C2D1D81240B00B4422D /* add_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF95C2C1D81240B00B4422D /* add_Icon.png */; };
+		EAFCB5E71D8152D700A23BAA /* HeSearchInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFCB5E51D8152D700A23BAA /* HeSearchInfoVC.m */; };
+		EAFCB5E81D8152D700A23BAA /* HeSearchInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFCB5E61D8152D700A23BAA /* HeSearchInfoVC.xib */; };
+		EAFCB5EC1D8152FD00A23BAA /* HeSearchInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFCB5EB1D8152FD00A23BAA /* HeSearchInfoCell.m */; };
+		EAFCB5EF1D8156ED00A23BAA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAFCB5F11D8156ED00A23BAA /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1355,7 +1360,7 @@
 		EA8DA9651D5A171A00487BF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA8DA9661D5A171A00487BF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EA8DA9681D5A171A00487BF4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EA8DA9691D5A171A00487BF4 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		EA8DA9691D5A171A00487BF4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EA8DA96C1D5A171A00487BF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA8DA96E1D5A171A00487BF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA8DA9711D5A171A00487BF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -2110,6 +2115,16 @@
 		EAC718C61D71326600BBC106 /* HeLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeLoginVC.h; sourceTree = "<group>"; };
 		EAC718C71D71326600BBC106 /* HeLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeLoginVC.m; sourceTree = "<group>"; };
 		EAC718C81D71326600BBC106 /* HeLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeLoginVC.xib; sourceTree = "<group>"; };
+		EAF95C2C1D81240B00B4422D /* add_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Icon.png; sourceTree = "<group>"; };
+		EAFCB5E41D8152D700A23BAA /* HeSearchInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeSearchInfoVC.h; sourceTree = "<group>"; };
+		EAFCB5E51D8152D700A23BAA /* HeSearchInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeSearchInfoVC.m; sourceTree = "<group>"; };
+		EAFCB5E61D8152D700A23BAA /* HeSearchInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeSearchInfoVC.xib; sourceTree = "<group>"; };
+		EAFCB5EA1D8152FD00A23BAA /* HeSearchInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeSearchInfoCell.h; sourceTree = "<group>"; };
+		EAFCB5EB1D8152FD00A23BAA /* HeSearchInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeSearchInfoCell.m; sourceTree = "<group>"; };
+		EAFCB5F21D8156F100A23BAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EAFCB5F31D81576600A23BAA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		EAFCB5F41D81576600A23BAA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		EAFCB5F51D81576600A23BAA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2268,6 +2283,7 @@
 		EA1C39CC1D743015008557B4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				EAF95C2C1D81240B00B4422D /* add_Icon.png */,
 				EA1018A01D748CBD00B1051C /* icon_reply.png */,
 				EA1C39D01D743049008557B4 /* ic_empty.png */,
 				EA1C39D11D743049008557B4 /* icon_add_pho.png */,
@@ -3491,7 +3507,7 @@
 				EA8DA9651D5A171A00487BF4 /* AppDelegate.h */,
 				EA8DA9661D5A171A00487BF4 /* AppDelegate.m */,
 				EA8DA9681D5A171A00487BF4 /* ViewController.h */,
-				EA8DA9691D5A171A00487BF4 /* ViewController.mm */,
+				EA8DA9691D5A171A00487BF4 /* ViewController.m */,
 				EA8DA96B1D5A171A00487BF4 /* Main.storyboard */,
 				EA8DA96E1D5A171A00487BF4 /* Assets.xcassets */,
 				EA8DA9701D5A171A00487BF4 /* LaunchScreen.storyboard */,
@@ -3508,6 +3524,7 @@
 				EA8DA9631D5A171A00487BF4 /* main.m */,
 				EA8DAEDC1D5A19C400487BF4 /* sishiDefine.h */,
 				EA8DAEDD1D5A19F400487BF4 /* sishi-Prefix.pch */,
+				EAFCB5F11D8156ED00A23BAA /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -3593,6 +3610,7 @@
 		EA8DA9E61D5A18C700487BF4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EAFCB5E31D8152C700A23BAA /* Search */,
 				EA1C39C01D742CA4008557B4 /* News */,
 				EA1C39BF1D742C97008557B4 /* Discover */,
 				EAC718C51D71325600BBC106 /* User */,
@@ -5009,6 +5027,7 @@
 		EA8DAECE1D5A18FA00487BF4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EAFCB5E91D8152DA00A23BAA /* Search */,
 				EA8984C61D7468C600A2A392 /* News */,
 				EA8984BA1D74673D00A2A392 /* Base */,
 				EA8984B91D7466B100A2A392 /* Discover */,
@@ -5078,6 +5097,25 @@
 				EA1C39C81D742CD3008557B4 /* HeUserVC.xib */,
 			);
 			name = User;
+			sourceTree = "<group>";
+		};
+		EAFCB5E31D8152C700A23BAA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				EAFCB5E41D8152D700A23BAA /* HeSearchInfoVC.h */,
+				EAFCB5E51D8152D700A23BAA /* HeSearchInfoVC.m */,
+				EAFCB5E61D8152D700A23BAA /* HeSearchInfoVC.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		EAFCB5E91D8152DA00A23BAA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				EAFCB5EA1D8152FD00A23BAA /* HeSearchInfoCell.h */,
+				EAFCB5EB1D8152FD00A23BAA /* HeSearchInfoCell.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -5167,6 +5205,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = EA8DA9561D5A171A00487BF4;
 			productRefGroup = EA8DA9601D5A171A00487BF4 /* Products */;
@@ -5270,6 +5309,7 @@
 				EA8988091D746D0C00A2A392 /* icon_024_cover.png in Resources */,
 				EA8DAD461D5A18D000487BF4 /* grayArrow.png in Resources */,
 				EA89882D1D746D0C00A2A392 /* tabbar_contacts@2x.png in Resources */,
+				EAFCB5EF1D8156ED00A23BAA /* Localizable.strings in Resources */,
 				EA8987E21D746D0C00A2A392 /* faceDelete.png in Resources */,
 				EA8DAD311D5A18D000487BF4 /* success@2x.png in Resources */,
 				EA8988331D746D0C00A2A392 /* tabbar_settingHL@2x.png in Resources */,
@@ -5292,6 +5332,7 @@
 				EA8DAD631D5A18D000487BF4 /* MBProgressHUD.bundle in Resources */,
 				EA8DAD471D5A18D000487BF4 /* grayArrow@2x.png in Resources */,
 				EA8DAE221D5A18D000487BF4 /* btn_021@2x.png in Resources */,
+				EAFCB5E81D8152D700A23BAA /* HeSearchInfoVC.xib in Resources */,
 				EA8987EA1D746D0C00A2A392 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				EA8988151D746D0C00A2A392 /* account@2x.png in Resources */,
 				EA8987C71D746D0C00A2A392 /* EaseUIResource.bundle in Resources */,
@@ -5314,6 +5355,7 @@
 				EA1018941D747C6000B1051C /* icon_man.png in Resources */,
 				EA8988041D746D0C00A2A392 /* icon_021.gif in Resources */,
 				EA8984C21D74674E00A2A392 /* HeBaseTableViewCell.xib in Resources */,
+				EAF95C2D1D81240B00B4422D /* add_Icon.png in Resources */,
 				EA8987E01D746D0C00A2A392 /* chat_location_preview.png in Resources */,
 				EA8987D91D746D0C00A2A392 /* chat_video_play.png in Resources */,
 				EA89881A1D746D0C00A2A392 /* delete@2x.png in Resources */,
@@ -5463,6 +5505,7 @@
 				EA8987461D746D0C00A2A392 /* ApplyViewController.m in Sources */,
 				EA8987901D746D0C00A2A392 /* PSTCollectionViewData.m in Sources */,
 				EA8DAD221D5A18D000487BF4 /* pinyin.m in Sources */,
+				EAFCB5EC1D8152FD00A23BAA /* HeSearchInfoCell.m in Sources */,
 				EA8987421D746D0C00A2A392 /* ContactListViewController.m in Sources */,
 				EA8987581D746D0C00A2A392 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				EA8DAD4E1D5A18D000487BF4 /* FMDatabasePool.m in Sources */,
@@ -5488,6 +5531,7 @@
 				EA8987471D746D0C00A2A392 /* RealtimeSearchUtil.m in Sources */,
 				EA8DACFA1D5A18D000487BF4 /* ASIDataCompressor.m in Sources */,
 				EA8DAD201D5A18D000487BF4 /* DFToolUtil.m in Sources */,
+				EAFCB5E71D8152D700A23BAA /* HeSearchInfoVC.m in Sources */,
 				EA8DADF31D5A18D000487BF4 /* UIDatePicker+RACSignalSupport.m in Sources */,
 				EA8DAD081D5A18D000487BF4 /* NSDictionary+JSON.m in Sources */,
 				EA8DAE3B1D5A18D000487BF4 /* NSMutableArray+convenience.m in Sources */,
@@ -5665,7 +5709,7 @@
 				EA8987791D746D0C00A2A392 /* MWTapDetectingView.m in Sources */,
 				EA8987BB1D746D0C00A2A392 /* EaseBubbleView+Video.m in Sources */,
 				EA8DADE61D5A18D000487BF4 /* RACTestScheduler.m in Sources */,
-				EA8DA96A1D5A171A00487BF4 /* ViewController.mm in Sources */,
+				EA8DA96A1D5A171A00487BF4 /* ViewController.m in Sources */,
 				EA8DAD441D5A18D000487BF4 /* EGORefreshTableFootView.m in Sources */,
 				EA8987B51D746D0C00A2A392 /* EaseMessageTimeCell.m in Sources */,
 				EA8DAE301D5A18D000487BF4 /* UIView+Layout.m in Sources */,
@@ -5936,6 +5980,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				EA8DA96C1D5A171A00487BF4 /* Base */,
+				EAFCB5F31D81576600A23BAA /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -5944,8 +5989,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				EA8DA9711D5A171A00487BF4 /* Base */,
+				EAFCB5F41D81576600A23BAA /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EAFCB5F11D8156ED00A23BAA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAFCB5F21D8156F100A23BAA /* en */,
+				EAFCB5F51D81576600A23BAA /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

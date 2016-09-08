@@ -70,7 +70,8 @@ static EaseLocationViewController *defaultLocation = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self initializaiton];
+    [self initView];
     self.title = NSEaseLocalizedString(@"location.messageType", @"location message");
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
@@ -101,6 +102,16 @@ static EaseLocationViewController *defaultLocation = nil;
     else{
         [self removeToLocation:_currentLocationCoordinate];
     }
+}
+
+- (void)initializaiton
+{
+    [super initializaiton];
+}
+
+- (void)initView
+{
+    [super initView];
 }
 
 - (void)didReceiveMemoryWarning

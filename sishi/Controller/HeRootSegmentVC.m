@@ -11,9 +11,11 @@
 #import "HeDiscoverVC.h"
 #import "HeNewsVC.h"
 #import "HeChatVC.h"
+#import "HeSearchInfoVC.h"
 
 @interface HeRootSegmentVC ()<UISearchBarDelegate>
 @property(strong,nonatomic)UISearchBar *searchBar;
+
 
 @end
 
@@ -24,8 +26,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initializaiton];
-    [self initView];
     [self setUpAllViewController];
+    [self initView];
 }
 
 - (void)initializaiton
@@ -36,16 +38,62 @@
 - (void)initView
 {
     [super initView];
-    CGFloat searchX = 30;
-    CGFloat searchY = 5;
+    CGFloat searchX = 10;
+    CGFloat searchY = 15;
     CGFloat searchW = SCREENWIDTH - 2 * searchX;
-    CGFloat searchH = SCREENHEIGH - 2 * searchY;
-    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(searchX, searchY, searchW, searchH)];
-    searchBar.tintColor = [UIColor blueColor];
-    searchBar.delegate = self;
-    searchBar.barStyle = UIBarStyleDefault;
-    searchBar.placeholder = @"请输入关键字";
-    self.navigationItem.titleView = searchBar;
+    CGFloat searchH = 64 - 2 * searchY;
+    
+    UIView *searchView = [[UIView alloc] initWithFrame:CGRectMake(searchX, searchY, searchW, searchH)];
+    searchView.layer.masksToBounds = YES;
+    searchView.layer.cornerRadius = 3.0;
+    searchView.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:searchView.bounds];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.text = @"          搜索话题、用户";
+    titleLabel.textColor = [UIColor grayColor];
+    titleLabel.font = [UIFont systemFontOfSize:15.0];
+    [searchView addSubview:titleLabel];
+    
+    CGFloat iconW = 20;
+    CGFloat iconH = 20;
+    CGFloat iconX = 10;
+    CGFloat iconY = (searchH - iconH) / 2.0;
+    UIImageView *searchIcon = [[UIImageView alloc] initWithFrame:CGRectMake(iconX, iconY, iconW, iconH)];
+    searchIcon.image = [UIImage imageNamed:@"icon_search"];
+    [searchView addSubview:searchIcon];
+    
+    searchView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchInfo:)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    [searchView addGestureRecognizer:tap];
+    
+//    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(searchX, searchY, searchW, searchH)];
+//    searchBar.tintColor = [UIColor blueColor];
+//    searchBar.delegate = self;
+//    searchBar.barStyle = UIBarStyleDefault;
+//    searchBar.placeholder = @"请输入关键字";
+    self.navigationItem.titleView = searchView;
+    
+    self.norColor = [UIColor whiteColor];
+    self.selColor = [UIColor whiteColor];
+    self.titleFont = [UIFont systemFontOfSize:20.0];
+    self.isShowUnderLine = YES;
+    self.underLineColor = [UIColor whiteColor];
+    self.underLineH = 3.0;
+    self.underLineW = SCREENWIDTH / 5.0;
+    
+    NSArray *titleViewArray = @[@"main_meet_select",@"main_message_select",@"main_mine_select"];
+    
+    [self setSelectedTitleViewArrayWith:titleViewArray size:CGSizeMake(SCREENWIDTH / 3.0, 50)];
+}
+
+- (void)searchInfo:(id)sender
+{
+    HeSearchInfoVC *searchInfoVC = [[HeSearchInfoVC alloc] init];
+    searchInfoVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchInfoVC animated:YES];
 }
 
 - (void)setUpAllViewController

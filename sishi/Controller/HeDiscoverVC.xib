@@ -24,19 +24,49 @@
                         <outlet property="delegate" destination="-1" id="rwn-38-d7L"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajv-bI-XIi">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="DNM-CT-DR4"/>
+                        <constraint firstAttribute="width" constant="50" id="UJH-TT-S4l"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="add_Icon.png"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="DNM-CT-DR4"/>
+                            <exclude reference="UJH-TT-S4l"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="DNM-CT-DR4"/>
+                            <include reference="UJH-TT-S4l"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="distribuetButtonClick:" destination="-1" eventType="touchUpInside" id="vFU-Gh-qps"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="ajv-bI-XIi" secondAttribute="trailing" constant="20" id="Hyj-tm-SDF"/>
                 <constraint firstItem="eug-Xh-jfm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nlu-h9-8cQ"/>
                 <constraint firstAttribute="bottom" secondItem="eug-Xh-jfm" secondAttribute="bottom" id="Xp3-Bz-GHw"/>
                 <constraint firstAttribute="trailing" secondItem="eug-Xh-jfm" secondAttribute="trailing" id="atY-d0-H3a"/>
+                <constraint firstAttribute="bottom" secondItem="ajv-bI-XIi" secondAttribute="bottom" constant="50" id="cDT-DT-WXh">
+                    <variation key="heightClass=regular-widthClass=compact" constant="100"/>
+                </constraint>
                 <constraint firstItem="eug-Xh-jfm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ggA-ue-aLG"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="eug-Xh-jfm"/>
+                    <exclude reference="ajv-bI-XIi"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="Hyj-tm-SDF"/>
+                    <exclude reference="cDT-DT-WXh"/>
                     <exclude reference="Nlu-h9-8cQ"/>
                     <exclude reference="Xp3-Bz-GHw"/>
                     <exclude reference="atY-d0-H3a"/>
@@ -46,8 +76,11 @@
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="subviews">
                     <include reference="eug-Xh-jfm"/>
+                    <include reference="ajv-bI-XIi"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="Hyj-tm-SDF"/>
+                    <include reference="cDT-DT-WXh"/>
                     <include reference="Nlu-h9-8cQ"/>
                     <include reference="Xp3-Bz-GHw"/>
                     <include reference="atY-d0-H3a"/>
@@ -56,4 +89,7 @@
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="add_Icon.png" width="80" height="80"/>
+    </resources>
 </document>
