@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
+@class HeLocationTipVC;
 
 static NSString *appKey = JPUSHAPPKEY;
 static NSString *channel = @"App Store";  //下载的渠道
 static BOOL isProduction = FALSE;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>
+{
+    HeLocationTipVC *tipVC;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIViewController *viewController;

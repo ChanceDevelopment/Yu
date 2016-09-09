@@ -93,6 +93,24 @@
     _photoButton.tag = MOREVIEW_BUTTON_TAG;
     [_scrollview addSubview:_photoButton];
     
+    
+    _takePicButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    [_takePicButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    [_takePicButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_camera"] forState:UIControlStateNormal];
+    [_takePicButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_cameraSelected"] forState:UIControlStateHighlighted];
+    [_takePicButton addTarget:self action:@selector(takePicAction) forControlEvents:UIControlEventTouchUpInside];
+    _takePicButton.tag = MOREVIEW_BUTTON_TAG + 2;
+    _maxIndex = 2;
+    [_scrollview addSubview:_takePicButton];
+    
+    CGRect myframe = self.frame;
+    myframe.size.height = 80;
+    self.frame = myframe;
+    _scrollview.frame = CGRectMake(0, 0, CGRectGetWidth(myframe), CGRectGetHeight(myframe));
+    _pageControl.frame = CGRectMake(0, CGRectGetHeight(myframe) - 20, CGRectGetWidth(myframe), 20);
+    _pageControl.hidden = _pageControl.numberOfPages<=1;
+    
+    return;
     _locationButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [_locationButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_locationButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_location"] forState:UIControlStateNormal];

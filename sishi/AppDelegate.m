@@ -24,6 +24,7 @@
 #import "HeRootSegmentVC.h"
 #import "CustomNavigationController.h"
 #import "ViewController.h"
+#import "HeLocationTipVC.h"
 
 @interface AppDelegate ()
 
@@ -69,6 +70,19 @@ BMKMapManager* _mapManager;
 //    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HeRootSegmentVC new]];
     [self loginStateChange:nil];
     [self.window makeKeyAndVisible];
+    if ([CLLocationManager locationServicesEnabled] &&
+        ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized
+         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)) {
+            NSLog(@"定位可用");
+            [tipVC dismissViewControllerAnimated:YES completion:nil];
+        }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
+        NSLog(@"定位功能不可用，提示用户或忽略");
+        if (!tipVC) {
+            tipVC = [[HeLocationTipVC alloc] init];
+        }
+        [self.window.rootViewController presentViewController:tipVC animated:YES completion:nil];
+    }
     return YES;
 }
 
@@ -461,6 +475,21 @@ BMKMapManager* _mapManager;
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [application setApplicationIconBadgeNumber:0];
     [application cancelAllLocalNotifications];
+    
+    if ([CLLocationManager locationServicesEnabled] &&
+        ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized
+         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)) {
+            NSLog(@"定位可用");
+            [tipVC dismissViewControllerAnimated:YES completion:nil];
+        }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
+        NSLog(@"定位功能不可用，提示用户或忽略");
+        if (!tipVC) {
+            tipVC = [[HeLocationTipVC alloc] init];
+        }
+        [self.window.rootViewController presentViewController:tipVC animated:YES completion:nil];
+        
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

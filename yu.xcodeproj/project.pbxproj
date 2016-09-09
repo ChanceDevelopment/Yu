@@ -745,6 +745,8 @@
 		EA8DAED51D5A190100487BF4 /* loading_anim1.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAED11D5A190100487BF4 /* loading_anim1.png */; };
 		EA8DAED61D5A190100487BF4 /* loading_anim2.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAED21D5A190100487BF4 /* loading_anim2.png */; };
 		EA8DAED71D5A190100487BF4 /* Waiting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAED41D5A190100487BF4 /* Waiting.m */; };
+		EAC709BF1D82461800A5F969 /* HeLocationTipVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC709BD1D82461800A5F969 /* HeLocationTipVC.m */; };
+		EAC709C01D82461800A5F969 /* HeLocationTipVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC709BE1D82461800A5F969 /* HeLocationTipVC.xib */; };
 		EAC718B91D71315200BBC106 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B01D71315100BBC106 /* BaiduMapAPI_Base.framework */; };
 		EAC718BA1D71315200BBC106 /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B11D71315100BBC106 /* BaiduMapAPI_Cloud.framework */; };
 		EAC718BB1D71315200BBC106 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B21D71315100BBC106 /* BaiduMapAPI_Location.framework */; };
@@ -2102,6 +2104,9 @@
 		EA8DAEDB1D5A19A300487BF4 /* appAPIDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appAPIDefine.h; sourceTree = "<group>"; };
 		EA8DAEDC1D5A19C400487BF4 /* sishiDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sishiDefine.h; sourceTree = "<group>"; };
 		EA8DAEDD1D5A19F400487BF4 /* sishi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sishi-Prefix.pch"; sourceTree = "<group>"; };
+		EAC709BC1D82461800A5F969 /* HeLocationTipVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeLocationTipVC.h; sourceTree = "<group>"; };
+		EAC709BD1D82461800A5F969 /* HeLocationTipVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeLocationTipVC.m; sourceTree = "<group>"; };
+		EAC709BE1D82461800A5F969 /* HeLocationTipVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeLocationTipVC.xib; sourceTree = "<group>"; };
 		EAC718B01D71315100BBC106 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		EAC718B11D71315100BBC106 /* BaiduMapAPI_Cloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Cloud.framework; sourceTree = "<group>"; };
 		EAC718B21D71315100BBC106 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
@@ -3610,6 +3615,7 @@
 		EA8DA9E61D5A18C700487BF4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EAC709BB1D8245C300A5F969 /* Common */,
 				EAFCB5E31D8152C700A23BAA /* Search */,
 				EA1C39C01D742CA4008557B4 /* News */,
 				EA1C39BF1D742C97008557B4 /* Discover */,
@@ -5054,6 +5060,16 @@
 			path = loading_anim_Resource;
 			sourceTree = "<group>";
 		};
+		EAC709BB1D8245C300A5F969 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EAC709BC1D82461800A5F969 /* HeLocationTipVC.h */,
+				EAC709BD1D82461800A5F969 /* HeLocationTipVC.m */,
+				EAC709BE1D82461800A5F969 /* HeLocationTipVC.xib */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		EAC718AF1D71315100BBC106 /* BaiduMap_SDK_v3.0 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5344,6 +5360,7 @@
 				EA8987EF1D746D0C00A2A392 /* chat_sender_audio_playing_002@2x.png in Resources */,
 				EA8987ED1D746D0C00A2A392 /* chat_sender_audio_playing_000@2x.png in Resources */,
 				EA8DAE021D5A18D000487BF4 /* sharemore_pic@3x.png in Resources */,
+				EAC709C01D82461800A5F969 /* HeLocationTipVC.xib in Resources */,
 				EA8DAD931D5A18D000487BF4 /* arrow_down1@2x.png in Resources */,
 				EA8987261D746D0C00A2A392 /* sr_refresh.png in Resources */,
 				EA8DAE1E1D5A18D000487BF4 /* btn_020.press@2x.png in Resources */,
@@ -5894,6 +5911,7 @@
 				EA8DADC31D5A18D000487BF4 /* RACDisposable.m in Sources */,
 				EA8DACE91D5A18D000487BF4 /* AFSecurityPolicy.m in Sources */,
 				EA8DAD451D5A18D000487BF4 /* EGORefreshTableHeaderView.m in Sources */,
+				EAC709BF1D82461800A5F969 /* HeLocationTipVC.m in Sources */,
 				EA8DAD661D5A18D000487BF4 /* MJPhoto.m in Sources */,
 				EA8DADD41D5A18D000487BF4 /* RACQueueScheduler.m in Sources */,
 				EA8DAED71D5A190100487BF4 /* Waiting.m in Sources */,

@@ -917,7 +917,7 @@
             timeCell = [[EaseMessageTimeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TimeCellIdentifier];
             timeCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        
+        //不需要时间显示
         timeCell.title = object;
         return timeCell;
     }

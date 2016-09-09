@@ -73,7 +73,7 @@
         CGFloat timeH = headImageH / 2.0;
         
         UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(timeX, timeY, timeW, timeH)];
-        timeLabel.text = @"2016/09/11";
+        timeLabel.text = @"5小时前";
         timeLabel.textAlignment = NSTextAlignmentRight;
         timeLabel.backgroundColor = [UIColor clearColor];
         timeLabel.font = [UIFont systemFontOfSize:13.0];
