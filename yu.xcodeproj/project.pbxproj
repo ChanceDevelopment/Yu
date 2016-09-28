@@ -714,7 +714,6 @@
 		EA8DAE501D5A18DF00487BF4 /* UIImageUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAE4C1D5A18DF00487BF4 /* UIImageUploader.m */; };
 		EA8DAE561D5A18E600487BF4 /* HeSysbsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAE531D5A18E600487BF4 /* HeSysbsModel.m */; };
 		EA8DAE571D5A18E600487BF4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAE551D5A18E600487BF4 /* User.m */; };
-		EA8DAEB11D5A18F200487BF4 /* jpush-ios-2.1.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA8DAE5B1D5A18F200487BF4 /* jpush-ios-2.1.7.a */; };
 		EA8DAEB21D5A18F200487BF4 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAE5E1D5A18F200487BF4 /* bitstream.c */; };
 		EA8DAEB31D5A18F200487BF4 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAE601D5A18F200487BF4 /* mask.c */; };
 		EA8DAEB41D5A18F200487BF4 /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAE631D5A18F200487BF4 /* QRCodeGenerator.m */; };
@@ -759,6 +758,7 @@
 		EAC718C91D71326600BBC106 /* HeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC718C71D71326600BBC106 /* HeLoginVC.m */; };
 		EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC718C81D71326600BBC106 /* HeLoginVC.xib */; };
 		EAF95C2D1D81240B00B4422D /* add_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF95C2C1D81240B00B4422D /* add_Icon.png */; };
+		EAFC13901D9B8F9A005D00AB /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */; };
 		EAFCB5E71D8152D700A23BAA /* HeSearchInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFCB5E51D8152D700A23BAA /* HeSearchInfoVC.m */; };
 		EAFCB5E81D8152D700A23BAA /* HeSearchInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFCB5E61D8152D700A23BAA /* HeSearchInfoVC.xib */; };
 		EAFCB5EC1D8152FD00A23BAA /* HeSearchInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFCB5EB1D8152FD00A23BAA /* HeSearchInfoCell.m */; };
@@ -2026,8 +2026,6 @@
 		EA8DAE531D5A18E600487BF4 /* HeSysbsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeSysbsModel.m; sourceTree = "<group>"; };
 		EA8DAE541D5A18E600487BF4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		EA8DAE551D5A18E600487BF4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		EA8DAE5B1D5A18F200487BF4 /* jpush-ios-2.1.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.7.a"; sourceTree = "<group>"; };
-		EA8DAE5C1D5A18F200487BF4 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		EA8DAE5E1D5A18F200487BF4 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
 		EA8DAE5F1D5A18F200487BF4 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
 		EA8DAE601D5A18F200487BF4 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
@@ -2121,6 +2119,8 @@
 		EAC718C71D71326600BBC106 /* HeLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeLoginVC.m; sourceTree = "<group>"; };
 		EAC718C81D71326600BBC106 /* HeLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeLoginVC.xib; sourceTree = "<group>"; };
 		EAF95C2C1D81240B00B4422D /* add_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Icon.png; sourceTree = "<group>"; };
+		EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
+		EAFC138F1D9B8F9A005D00AB /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		EAFCB5E41D8152D700A23BAA /* HeSearchInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeSearchInfoVC.h; sourceTree = "<group>"; };
 		EAFCB5E51D8152D700A23BAA /* HeSearchInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeSearchInfoVC.m; sourceTree = "<group>"; };
 		EAFCB5E61D8152D700A23BAA /* HeSearchInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeSearchInfoVC.xib; sourceTree = "<group>"; };
@@ -2172,7 +2172,6 @@
 				EA8DA9B21D5A17FE00487BF4 /* QuartzCore.framework in Frameworks */,
 				EAC718BD1D71315200BBC106 /* BaiduMapAPI_Radar.framework in Frameworks */,
 				EAC718BC1D71315200BBC106 /* BaiduMapAPI_Map.framework in Frameworks */,
-				EA8DAEB11D5A18F200487BF4 /* jpush-ios-2.1.7.a in Frameworks */,
 				EA8DAEC71D5A18F200487BF4 /* UMMobClick.framework in Frameworks */,
 				EA8DA9B01D5A17F700487BF4 /* CoreVideo.framework in Frameworks */,
 				EA8DA9AE1D5A17E400487BF4 /* libxml2.tbd in Frameworks */,
@@ -2193,6 +2192,7 @@
 				EA8DA99C1D5A179000487BF4 /* libc++abi.tbd in Frameworks */,
 				EA8DA99A1D5A177B00487BF4 /* OpenGLES.framework in Frameworks */,
 				EAC718B91D71315200BBC106 /* BaiduMapAPI_Base.framework in Frameworks */,
+				EAFC13901D9B8F9A005D00AB /* jpush-ios-2.1.9.a in Frameworks */,
 				EA8DA9981D5A177000487BF4 /* SystemConfiguration.framework in Frameworks */,
 				EA8DA9961D5A176000487BF4 /* Contacts.framework in Frameworks */,
 				EA8987241D746D0C00A2A392 /* Bolts.framework in Frameworks */,
@@ -4810,32 +4810,15 @@
 		EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */ = {
 			isa = PBXGroup;
 			children = (
+				EAFC138D1D9B8F9A005D00AB /* JPushSDK */,
 				EA8984C71D746B0000A2A392 /* EaseSDK */,
 				EAC718AF1D71315100BBC106 /* BaiduMap_SDK_v3.0 */,
-				EA8DAE591D5A18F200487BF4 /* JPush-iOS-SDK-2.1.7 */,
 				EA8DAE5D1D5A18F200487BF4 /* libqrencode */,
 				EA8DAE6E1D5A18F200487BF4 /* ShareSDK3.3.0 */,
 				EA8DAE911D5A18F200487BF4 /* umsdk_IOS_analyics_no-idfa_v4.0.5 */,
 				EA8DAE931D5A18F200487BF4 /* ZBarSDK */,
 			);
 			path = ThirdPartySDK;
-			sourceTree = "<group>";
-		};
-		EA8DAE591D5A18F200487BF4 /* JPush-iOS-SDK-2.1.7 */ = {
-			isa = PBXGroup;
-			children = (
-				EA8DAE5A1D5A18F200487BF4 /* lib */,
-			);
-			path = "JPush-iOS-SDK-2.1.7";
-			sourceTree = "<group>";
-		};
-		EA8DAE5A1D5A18F200487BF4 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				EA8DAE5B1D5A18F200487BF4 /* jpush-ios-2.1.7.a */,
-				EA8DAE5C1D5A18F200487BF4 /* JPUSHService.h */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		EA8DAE5D1D5A18F200487BF4 /* libqrencode */ = {
@@ -5113,6 +5096,15 @@
 				EA1C39C81D742CD3008557B4 /* HeUserVC.xib */,
 			);
 			name = User;
+			sourceTree = "<group>";
+		};
+		EAFC138D1D9B8F9A005D00AB /* JPushSDK */ = {
+			isa = PBXGroup;
+			children = (
+				EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */,
+				EAFC138F1D9B8F9A005D00AB /* JPUSHService.h */,
+			);
+			path = JPushSDK;
 			sourceTree = "<group>";
 		};
 		EAFCB5E31D8152C700A23BAA /* Search */ = {
@@ -6138,6 +6130,7 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/EaseSDK/HyphenateFullSDK/lib",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/ThirdPartySDK/JPushSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.yu;
@@ -6178,6 +6171,7 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/EaseSDK/HyphenateFullSDK/lib",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/ThirdPartySDK/JPushSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.yu;
@@ -6306,6 +6300,7 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/EaseSDK/HyphenateFullSDK/lib",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/ThirdPartySDK/JPushSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.yu;
