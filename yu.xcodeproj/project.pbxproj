@@ -759,6 +759,7 @@
 		EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC718C81D71326600BBC106 /* HeLoginVC.xib */; };
 		EAF95C2D1D81240B00B4422D /* add_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF95C2C1D81240B00B4422D /* add_Icon.png */; };
 		EAFC13901D9B8F9A005D00AB /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */; };
+		EAFC13941D9BA6D5005D00AB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC13931D9BA6D5005D00AB /* UserNotifications.framework */; };
 		EAFCB5E71D8152D700A23BAA /* HeSearchInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFCB5E51D8152D700A23BAA /* HeSearchInfoVC.m */; };
 		EAFCB5E81D8152D700A23BAA /* HeSearchInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFCB5E61D8152D700A23BAA /* HeSearchInfoVC.xib */; };
 		EAFCB5EC1D8152FD00A23BAA /* HeSearchInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFCB5EB1D8152FD00A23BAA /* HeSearchInfoCell.m */; };
@@ -2121,6 +2122,8 @@
 		EAF95C2C1D81240B00B4422D /* add_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Icon.png; sourceTree = "<group>"; };
 		EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
 		EAFC138F1D9B8F9A005D00AB /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		EAFC13911D9BA6C0005D00AB /* 遇.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "遇.entitlements"; sourceTree = "<group>"; };
+		EAFC13931D9BA6D5005D00AB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		EAFCB5E41D8152D700A23BAA /* HeSearchInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeSearchInfoVC.h; sourceTree = "<group>"; };
 		EAFCB5E51D8152D700A23BAA /* HeSearchInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeSearchInfoVC.m; sourceTree = "<group>"; };
 		EAFCB5E61D8152D700A23BAA /* HeSearchInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeSearchInfoVC.xib; sourceTree = "<group>"; };
@@ -2137,6 +2140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAFC13941D9BA6D5005D00AB /* UserNotifications.framework in Frameworks */,
 				EA8984FF1D746B4800A2A392 /* AudioToolbox.framework in Frameworks */,
 				EA89875E1D746D0C00A2A392 /* libopencore-amrnb.a in Frameworks */,
 				EA8984FD1D746B3700A2A392 /* MobileCoreServices.framework in Frameworks */,
@@ -3490,6 +3494,7 @@
 				EA8DA97B1D5A171A00487BF4 /* sishiTests */,
 				EA8DA9861D5A171A00487BF4 /* sishiUITests */,
 				EA8DA9601D5A171A00487BF4 /* Products */,
+				EAFC13921D9BA6D4005D00AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3506,6 +3511,7 @@
 		EA8DA9611D5A171A00487BF4 /* sishi */ = {
 			isa = PBXGroup;
 			children = (
+				EAFC13911D9BA6C0005D00AB /* 遇.entitlements */,
 				EA8DAECE1D5A18FA00487BF4 /* View */,
 				EA8DAE511D5A18E600487BF4 /* Model */,
 				EA8DA9E61D5A18C700487BF4 /* Controller */,
@@ -5107,6 +5113,14 @@
 			path = JPushSDK;
 			sourceTree = "<group>";
 		};
+		EAFC13921D9BA6D4005D00AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EAFC13931D9BA6D5005D00AB /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EAFCB5E31D8152C700A23BAA /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -5195,6 +5209,11 @@
 					EA8DA95E1D5A171A00487BF4 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = E6CUH72B23;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					EA8DA9771D5A171A00487BF4 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -6102,6 +6121,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "sishi/遇.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6143,6 +6163,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "sishi/遇.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6272,6 +6293,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "sishi/遇.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
