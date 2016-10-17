@@ -9,8 +9,8 @@
 #ifndef appAPIDefine_h
 #define appAPIDefine_h
 
-#define FL_URL @"http://huayoutong.com/mobile/"
-#define BASEURL @"http://huayoutong.com/mobile/"
+#define FL_URL @"http://118.178.131.215:8088/meeting/"
+#define BASEURL @"http://118.178.131.215:8088/meeting/"
 #define WEBBASEURL @"http://huayoutong.com/mobilex/"
 //华幼通图片服务器
 #define HYTIMAGEURL @"http://image.huayoutong.com/"
