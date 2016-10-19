@@ -67,6 +67,8 @@
 		EA686E1D1DB7572B00669EBC /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA686E0C1DB7572B00669EBC /* README.txt */; };
 		EA686E1E1DB7572B00669EBC /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA686E111DB7572B00669EBC /* ShareSDK.bundle */; };
 		EA686E1F1DB7572B00669EBC /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686E121DB7572B00669EBC /* ShareSDKConnector.framework */; };
+		EA686E211DB7590C00669EBC /* img_meeting_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EA686E201DB7590C00669EBC /* img_meeting_logo.png */; };
+		EA686E231DB75A6300669EBC /* img_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EA686E221DB75A6300669EBC /* img_logo.png */; };
 		EA8984C01D74674E00A2A392 /* HeBaseIconTitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8984BC1D74674E00A2A392 /* HeBaseIconTitleTableCell.m */; };
 		EA8984C11D74674E00A2A392 /* HeBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8984BE1D74674E00A2A392 /* HeBaseTableViewCell.m */; };
 		EA8984C21D74674E00A2A392 /* HeBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8984BF1D74674E00A2A392 /* HeBaseTableViewCell.xib */; };
@@ -875,6 +877,8 @@
 		EA686E0F1DB7572B00669EBC /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		EA686E111DB7572B00669EBC /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
 		EA686E121DB7572B00669EBC /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
+		EA686E201DB7590C00669EBC /* img_meeting_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_meeting_logo.png; sourceTree = "<group>"; };
+		EA686E221DB75A6300669EBC /* img_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_logo.png; sourceTree = "<group>"; };
 		EA8984BB1D74674E00A2A392 /* HeBaseIconTitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeBaseIconTitleTableCell.h; sourceTree = "<group>"; };
 		EA8984BC1D74674E00A2A392 /* HeBaseIconTitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeBaseIconTitleTableCell.m; sourceTree = "<group>"; };
 		EA8984BD1D74674E00A2A392 /* HeBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeBaseTableViewCell.h; sourceTree = "<group>"; };
@@ -2306,6 +2310,8 @@
 		EA1C39CC1D743015008557B4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				EA686E221DB75A6300669EBC /* img_logo.png */,
+				EA686E201DB7590C00669EBC /* img_meeting_logo.png */,
 				EA686D4F1DB743FD00669EBC /* login_BG.png */,
 				EAF95C2C1D81240B00B4422D /* add_Icon.png */,
 				EA1018A01D748CBD00B1051C /* icon_reply.png */,
@@ -5469,6 +5475,7 @@
 				EA8988081D746D0C00A2A392 /* icon_024.gif in Resources */,
 				EA1C39DA1D743049008557B4 /* appIcon30.png in Resources */,
 				EA8988271D746D0C00A2A392 /* newFriends@2x.png in Resources */,
+				EA686E211DB7590C00669EBC /* img_meeting_logo.png in Resources */,
 				EA8987CC1D746D0C00A2A392 /* 58.png in Resources */,
 				EA8DAD2F1D5A18D000487BF4 /* refresh@2x.png in Resources */,
 				EA8987F71D746D0C00A2A392 /* icon_007_cover.png in Resources */,
@@ -5510,6 +5517,7 @@
 				EA8987DD1D746D0C00A2A392 /* chat_location_detail_disclosure@2x.png in Resources */,
 				EA8DAE011D5A18D000487BF4 /* sharemore_pic@2x.png in Resources */,
 				EA1018921D747C5500B1051C /* icon_down.png in Resources */,
+				EA686E231DB75A6300669EBC /* img_logo.png in Resources */,
 				EA8DAD291D5A18D000487BF4 /* back-arrow@2x.png in Resources */,
 				EA8988351D746D0C00A2A392 /* tabbarBackground@2x.png in Resources */,
 				EA8987E91D746D0C00A2A392 /* chat_receiver_audio_playing003@2x.png in Resources */,

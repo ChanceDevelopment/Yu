@@ -7,12 +7,21 @@
 //
 
 #import "HeLoginVC.h"
+#import "UIButton+Bootstrap.h"
+#import "HeEnrollView.h"
 
-@interface HeLoginVC ()
+@interface HeLoginVC ()<UITextFieldDelegate>
+@property(strong,nonatomic)IBOutlet UIButton *loginButton;
+@property(strong,nonatomic)IBOutlet UITextField *accountField;
+@property(strong,nonatomic)IBOutlet UITextField *passwordField;
+
 
 @end
 
 @implementation HeLoginVC
+@synthesize loginButton;
+@synthesize accountField;
+@synthesize passwordField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +49,18 @@
     [self initView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)initializaiton
 {
     [super initializaiton];
@@ -48,6 +69,47 @@
 - (void)initView
 {
     [super initView];
+    [loginButton dangerStyle];
+    loginButton.layer.borderWidth = 0;
+    loginButton.layer.borderColor = [UIColor clearColor].CGColor;
+    [loginButton setBackgroundImage:[Tool buttonImageFromColor:APPDEFAULTORANGE withImageSize:loginButton.frame.size] forState:UIControlStateNormal];
+    
+    accountField.layer.borderWidth = 1.0;
+    accountField.layer.borderColor = [UIColor whiteColor].CGColor;
+    accountField.layer.masksToBounds = YES;
+    accountField.layer.cornerRadius = 5.0;
+    
+    passwordField.layer.borderWidth = 1.0;
+    passwordField.layer.borderColor = [UIColor whiteColor].CGColor;
+    passwordField.layer.masksToBounds = YES;
+    passwordField.layer.cornerRadius = 5.0;
+    
+}
+
+- (IBAction)loginButtonClick:(id)sender
+{
+
+}
+
+- (IBAction)enrollButtonClick:(id)sender
+{
+    if ([accountField isFirstResponder]) {
+        [accountField resignFirstResponder];
+    }
+    if ([passwordField isFirstResponder]) {
+        [passwordField resignFirstResponder];
+    }
+    HeEnrollView *enrollView = [[HeEnrollView alloc] init];
+    enrollView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:enrollView animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if ([textField isFirstResponder]) {
+        [textField resignFirstResponder];
+    }
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
