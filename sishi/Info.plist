@@ -61,9 +61,13 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>遇获取您的位置，为你推荐身边的优质店铺</string>
+	<string>遇获取您的位置，为你推荐身边的优质用户</string>
 	<key>NSLocationWhenInUseDescription</key>
-	<string>遇获取您的位置，为你推荐身边的优质店铺</string>
+	<string>遇获取您的位置，为你推荐身边的优质用户</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

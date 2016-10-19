@@ -48,6 +48,10 @@
 		EA1C39EA1D743059008557B4 /* NavBarIOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1C39E61D743059008557B4 /* NavBarIOS7.png */; };
 		EA1C39EB1D743059008557B4 /* navigationBar_back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1C39E71D743059008557B4 /* navigationBar_back_icon.png */; };
 		EA1C39EE1D74327C008557B4 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1C39ED1D74327C008557B4 /* TestViewController.m */; };
+		EA686D481DB741D700669EBC /* HeEnrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA686D461DB741D700669EBC /* HeEnrollView.m */; };
+		EA686D491DB741D700669EBC /* HeEnrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA686D471DB741D700669EBC /* HeEnrollView.xib */; };
+		EA686D4D1DB7431A00669EBC /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686D4B1DB7431A00669EBC /* MOBFoundation.framework */; };
+		EA686D4E1DB7431A00669EBC /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686D4C1DB7431A00669EBC /* SMS_SDK.framework */; };
 		EA8984C01D74674E00A2A392 /* HeBaseIconTitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8984BC1D74674E00A2A392 /* HeBaseIconTitleTableCell.m */; };
 		EA8984C11D74674E00A2A392 /* HeBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8984BE1D74674E00A2A392 /* HeBaseTableViewCell.m */; };
 		EA8984C21D74674E00A2A392 /* HeBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8984BF1D74674E00A2A392 /* HeBaseTableViewCell.xib */; };
@@ -835,6 +839,11 @@
 		EA1C39E71D743059008557B4 /* navigationBar_back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBar_back_icon.png; sourceTree = "<group>"; };
 		EA1C39EC1D74327C008557B4 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		EA1C39ED1D74327C008557B4 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		EA686D451DB741D600669EBC /* HeEnrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeEnrollView.h; sourceTree = "<group>"; };
+		EA686D461DB741D700669EBC /* HeEnrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeEnrollView.m; sourceTree = "<group>"; };
+		EA686D471DB741D700669EBC /* HeEnrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeEnrollView.xib; sourceTree = "<group>"; };
+		EA686D4B1DB7431A00669EBC /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		EA686D4C1DB7431A00669EBC /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		EA8984BB1D74674E00A2A392 /* HeBaseIconTitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeBaseIconTitleTableCell.h; sourceTree = "<group>"; };
 		EA8984BC1D74674E00A2A392 /* HeBaseIconTitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeBaseIconTitleTableCell.m; sourceTree = "<group>"; };
 		EA8984BD1D74674E00A2A392 /* HeBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeBaseTableViewCell.h; sourceTree = "<group>"; };
@@ -2173,6 +2182,7 @@
 				EAC718BF1D71315200BBC106 /* BaiduMapAPI_Utils.framework in Frameworks */,
 				EAC718BA1D71315200BBC106 /* BaiduMapAPI_Cloud.framework in Frameworks */,
 				EA8DA9B41D5A181000487BF4 /* libicucore.tbd in Frameworks */,
+				EA686D4E1DB7431A00669EBC /* SMS_SDK.framework in Frameworks */,
 				EA8DA9B21D5A17FE00487BF4 /* QuartzCore.framework in Frameworks */,
 				EAC718BD1D71315200BBC106 /* BaiduMapAPI_Radar.framework in Frameworks */,
 				EAC718BC1D71315200BBC106 /* BaiduMapAPI_Map.framework in Frameworks */,
@@ -2198,6 +2208,7 @@
 				EAC718B91D71315200BBC106 /* BaiduMapAPI_Base.framework in Frameworks */,
 				EAFC13901D9B8F9A005D00AB /* jpush-ios-2.1.9.a in Frameworks */,
 				EA8DA9981D5A177000487BF4 /* SystemConfiguration.framework in Frameworks */,
+				EA686D4D1DB7431A00669EBC /* MOBFoundation.framework in Frameworks */,
 				EA8DA9961D5A176000487BF4 /* Contacts.framework in Frameworks */,
 				EA8987241D746D0C00A2A392 /* Bolts.framework in Frameworks */,
 			);
@@ -2325,6 +2336,15 @@
 				EA1C39CF1D743049008557B4 /* appIcon30.png */,
 			);
 			name = TabbarIcon;
+			sourceTree = "<group>";
+		};
+		EA686D4A1DB7431A00669EBC /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				EA686D4B1DB7431A00669EBC /* MOBFoundation.framework */,
+				EA686D4C1DB7431A00669EBC /* SMS_SDK.framework */,
+			);
+			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
 		EA8984B91D7466B100A2A392 /* Discover */ = {
@@ -4816,6 +4836,7 @@
 		EA8DAE581D5A18F200487BF4 /* ThirdPartySDK */ = {
 			isa = PBXGroup;
 			children = (
+				EA686D4A1DB7431A00669EBC /* SMS_SDK */,
 				EAFC138D1D9B8F9A005D00AB /* JPushSDK */,
 				EA8984C71D746B0000A2A392 /* EaseSDK */,
 				EAC718AF1D71315100BBC106 /* BaiduMap_SDK_v3.0 */,
@@ -5094,6 +5115,9 @@
 		EAC718C51D71325600BBC106 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				EA686D451DB741D600669EBC /* HeEnrollView.h */,
+				EA686D461DB741D700669EBC /* HeEnrollView.m */,
+				EA686D471DB741D700669EBC /* HeEnrollView.xib */,
 				EAC718C61D71326600BBC106 /* HeLoginVC.h */,
 				EAC718C71D71326600BBC106 /* HeLoginVC.m */,
 				EAC718C81D71326600BBC106 /* HeLoginVC.xib */,
@@ -5210,6 +5234,9 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = E6CUH72B23;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -5359,6 +5386,7 @@
 				EA8DAD631D5A18D000487BF4 /* MBProgressHUD.bundle in Resources */,
 				EA8DAD471D5A18D000487BF4 /* grayArrow@2x.png in Resources */,
 				EA8DAE221D5A18D000487BF4 /* btn_021@2x.png in Resources */,
+				EA686D491DB741D700669EBC /* HeEnrollView.xib in Resources */,
 				EAFCB5E81D8152D700A23BAA /* HeSearchInfoVC.xib in Resources */,
 				EA8987EA1D746D0C00A2A392 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				EA8988151D746D0C00A2A392 /* account@2x.png in Resources */,
@@ -5824,6 +5852,7 @@
 				EA89883A1D746D0C00A2A392 /* RobotChatViewController.m in Sources */,
 				EA8987AB1D746D0C00A2A392 /* EaseConversationListViewController.m in Sources */,
 				EA89878D1D746D0C00A2A392 /* PSTCollectionView.m in Sources */,
+				EA686D481DB741D700669EBC /* HeEnrollView.m in Sources */,
 				EA8DADE71D5A18D000487BF4 /* RACTuple.m in Sources */,
 				EA8DAD651D5A18D000487BF4 /* UIViewController+HUD.m in Sources */,
 				EA89874B1D746D0C00A2A392 /* EMSearchBar.m in Sources */,
@@ -6123,6 +6152,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "sishi/遇.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = E6CUH72B23;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6134,6 +6164,7 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/umsdk_IOS_analyics_no-idfa_v4.0.5",
 					"$(PROJECT_DIR)/ThirdPartySDK/BaiduMap_SDK_v3.0",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/3rdparty/Parse",
+					"$(PROJECT_DIR)/ThirdPartySDK/SMS_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
@@ -6155,7 +6186,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.channce.yu;
 				PRODUCT_NAME = "遇";
-				PROVISIONING_PROFILE = "ef1a2d03-cb4b-42cd-bc07-644af9d335f3";
+				PROVISIONING_PROFILE = "26189302-1eca-410f-a020-dc9112f2c91f";
+				PROVISIONING_PROFILE_SPECIFIER = 20161019_yu_Development;
 			};
 			name = Debug;
 		};
@@ -6176,6 +6208,7 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/umsdk_IOS_analyics_no-idfa_v4.0.5",
 					"$(PROJECT_DIR)/ThirdPartySDK/BaiduMap_SDK_v3.0",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/3rdparty/Parse",
+					"$(PROJECT_DIR)/ThirdPartySDK/SMS_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
@@ -6306,6 +6339,7 @@
 					"$(PROJECT_DIR)/ThirdPartySDK/umsdk_IOS_analyics_no-idfa_v4.0.5",
 					"$(PROJECT_DIR)/ThirdPartySDK/BaiduMap_SDK_v3.0",
 					"$(PROJECT_DIR)/ChatDemo-UI3.0/3rdparty/Parse",
+					"$(PROJECT_DIR)/ThirdPartySDK/SMS_SDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/sishi/sishi-Prefix.pch";
