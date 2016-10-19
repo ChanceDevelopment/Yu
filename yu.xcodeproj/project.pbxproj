@@ -52,6 +52,8 @@
 		EA686D491DB741D700669EBC /* HeEnrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA686D471DB741D700669EBC /* HeEnrollView.xib */; };
 		EA686D4D1DB7431A00669EBC /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686D4B1DB7431A00669EBC /* MOBFoundation.framework */; };
 		EA686D4E1DB7431A00669EBC /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686D4C1DB7431A00669EBC /* SMS_SDK.framework */; };
+		EA686D501DB743FD00669EBC /* login_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = EA686D4F1DB743FD00669EBC /* login_BG.png */; };
+		EA686D521DB7446100669EBC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA686D511DB7446100669EBC /* Images.xcassets */; };
 		EA8984C01D74674E00A2A392 /* HeBaseIconTitleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8984BC1D74674E00A2A392 /* HeBaseIconTitleTableCell.m */; };
 		EA8984C11D74674E00A2A392 /* HeBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8984BE1D74674E00A2A392 /* HeBaseTableViewCell.m */; };
 		EA8984C21D74674E00A2A392 /* HeBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8984BF1D74674E00A2A392 /* HeBaseTableViewCell.xib */; };
@@ -763,7 +765,7 @@
 		EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC718C81D71326600BBC106 /* HeLoginVC.xib */; };
 		EAF95C2D1D81240B00B4422D /* add_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF95C2C1D81240B00B4422D /* add_Icon.png */; };
 		EAFC13901D9B8F9A005D00AB /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */; };
-		EAFC13941D9BA6D5005D00AB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC13931D9BA6D5005D00AB /* UserNotifications.framework */; };
+		EAFC13941D9BA6D5005D00AB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC13931D9BA6D5005D00AB /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EAFCB5E71D8152D700A23BAA /* HeSearchInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFCB5E51D8152D700A23BAA /* HeSearchInfoVC.m */; };
 		EAFCB5E81D8152D700A23BAA /* HeSearchInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFCB5E61D8152D700A23BAA /* HeSearchInfoVC.xib */; };
 		EAFCB5EC1D8152FD00A23BAA /* HeSearchInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAFCB5EB1D8152FD00A23BAA /* HeSearchInfoCell.m */; };
@@ -844,6 +846,8 @@
 		EA686D471DB741D700669EBC /* HeEnrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeEnrollView.xib; sourceTree = "<group>"; };
 		EA686D4B1DB7431A00669EBC /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		EA686D4C1DB7431A00669EBC /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
+		EA686D4F1DB743FD00669EBC /* login_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_BG.png; sourceTree = "<group>"; };
+		EA686D511DB7446100669EBC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EA8984BB1D74674E00A2A392 /* HeBaseIconTitleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeBaseIconTitleTableCell.h; sourceTree = "<group>"; };
 		EA8984BC1D74674E00A2A392 /* HeBaseIconTitleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeBaseIconTitleTableCell.m; sourceTree = "<group>"; };
 		EA8984BD1D74674E00A2A392 /* HeBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeBaseTableViewCell.h; sourceTree = "<group>"; };
@@ -2303,6 +2307,7 @@
 		EA1C39CC1D743015008557B4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				EA686D4F1DB743FD00669EBC /* login_BG.png */,
 				EAF95C2C1D81240B00B4422D /* add_Icon.png */,
 				EA1018A01D748CBD00B1051C /* icon_reply.png */,
 				EA1C39D01D743049008557B4 /* ic_empty.png */,
@@ -3543,6 +3548,7 @@
 				EA8DA96E1D5A171A00487BF4 /* Assets.xcassets */,
 				EA8DA9701D5A171A00487BF4 /* LaunchScreen.storyboard */,
 				EA8DA9731D5A171A00487BF4 /* Info.plist */,
+				EA686D511DB7446100669EBC /* Images.xcassets */,
 				EA8DA9621D5A171A00487BF4 /* Supporting Files */,
 			);
 			path = sishi;
@@ -5382,6 +5388,7 @@
 				EA8987D71D746D0C00A2A392 /* call_silence_h@2x.png in Resources */,
 				EA8DAEC31D5A18F200487BF4 /* README.txt in Resources */,
 				EA8988131D746D0C00A2A392 /* icon_040_cover.png in Resources */,
+				EA686D501DB743FD00669EBC /* login_BG.png in Resources */,
 				EA1C39DD1D743049008557B4 /* icon_comment.png in Resources */,
 				EA8DAD631D5A18D000487BF4 /* MBProgressHUD.bundle in Resources */,
 				EA8DAD471D5A18D000487BF4 /* grayArrow@2x.png in Resources */,
@@ -5482,6 +5489,7 @@
 				EA8987DB1D746D0C00A2A392 /* chat_location_annotation_someone@2x.png in Resources */,
 				EA8987DC1D746D0C00A2A392 /* chat_location_detail_disclosure.png in Resources */,
 				EA8987FF1D746D0C00A2A392 /* icon_018_cover.png in Resources */,
+				EA686D521DB7446100669EBC /* Images.xcassets in Resources */,
 				EA8DAD3B1D5A18D000487BF4 /* i2KEPCDatePickerView.xib in Resources */,
 				EA89880E1D746D0C00A2A392 /* icon_030.gif in Resources */,
 				EA10188C1D747BA500B1051C /* icon_topic.png in Resources */,
@@ -6150,6 +6158,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "sishi/遇.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = E6CUH72B23;
@@ -6195,6 +6204,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "sishi/遇.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -6326,6 +6336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "sishi/遇.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
