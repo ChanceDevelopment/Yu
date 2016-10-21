@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeEnrollVC">
+            <connections>
+                <outlet property="getCodeButton" destination="GcF-bx-VkS" id="YDd-OS-VXO"/>
+                <outlet property="nextButton" destination="zkF-1n-5N5" id="cfc-Yb-vee"/>
+                <outlet property="phoneField" destination="khA-cK-TmS" id="st1-Ss-Y3P"/>
+                <outlet property="verifyCodeField" destination="cwN-Eu-Qe7" id="0uE-NT-tBg"/>
+                <outlet property="view" destination="rzE-Og-NKp" id="e6c-AW-1Vw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </view>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="rzE-Og-NKp">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khA-cK-TmS">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="gs2-3u-ol8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="gs2-3u-ol8"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="gs2-3u-ol8"/>
+                        </mask>
+                    </variation>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cwN-Eu-Qe7">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="E5X-Pq-TTl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="E5X-Pq-TTl"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="E5X-Pq-TTl"/>
+                        </mask>
+                    </variation>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcF-bx-VkS">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="2ET-XG-CNh"/>
+                        <constraint firstAttribute="width" constant="91" id="lVn-hC-h5l"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                    <state key="normal" title="发送验证码"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2ET-XG-CNh"/>
+                            <exclude reference="lVn-hC-h5l"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="2ET-XG-CNh"/>
+                            <include reference="lVn-hC-h5l"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="verifyButtonClick:" destination="-1" eventType="touchUpInside" id="toP-0y-3ag"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkF-1n-5N5">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="J0G-s2-M5V"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="下一步"/>
+                    <connections>
+                        <action selector="nextButtonClick:" destination="-1" eventType="touchUpInside" id="eSs-9w-wR7"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJ0-d2-QnQ">
+                    <color key="backgroundColor" red="0.16862745098039217" green="0.83529411764705885" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Gr6-BR-iK5"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-2O-o7x">
+                    <color key="backgroundColor" red="0.16862745100000001" green="0.83529411760000005" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="feV-3G-S7U"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="zkF-1n-5N5" firstAttribute="leading" secondItem="rzE-Og-NKp" secondAttribute="leading" constant="30" id="1Xo-MD-WS3"/>
+                <constraint firstItem="Pb8-2O-o7x" firstAttribute="leading" secondItem="rzE-Og-NKp" secondAttribute="leading" constant="18" id="4Eh-KM-r6L"/>
+                <constraint firstItem="GcF-bx-VkS" firstAttribute="leading" secondItem="cwN-Eu-Qe7" secondAttribute="trailing" constant="-91" id="EHF-88-MKJ"/>
+                <constraint firstAttribute="trailing" secondItem="zkF-1n-5N5" secondAttribute="trailing" constant="30" id="FyT-pg-mif"/>
+                <constraint firstItem="bJ0-d2-QnQ" firstAttribute="leading" secondItem="rzE-Og-NKp" secondAttribute="leading" constant="20" id="Oak-K2-QIn"/>
+                <constraint firstItem="cwN-Eu-Qe7" firstAttribute="leading" secondItem="rzE-Og-NKp" secondAttribute="leading" constant="20" id="RWC-OD-pJg"/>
+                <constraint firstAttribute="trailing" secondItem="Pb8-2O-o7x" secondAttribute="trailing" constant="18" id="RWY-CM-lGB"/>
+                <constraint firstItem="cwN-Eu-Qe7" firstAttribute="top" secondItem="khA-cK-TmS" secondAttribute="bottom" constant="29" id="SZh-5o-f2f"/>
+                <constraint firstItem="Pb8-2O-o7x" firstAttribute="top" secondItem="cwN-Eu-Qe7" secondAttribute="bottom" constant="8" id="bEq-gO-iPN"/>
+                <constraint firstItem="GcF-bx-VkS" firstAttribute="top" secondItem="khA-cK-TmS" secondAttribute="bottom" constant="-30" id="dCl-ne-Ob5"/>
+                <constraint firstItem="zkF-1n-5N5" firstAttribute="top" secondItem="cwN-Eu-Qe7" secondAttribute="bottom" constant="51" id="eNr-qm-xwh"/>
+                <constraint firstAttribute="trailing" secondItem="khA-cK-TmS" secondAttribute="trailing" constant="119" id="g0s-Bf-4ti"/>
+                <constraint firstAttribute="trailing" secondItem="bJ0-d2-QnQ" secondAttribute="trailing" constant="16" id="mqT-cq-6bi"/>
+                <constraint firstItem="khA-cK-TmS" firstAttribute="top" secondItem="rzE-Og-NKp" secondAttribute="top" constant="57" id="n3p-ww-HII"/>
+                <constraint firstItem="bJ0-d2-QnQ" firstAttribute="top" secondItem="GcF-bx-VkS" secondAttribute="bottom" constant="8" id="p3s-ts-blv"/>
+                <constraint firstAttribute="trailing" secondItem="GcF-bx-VkS" secondAttribute="trailing" constant="16" id="rSV-Vq-86a"/>
+                <constraint firstItem="khA-cK-TmS" firstAttribute="leading" secondItem="rzE-Og-NKp" secondAttribute="leading" constant="20" id="u9A-21-lT8"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="khA-cK-TmS"/>
+                    <exclude reference="cwN-Eu-Qe7"/>
+                    <exclude reference="GcF-bx-VkS"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="EHF-88-MKJ"/>
+                    <exclude reference="dCl-ne-Ob5"/>
+                    <exclude reference="rSV-Vq-86a"/>
+                    <exclude reference="RWC-OD-pJg"/>
+                    <exclude reference="SZh-5o-f2f"/>
+                    <exclude reference="g0s-Bf-4ti"/>
+                    <exclude reference="n3p-ww-HII"/>
+                    <exclude reference="u9A-21-lT8"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="khA-cK-TmS"/>
+                    <include reference="cwN-Eu-Qe7"/>
+                    <include reference="GcF-bx-VkS"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="EHF-88-MKJ"/>
+                    <include reference="dCl-ne-Ob5"/>
+                    <include reference="rSV-Vq-86a"/>
+                    <include reference="RWC-OD-pJg"/>
+                    <include reference="SZh-5o-f2f"/>
+                    <include reference="g0s-Bf-4ti"/>
+                    <include reference="n3p-ww-HII"/>
+                    <include reference="u9A-21-lT8"/>
+                </mask>
+            </variation>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="fQo-At-vGl" appends="YES" id="edA-op-iSU"/>
+            </connections>
+            <point key="canvasLocation" x="702.5" y="293.5"/>
+        </view>
+        <tapGestureRecognizer id="fQo-At-vGl">
+            <connections>
+                <action selector="cancelInputTap:" destination="-1" id="QhG-kI-yaQ"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

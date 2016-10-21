@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeBasicInfoVC">
+            <connections>
+                <outlet property="enrollButton" destination="cZB-l5-jYH" id="8Y5-0M-wxt"/>
+                <outlet property="passwordField" destination="7fJ-8o-jpg" id="8T3-tc-jFI"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fJ-8o-jpg">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="zbI-G1-JiY"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Idr-9g-vw9"/>
+                    </connections>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUA-4l-xnO">
+                    <color key="backgroundColor" red="0.16862745098039217" green="0.83529411764705885" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="7ij-hG-RjO"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-l5-jYH">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="tc3-Vt-oWg"/>
+                    </constraints>
+                    <state key="normal" title="注    册"/>
+                    <connections>
+                        <action selector="nextButtonClick:" destination="-1" eventType="touchUpInside" id="lYF-ta-Nuu"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cZB-l5-jYH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="BJG-mb-v9E"/>
+                <constraint firstItem="7fJ-8o-jpg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="Fih-Iq-M0B"/>
+                <constraint firstAttribute="trailing" secondItem="jUA-4l-xnO" secondAttribute="trailing" constant="30" id="Hya-Lb-hwM"/>
+                <constraint firstItem="7fJ-8o-jpg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="67" id="Mj3-KO-s28"/>
+                <constraint firstItem="cZB-l5-jYH" firstAttribute="top" secondItem="jUA-4l-xnO" secondAttribute="bottom" constant="33" id="N4U-HW-rN7"/>
+                <constraint firstItem="jUA-4l-xnO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="S9J-Y5-1Ty"/>
+                <constraint firstItem="jUA-4l-xnO" firstAttribute="top" secondItem="7fJ-8o-jpg" secondAttribute="bottom" constant="8" id="VVp-QU-7hf"/>
+                <constraint firstAttribute="trailing" secondItem="7fJ-8o-jpg" secondAttribute="trailing" constant="30" id="jFD-uz-Jff"/>
+                <constraint firstAttribute="trailing" secondItem="cZB-l5-jYH" secondAttribute="trailing" constant="48" id="oPy-rZ-t00"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="J1h-dh-kZW" appends="YES" id="8eG-VW-SnL"/>
+            </connections>
+            <point key="canvasLocation" x="32.5" y="61.5"/>
+        </view>
+        <tapGestureRecognizer id="J1h-dh-kZW">
+            <connections>
+                <action selector="cancelInputTap:" destination="-1" id="YY8-pY-lf9"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

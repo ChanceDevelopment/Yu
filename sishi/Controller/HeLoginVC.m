@@ -8,7 +8,7 @@
 
 #import "HeLoginVC.h"
 #import "UIButton+Bootstrap.h"
-#import "HeEnrollView.h"
+#import "HeEnrollVC.h"
 
 @interface HeLoginVC ()<UITextFieldDelegate>
 @property(strong,nonatomic)IBOutlet UIButton *loginButton;
@@ -99,9 +99,21 @@
     if ([passwordField isFirstResponder]) {
         [passwordField resignFirstResponder];
     }
-    HeEnrollView *enrollView = [[HeEnrollView alloc] init];
+    HeEnrollVC *enrollView = [[HeEnrollVC alloc] init];
     enrollView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:enrollView animated:YES];
+}
+
+//取消输入
+- (IBAction)cancelInputTap:(id)sender
+{
+    if ([accountField isFirstResponder]) {
+        [accountField resignFirstResponder];
+    }
+    if ([passwordField isFirstResponder]) {
+        [passwordField resignFirstResponder];
+    }
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

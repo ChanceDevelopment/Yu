@@ -25,6 +25,7 @@
 #import "CustomNavigationController.h"
 #import "ViewController.h"
 #import "HeLocationTipVC.h"
+#import <SMS_SDK/SMSSDK.h>
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -217,6 +218,8 @@ BMKMapManager* _mapManager;
 
 - (void)initShareSDK
 {
+    [SMSSDK registerApp:SHARESDKSMSKEY
+             withSecret:SHARESDKSMSAPPSECRET];
     [ShareSDK registerApp:SHARESDKKEY
           activePlatforms:@[
                             @(SSDKPlatformTypeWechat)
