@@ -55,7 +55,6 @@
 		EA1C39EB1D743059008557B4 /* navigationBar_back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1C39E71D743059008557B4 /* navigationBar_back_icon.png */; };
 		EA1C39EE1D74327C008557B4 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1C39ED1D74327C008557B4 /* TestViewController.m */; };
 		EA686D501DB743FD00669EBC /* login_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = EA686D4F1DB743FD00669EBC /* login_BG.png */; };
-		EA686D521DB7446100669EBC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA686D511DB7446100669EBC /* Images.xcassets */; };
 		EA686DBE1DB7531F00669EBC /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686DBC1DB7531F00669EBC /* MOBFoundation.framework */; };
 		EA686DBF1DB7531F00669EBC /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686DBD1DB7531F00669EBC /* SMS_SDK.framework */; };
 		EA686E131DB7572B00669EBC /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686DF11DB7572B00669EBC /* ShareSDK.framework */; };
@@ -857,7 +856,6 @@
 		EA1C39EC1D74327C008557B4 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		EA1C39ED1D74327C008557B4 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		EA686D4F1DB743FD00669EBC /* login_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_BG.png; sourceTree = "<group>"; };
-		EA686D511DB7446100669EBC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EA686DBC1DB7531F00669EBC /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		EA686DBD1DB7531F00669EBC /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		EA686DF11DB7572B00669EBC /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
@@ -3653,7 +3651,6 @@
 				EA8DA96E1D5A171A00487BF4 /* Assets.xcassets */,
 				EA8DA9701D5A171A00487BF4 /* LaunchScreen.storyboard */,
 				EA8DA9731D5A171A00487BF4 /* Info.plist */,
-				EA686D511DB7446100669EBC /* Images.xcassets */,
 				EA8DA9621D5A171A00487BF4 /* Supporting Files */,
 			);
 			path = sishi;
@@ -5514,7 +5511,6 @@
 				EA8987DB1D746D0C00A2A392 /* chat_location_annotation_someone@2x.png in Resources */,
 				EA8987DC1D746D0C00A2A392 /* chat_location_detail_disclosure.png in Resources */,
 				EA8987FF1D746D0C00A2A392 /* icon_018_cover.png in Resources */,
-				EA686D521DB7446100669EBC /* Images.xcassets in Resources */,
 				EA8DAD3B1D5A18D000487BF4 /* i2KEPCDatePickerView.xib in Resources */,
 				EA89880E1D746D0C00A2A392 /* icon_030.gif in Resources */,
 				EA10188C1D747BA500B1051C /* icon_topic.png in Resources */,
