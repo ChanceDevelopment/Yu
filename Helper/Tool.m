@@ -1010,7 +1010,7 @@
         
     }
     
-    else if((temp = timeInterval/60) <60){
+    else if((temp = timeInterval / 60) <60){
         
         result = [NSString stringWithFormat:@"今天"];
         
@@ -1018,7 +1018,7 @@
     
     
     
-    else if((temp = temp/60) <24){
+    else if((temp = temp / 60) <24){
         
         result = [NSString stringWithFormat:@"今天"];
         
@@ -1103,6 +1103,7 @@
     icon.frame = CGRectMake(iconX, iconY, iconW, iconH);
     
     UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.tag = 10086;
     titleLabel.text = title;
     titleLabel.font = [UIFont systemFontOfSize:15.0];
     titleLabel.textColor = [UIColor blackColor];

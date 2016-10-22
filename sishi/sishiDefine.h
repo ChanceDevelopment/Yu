@@ -15,6 +15,9 @@
 #define NAVTINTCOLOR [UIColor whiteColor]
 #define SCREENWIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREENHEIGH ([UIScreen mainScreen].bounds.size.height)
+#define ISIOS10 ([[[UIDevice currentDevice] systemVersion] floatValue] > 9.9)
+#define ISIOS9 ([[[UIDevice currentDevice] systemVersion] floatValue] > 8.9)
+#define ISIOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] > 7.9)
 #define ISIOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] > 6.9)
 #define ISIOS6 ([[[UIDevice currentDevice] systemVersion] floatValue] < 6.9)
 #define IOS7OFFSET        64

@@ -88,7 +88,75 @@
 
 - (IBAction)loginButtonClick:(id)sender
 {
-
+    [self cancelInputTap:nil];
+    NSString *loginUrl = [NSString stringWithFormat:@"%@/user/UserLogin.action",BASEURL];
+    NSString *userName = accountField.text;
+    NSString *userPwd = passwordField.text;
+    if (userName == nil || [userName isEqualToString:@""]) {
+        [self showHint:@"请输入手机号"];
+        return;
+    }
+    if (![Tool isMobileNumber:userName]) {
+        [self showHint:@"请输入正确的手机号码"];
+        return;
+    }
+    if (userPwd == nil || [userPwd isEqualToString:@""]) {
+        [self showHint:@"请输入登录密码"];
+        return;
+    }
+    [self showHudInView:self.view hint:@"登录中..."];
+    NSDictionary *loginParams = @{@"userName":userName,@"userPwd":userPwd};
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:loginUrl params:loginParams  success:^(AFHTTPRequestOperation* operation,id response){
+        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger errorCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        if (errorCode == REQUESTCODE_SUCCEED) {
+            NSDictionary *userDictInfo = [respondDict objectForKey:@"json"];
+            NSInteger userState = [[userDictInfo objectForKey:@"userState"] integerValue];
+//            if (userState == 0) {
+//                [self showHint:@"当前用户不可用"];
+//                return ;
+//            }
+//            NSString *userDataPath = [Tool getUserDataPath];
+//            NSString *userFileName = [userDataPath stringByAppendingPathComponent:@"userInfo.plist"];
+//            BOOL succeed = [@{@"user":respondString} writeToFile:userFileName atomically:YES];
+//            if (succeed) {
+//                NSLog(@"用户资料写入成功");
+//            }
+//            User *user = [[User alloc] initUserWithDict:userDictInfo];
+//            [HeSysbsModel getSysModel].user = user;
+//            NSString *userId = [HeSysbsModel getSysModel].user.userId;
+//            if (userId == nil) {
+//                userId = @"";
+//            }
+            NSString *userId = userDictInfo[@"userId"];
+            if ([userId isMemberOfClass:[NSNull class]] || userId == nil) {
+                userId = @"";
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:userName forKey:USERACCOUNTKEY];
+            [[NSUserDefaults standardUserDefaults] setObject:userPwd forKey:USERPASSWORDKEY];
+            [[NSUserDefaults standardUserDefaults] setObject:userId forKey:USERIDKEY];
+//            User *userInfo = [[User alloc] initUserWithDict:userDictInfo];
+//            [HeSysbsModel getSysModel].user = userInfo;
+//            
+            //发送自动登陆状态通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+        }
+        else{
+            [self hideHud];
+            NSString *data = [respondDict objectForKey:@"data"];
+            if ([data isMemberOfClass:[NSNull class]] || data == nil) {
+                data = @"登录失败!";
+            }
+            [self showHint:data];
+        }
+        
+    } failure:^(NSError *error){
+        [self hideHud];
+        [self showHint:ERRORREQUESTTIP];
+    }];
 }
 
 - (IBAction)enrollButtonClick:(id)sender

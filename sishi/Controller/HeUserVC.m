@@ -9,6 +9,8 @@
 #import "HeUserVC.h"
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import "HeUserTopicVC.h"
+#import "HeUserReplyTopicVC.h"
 
 @interface HeUserVC ()
 @property(strong,nonatomic)IBOutlet UIView *topicBgView;
@@ -102,7 +104,7 @@
     [myTopicButton addTarget:self action:@selector(topicButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [myReplyButton addTarget:self action:@selector(topicButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     myTopicButton.tag = 1;
-    myReplyButton.tag = 1;
+    myReplyButton.tag = 2;
 }
 
 - (void)topicButtonClick:(UIButton *)button
@@ -111,10 +113,16 @@
     switch (tag) {
         case 1:
         {
+            HeUserTopicVC *userTopicVC = [[HeUserTopicVC alloc] init];
+            userTopicVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:userTopicVC animated:YES];
             break;
         }
         case 2:
         {
+            HeUserReplyTopicVC *userReplyTopicVC = [[HeUserReplyTopicVC alloc] init];
+            userReplyTopicVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:userReplyTopicVC animated:YES];
             break;
         }
         default:

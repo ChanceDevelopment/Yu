@@ -190,9 +190,9 @@ BMKMapManager* _mapManager;
 
 - (void)loginStateChange:(NSNotification *)notification
 {
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERTOKENKEY];
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USERACCOUNTKEY];
     BOOL haveLogin = (userToken == nil) ? NO : YES;
-    if (1) {//登陆成功加载主窗口控制器
+    if (haveLogin) {//登陆成功加载主窗口控制器
         UIImage *navBackgroundImage = [UIImage imageNamed:@"NavBarIOS7"];
         [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

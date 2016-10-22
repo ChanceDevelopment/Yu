@@ -13,7 +13,7 @@
 #define BASEURL @"http://118.178.131.215:8088/meeting/"
 #define WEBBASEURL @"http://huayoutong.com/mobilex/"
 //华幼通图片服务器
-#define HYTIMAGEURL @"http://image.huayoutong.com/"
+#define HYTIMAGEURL @"http://118.178.131.215:8088/"
 //七牛图片服务器
 #define QNIMAGEURL @"http://7xr4f5.com2.z0.glb.qiniucdn.com/"
 //分享页面的地址

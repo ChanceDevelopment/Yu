@@ -80,5 +80,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>遇访问您的相机，让你分享自己的话题</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>遇访问您的相册，让你分享自己的话题</string>
 </dict>
 </plist>
