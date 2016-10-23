@@ -11,7 +11,7 @@
 #import "ChatViewController.h"
 #import "AppDelegate.h"
 
-@interface HeChatVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface HeChatVC ()
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
 
 @end
@@ -62,56 +62,59 @@
     [super initView];
 //    self.navigationController.navigationBarHidden = YES;
     
-    tableview.backgroundView = nil;
-    tableview.backgroundColor = [UIColor whiteColor];
-    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [Tool setExtraCellLineHidden:tableview];
-    
-    UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 80)];
-    self.tableview.tableFooterView = footerview;
+    self.tableview.backgroundView = nil;
+    self.tableview.backgroundColor = [UIColor whiteColor];
+//    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [Tool setExtraCellLineHidden:self.tableview];
+//
+//    UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 80)];
+//    self.tableview.tableFooterView = footerview;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger row = indexPath.row;
-    
-    static NSString *cellIndentifier = @"HeContestantTableCellIndentifier";
-    CGSize cellSize = [tableView rectForRowAtIndexPath:indexPath].size;
-    
-    
-    HeChatTableCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
-    if (!cell) {
-        cell = [[HeChatTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
-    return cell;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 80;
-}
-
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return 10;
+//}
+//
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1;
+//}
+//
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSInteger row = indexPath.row;
+//    
+//    static NSString *cellIndentifier = @"HeContestantTableCellIndentifier";
+//    CGSize cellSize = [tableView rectForRowAtIndexPath:indexPath].size;
+//    
+//    
+//    HeChatTableCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
+//    if (!cell) {
+//        cell = [[HeChatTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
+//            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+////            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    }
+//    
+//    return cell;
+//}
+//
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 80;
+//}
+//
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
-    ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:@"何晓明" conversationType:EMConversationTypeChat];
-    chatView.title = @"何晓明";
+    EaseConversationModel *conversationModel = self.dataArray[row];
+    NSString *conversationId = conversationModel.conversation.conversationId;
+    NSString *title = conversationModel.title;
+    ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:conversationId conversationType:EMConversationTypeChat];
+    chatView.title = title;
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }

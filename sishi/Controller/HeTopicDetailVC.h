@@ -15,5 +15,6 @@
 @property(strong,nonatomic)NSDictionary *topicDetailDict;
 @property(strong,nonatomic)IBOutlet UITextField *commentField;
 @property(strong,nonatomic)IBOutlet UILabel *commentBGLabel;
+@property(strong,nonatomic)NSDictionary *locationDict;
 
 @end

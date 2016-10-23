@@ -64,9 +64,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [EaseConversationCell cellIdentifierWithModel:nil];
-    EaseConversationCell *cell = (EaseConversationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    NSString *CellIdentifier = [EaseConversationCell cellIdentifierWithModel:nil];
+    static NSString *CellIdentifier = @"EaseConversationCell";
+//    EaseConversationCell *cell = (EaseConversationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    CGSize cellSize = [tableView rectForRowAtIndexPath:indexPath].size;
+    //
+    //
+    EaseConversationCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
+    if (!cell) {
+            cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
     // Configure the cell...
     if (cell == nil) {
         cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -80,9 +88,11 @@
     cell.model = model;
     
     if (_dataSource && [_dataSource respondsToSelector:@selector(conversationListViewController:latestMessageTitleForConversationModel:)]) {
+        EMConversation *conversation = model.conversation;
         NSMutableAttributedString *attributedText = [[_dataSource conversationListViewController:self latestMessageTitleForConversationModel:model] mutableCopy];
-        [attributedText addAttributes:@{NSFontAttributeName : cell.detailLabel.font} range:NSMakeRange(0, attributedText.length)];
-        cell.detailLabel.attributedText =  attributedText;
+        NSRange range = [attributedText.string rangeOfString:@":"];
+        [attributedText addAttributes:@{NSFontAttributeName : cell.detailLabel.font} range:NSMakeRange(range.location, attributedText.length - range.location)];
+        cell.detailLabel.text =  [attributedText.string substringFromIndex:range.location + 1];
     } else {
         cell.detailLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[self _latestMessageTitleForConversationModel:model]textFont:cell.detailLabel.font];
     }

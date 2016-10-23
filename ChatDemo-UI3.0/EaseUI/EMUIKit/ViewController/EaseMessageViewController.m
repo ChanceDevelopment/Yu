@@ -972,7 +972,7 @@
             sendCell.selectionStyle = UITableViewCellSelectionStyleNone;
             sendCell.delegate = self;
         }
-        
+        sendCell.messageNameIsHidden = YES;
         sendCell.model = model;
         return sendCell;
     }

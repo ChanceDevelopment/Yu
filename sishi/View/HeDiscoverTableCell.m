@@ -282,7 +282,7 @@
 
 - (void)chatWithUser:(id)sender
 {
-    [self routerEventWithName:@"chatUserEvent" userInfo:nil];
+    [self routerEventWithName:@"chatUserEvent" userInfo:topicDict];
 }
 
 - (void)drawRect:(CGRect)rect

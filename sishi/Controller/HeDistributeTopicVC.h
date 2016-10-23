@@ -9,5 +9,6 @@
 #import "HeBaseViewController.h"
 
 @interface HeDistributeTopicVC : HeBaseViewController<UITextViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
+@property(strong,nonatomic)NSDictionary *locationDict;
 
 @end

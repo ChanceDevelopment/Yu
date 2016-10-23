@@ -9,6 +9,7 @@
 #import "HeLoginVC.h"
 #import "UIButton+Bootstrap.h"
 #import "HeEnrollVC.h"
+#import "ChatDemoHelper.h"
 
 @interface HeLoginVC ()<UITextFieldDelegate>
 @property(strong,nonatomic)IBOutlet UIButton *loginButton;
@@ -107,7 +108,7 @@
     [self showHudInView:self.view hint:@"登录中..."];
     NSDictionary *loginParams = @{@"userName":userName,@"userPwd":userPwd};
     [AFHttpTool requestWihtMethod:RequestMethodTypePost url:loginUrl params:loginParams  success:^(AFHTTPRequestOperation* operation,id response){
-        [self hideHud];
+//        [self hideHud];
         NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
         
         NSDictionary *respondDict = [respondString objectFromJSONString];
@@ -138,11 +139,12 @@
             [[NSUserDefaults standardUserDefaults] setObject:userName forKey:USERACCOUNTKEY];
             [[NSUserDefaults standardUserDefaults] setObject:userPwd forKey:USERPASSWORDKEY];
             [[NSUserDefaults standardUserDefaults] setObject:userId forKey:USERIDKEY];
+            [self loginWithUsername:userName password:userPwd];
 //            User *userInfo = [[User alloc] initUserWithDict:userDictInfo];
 //            [HeSysbsModel getSysModel].user = userInfo;
 //            
             //发送自动登陆状态通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
         }
         else{
             [self hideHud];
@@ -195,6 +197,84 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//环信代码
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password
+{
+//    [self showHudInView:self.view hint:NSLocalizedString(@"login.ongoing", @"Is Login...")];
+    //异步登陆账号
+    __weak typeof(self) weakself = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        EMError *error = [[EMClient sharedClient] loginWithUsername:username password:password];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself hideHud];
+            if (!error) {
+                //设置是否自动登录
+                [[EMClient sharedClient].options setIsAutoLogin:YES];
+                
+                //获取数据库中数据
+//                [MBProgressHUD showHUDAddedTo:weakself.view animated:YES];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [[EMClient sharedClient] dataMigrationTo3];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[ChatDemoHelper shareHelper] asyncGroupFromServer];
+                        [[ChatDemoHelper shareHelper] asyncConversationFromDB];
+                        [[ChatDemoHelper shareHelper] asyncPushOptions];
+//                        [MBProgressHUD hideAllHUDsForView:weakself.view animated:YES];
+                        //发送自动登陆状态通知
+                        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@([[EMClient sharedClient] isLoggedIn])];
+                        
+                        //保存最近一次登录用户名
+                        [weakself saveLastLoginUsername];
+                    });
+                });
+            } else {
+                switch (error.code)
+                {
+                        //                    case EMErrorNotFound:
+                        //                        TTAlertNoTitle(error.errorDescription);
+                        //                        break;
+                    case EMErrorNetworkUnavailable:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                        break;
+                    case EMErrorServerNotReachable:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                        break;
+                    case EMErrorUserAuthenticationFailed:
+                        TTAlertNoTitle(error.errorDescription);
+                        break;
+                    case EMErrorServerTimeout:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                        break;
+                    default:
+                        TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Login failure"));
+                        break;
+                }
+            }
+        });
+    });
+}
+
+#pragma  mark - private
+- (void)saveLastLoginUsername
+{
+    NSString *username = [[EMClient sharedClient] currentUsername];
+    if (username && username.length > 0) {
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setObject:username forKey:[NSString stringWithFormat:@"em_lastLogin_username"]];
+        [ud synchronize];
+    }
+}
+
+- (NSString*)lastLoginUsername
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *username = [ud objectForKey:[NSString stringWithFormat:@"em_lastLogin_username"]];
+    if (username && username.length > 0) {
+        return username;
+    }
+    return nil;
 }
 
 /*

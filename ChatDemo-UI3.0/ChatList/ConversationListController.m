@@ -126,6 +126,7 @@
 
 - (UISearchBar *)searchBar
 {
+    return nil;
     if (!_searchBar) {
         _searchBar = [[EMSearchBar alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 44)];
         _searchBar.delegate = self;

@@ -27,6 +27,8 @@
 #import "HeLocationTipVC.h"
 #import <SMS_SDK/SMSSDK.h>
 
+#import "AppDelegate+EaseMob.h"
+
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
@@ -50,6 +52,7 @@ BMKMapManager* _mapManager;
     [self umengTrack];
     [self launchBaiduMap];
     [self initAPServiceWithOptions:launchOptions];
+    [self initEaseWithApplication:application launchOptions:launchOptions];
     BOOL showGuide = [self isShowIntroduce];
     showGuide = NO;
     if (showGuide) {
@@ -73,7 +76,7 @@ BMKMapManager* _mapManager;
     [queue setMaxConcurrentOperationCount:1];
     //配置根控制器
 //    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HeRootSegmentVC new]];
-    [self loginStateChange:nil];
+//    [self loginStateChange:nil];
     [self.window makeKeyAndVisible];
     if ([CLLocationManager locationServicesEnabled] &&
         ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized
@@ -89,6 +92,31 @@ BMKMapManager* _mapManager;
         [self.window.rootViewController presentViewController:tipVC animated:YES completion:nil];
     }
     return YES;
+}
+
+- (void)initEaseWithApplication:(UIApplication *)application launchOptions:(NSDictionary *)launchOptions
+{
+#warning 初始化环信SDK，详细内容在AppDelegate+EaseMob.m 文件中
+#warning SDK注册 APNS文件的名字, 需要与后台上传证书时的名字一一对应
+    NSString *apnsCertName = nil;
+#if DEBUG
+    apnsCertName = @"meetingAppPushServiceDev";
+#else
+    apnsCertName = @"meetingAppPushServiceDistribution";
+#endif
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *appkey = [ud stringForKey:@"identifier_appkey"];
+    if (!appkey) {
+        appkey = EASEMOBKEY;
+        [ud setObject:appkey forKey:@"identifier_appkey"];
+    }
+    
+    [self easemobApplication:application
+didFinishLaunchingWithOptions:launchOptions
+                      appkey:appkey
+                apnsCertName:apnsCertName
+                 otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
 }
 
 - (void)launchBaiduMap

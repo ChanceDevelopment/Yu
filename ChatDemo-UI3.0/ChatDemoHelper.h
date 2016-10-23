@@ -14,8 +14,9 @@
 
 #import "ConversationListController.h"
 #import "ContactListViewController.h"
-//#import "MainViewController.h"
+#import "HeRootSegmentVC.h"
 #import "ChatViewController.h"
+#import "HeChatVC.h"
 
 #define kHaveUnreadAtMessage    @"kHaveAtMessage"
 #define kAtYouMessage           1
@@ -35,9 +36,9 @@
 
 @property (nonatomic, weak) ContactListViewController *contactViewVC;
 
-@property (nonatomic, weak) ConversationListController *conversationListVC;
+@property (nonatomic, weak) HeChatVC *conversationListVC;
 
-//@property (nonatomic, weak) MainViewController *mainVC;
+@property (nonatomic, weak) HeRootSegmentVC *mainVC;
 
 @property (nonatomic, weak) ChatViewController *chatVC;
 

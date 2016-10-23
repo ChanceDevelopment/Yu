@@ -150,7 +150,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"UITableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];;
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
+//    static NSString *cellIndentifier = @"HeContestantTableCellIndentifier";
+    //    CGSize cellSize = [tableView rectForRowAtIndexPath:indexPath].size;
+    //
+    //
+    //    HeChatTableCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
+    //    if (!cell) {
+    //        cell = [[HeChatTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
+    //            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    ////            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //    }
     
     // Configure the cell...
     

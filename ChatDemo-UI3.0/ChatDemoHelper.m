@@ -130,9 +130,9 @@ static ChatDemoHelper *helper = nil;
                 [weakself.conversationListVC refreshDataSource];
             }
             //main
-//            if (weakself.mainVC) {
-//                [weakself.mainVC setupUnreadMessageCount];
-//            }
+            if (weakself.mainVC) {
+                [weakself.mainVC setupUnreadMessageCount];
+            }
         });
     });
 }
@@ -143,7 +143,7 @@ static ChatDemoHelper *helper = nil;
 - (void)didConnectionStateChanged:(EMConnectionState)connectionState
 {
     //main
-//    [self.mainVC networkChanged:connectionState];
+    [self.mainVC networkChanged:connectionState];
 }
 
 - (void)didAutoLoginWithError:(EMError *)error
@@ -154,8 +154,7 @@ static ChatDemoHelper *helper = nil;
         [alertView show];
     } else if([[EMClient sharedClient] isConnected]){
         //main
-        UIView *view = nil;
-//        UIView *view = self.mainVC.view;
+        UIView *view = self.mainVC.view;
         [MBProgressHUD showHUDAddedTo:view animated:YES];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             BOOL flag = [[EMClient sharedClient] dataMigrationTo3];
@@ -203,9 +202,9 @@ static ChatDemoHelper *helper = nil;
 - (void)didUpdateConversationList:(NSArray *)aConversationList
 {
     //main
-//    if (self.mainVC) {
-//        [_mainVC setupUnreadMessageCount];
-//    }
+    if (self.mainVC) {
+        [_mainVC setupUnreadMessageCount];
+    }
     
     if (self.conversationListVC) {
         [_conversationListVC refreshDataSource];
@@ -232,13 +231,13 @@ static ChatDemoHelper *helper = nil;
             switch (state) {
                     //main
                 case UIApplicationStateActive:
-                    //[self.mainVC playSoundAndVibration];
+                    [self.mainVC playSoundAndVibration];
                     break;
                 case UIApplicationStateInactive:
-                    //[self.mainVC playSoundAndVibration];
+                    [self.mainVC playSoundAndVibration];
                     break;
                 case UIApplicationStateBackground:
-                    //[self.mainVC showNotificationWithMessage:message];
+                    [self.mainVC showNotificationWithMessage:message];
                     break;
                 default:
                     break;
@@ -260,9 +259,9 @@ static ChatDemoHelper *helper = nil;
                 [_conversationListVC refresh];
             }
             //main
-//            if (self.mainVC) {
-//                [_mainVC setupUnreadMessageCount];
-//            }
+            if (self.mainVC) {
+                [_mainVC setupUnreadMessageCount];
+            }
             return;
         }
         
@@ -276,9 +275,9 @@ static ChatDemoHelper *helper = nil;
             [_conversationListVC refresh];
         }
         //main
-//        if (self.mainVC) {
-//            [_mainVC setupUnreadMessageCount];
-//        }
+        if (self.mainVC) {
+            [_mainVC setupUnreadMessageCount];
+        }
     }
 }
 
@@ -461,22 +460,22 @@ static ChatDemoHelper *helper = nil;
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":aUsername, @"username":aUsername, @"applyMessage":aMessage, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleFriend]}];
     [[ApplyViewController shareController] addNewApply:dic];
     //main
-//    if (self.mainVC) {
-//        [self.mainVC setupUntreatedApplyCount];
-//#if !TARGET_IPHONE_SIMULATOR
-//        [self.mainVC playSoundAndVibration];
-//        
-//        BOOL isAppActivity = [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
-//        if (!isAppActivity) {
-//            //发送本地推送
-//            UILocalNotification *notification = [[UILocalNotification alloc] init];
-//            notification.fireDate = [NSDate date]; //触发通知的时间
-//            notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"friend.somebodyAddWithName", @"%@ add you as a friend"), aUsername];
-//            notification.alertAction = NSLocalizedString(@"open", @"Open");
-//            notification.timeZone = [NSTimeZone defaultTimeZone];
-//        }
-//#endif
-//    }
+    if (self.mainVC) {
+        [self.mainVC setupUntreatedApplyCount];
+#if !TARGET_IPHONE_SIMULATOR
+        [self.mainVC playSoundAndVibration];
+        
+        BOOL isAppActivity = [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
+        if (!isAppActivity) {
+            //发送本地推送
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.fireDate = [NSDate date]; //触发通知的时间
+            notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"friend.somebodyAddWithName", @"%@ add you as a friend"), aUsername];
+            notification.alertAction = NSLocalizedString(@"open", @"Open");
+            notification.timeZone = [NSTimeZone defaultTimeZone];
+        }
+#endif
+    }
     [_contactViewVC reloadApplyView];
 }
 

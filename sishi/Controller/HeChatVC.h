@@ -7,7 +7,8 @@
 //
 
 #import "HeBaseViewController.h"
+#import "ConversationListController.h"
 
-@interface HeChatVC : HeBaseViewController
+@interface HeChatVC : ConversationListController
 
 @end

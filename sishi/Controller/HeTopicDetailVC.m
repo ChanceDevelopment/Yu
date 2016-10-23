@@ -22,7 +22,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 
-@interface HeTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UITextFieldDelegate>
+@interface HeTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
 @property(strong,nonatomic)NSMutableArray *dataSource;
 @property(strong,nonatomic)NSMutableArray *replyDataSource;
@@ -40,6 +40,7 @@
 @synthesize replyDataSource;
 @synthesize commentField;
 @synthesize commentBGLabel;
+@synthesize locationDict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,6 +66,7 @@
     [super viewDidLoad];
     [self initializaiton];
     [self initView];
+    [self updateTopicDetail];
     [self loadReplyData];
 }
 
@@ -119,7 +121,7 @@
         NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
         
         if (statueCode == REQUESTCODE_SUCCEED){
-            
+            [replyDataSource removeAllObjects];
             NSArray *resultArray = [respondDict objectForKey:@"json"];
             for (NSDictionary *dict in resultArray) {
                 [replyDataSource addObject:dict];
@@ -138,9 +140,110 @@
     }];
 }
 
+- (void)updateTopicDetail
+{
+    NSString *requestWorkingTaskPath = [NSString stringWithFormat:@"%@/topic/TopicList.action",BASEURL];
+    
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    NSString *topicId = topicDetailDict[@"topicId"];
+    if ([topicId isMemberOfClass:[NSNull class]] || topicId == nil) {
+        topicId = @"";
+    }
+    //NSNumber *pageNum = [NSNumber numberWithInteger:pageNo];
+    NSDictionary *requestMessageParams = @{@"userId":userId,@"TopicId":topicId};
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:requestWorkingTaskPath params:requestMessageParams success:^(AFHTTPRequestOperation* operation,id response){
+        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            
+            NSDictionary *topicDict = [respondDict objectForKey:@"json"];
+            topicDetailDict = [[NSDictionary alloc] initWithDictionary:topicDict];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // *** 将UI操作放到主线程中执行 ***
+                [self.tableview reloadData];
+                return ;
+            });
+            
+        }
+        
+    } failure:^(NSError *error){
+        [self showHint:ERRORREQUESTTIP];
+    }];
+}
+
 - (void)deleteButtonClick:(id)sender
 {
+    if (ISIOS8) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"确定删除本话题?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        // Create the actions.
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            //取消
+        }];
+        
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self deleteTopic];
+        }];
+        
+        
+        // Add the actions.
+        [alertController addAction:deleteAction];
+        [alertController addAction:cancelAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"确定删除本话题?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
+        alert.tag = 1;
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self deleteTopic];
+    }
+}
+
+- (void)deleteTopic
+{
     NSLog(@"deleteButtonClick");
+    NSString *requestWorkingTaskPath = [NSString stringWithFormat:@"%@/topic/deleteByTopicId.action",BASEURL];
+    
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    NSString *topicId = topicDetailDict[@"topicId"];
+    if ([topicId isMemberOfClass:[NSNull class]] || topicId == nil) {
+        topicId = @"";
+    }
+    NSDictionary *requestMessageParams = @{@"userId":userId,@"topicId":topicId};
+    
+    [self showHudInView:self.view hint:@"删除中..."];
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:requestWorkingTaskPath params:requestMessageParams success:^(AFHTTPRequestOperation* operation,id response){
+        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"deleteTopicSucceed" object:nil];
+            
+            [self performSelector:@selector(backToLastView) withObject:nil afterDelay:0.3];
+        }
+        
+    } failure:^(NSError *error){
+        [self showHint:ERRORREQUESTTIP];
+    }];
+}
+
+- (void)backToLastView
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)addCommentTextField
@@ -179,7 +282,6 @@
     if ([commentField isFirstResponder]) {
         [commentField resignFirstResponder];
     }
-    
 }
 
 -(void)onClickImage:(UIView *) sender
@@ -238,10 +340,43 @@
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
     NSString *topicId = topicDetailDict[@"topicId"];
     NSString *content = commentContent;
-    NSString *longitude = @"";
-    NSString *latitude = @"";
+    NSString *latitude = [locationDict objectForKey:@"latitude"];
+    if (latitude == nil) {
+        latitude = @"";
+    }
+    NSString *longitude = [locationDict objectForKey:@"longitude"];
+    if (longitude == nil) {
+        longitude = @"";
+    }
     NSDictionary *commentDict = @{@"userId":userId,@"topicId":topicId,@"content":content,@"longitude":longitude,@"latitude":latitude};
     NSString *replyUrl = [NSString stringWithFormat:@"%@/topic/TopicReply.action",BASEURL];
+    
+    [self showHudInView:self.view hint:@"评论中..."];
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:replyUrl params:commentDict success:^(AFHTTPRequestOperation* operation,id response){
+        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            //评论成功
+            [self updateTopicDetail];
+            [self loadReplyData];
+            
+        }
+        else{
+            NSString *data = respondDict[@"data"];
+            if ([data isMemberOfClass:[NSNull class]] || data == nil) {
+                data = ERRORREQUESTTIP;
+            }
+            [self showHint:data];
+        }
+        
+    } failure:^(NSError *error){
+        [self showHint:ERRORREQUESTTIP];
+    }];
+    
+    
 }
 
 - (void)updateDataWithParam:(NSDictionary *)params
@@ -267,6 +402,7 @@
         return;
     }
     [self commentWithText:textField.text];
+    textField.text = nil;
     //    self.tmpReplyModel = nil;
     //    textField.text = nil;
 }

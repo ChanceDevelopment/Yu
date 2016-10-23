@@ -67,8 +67,9 @@
     }
     NSString *userName = @"";
     NSString *userPwd = @"";
-    NSString *enrollUrl = [NSString stringWithFormat:@"%@/user/UserLogin.action",BASEURL];
-    NSDictionary *enrollParams = @{@"userName":userName,@"userPwd":userPwd};
+    NSString *huanxid = @"";
+    NSString *enrollUrl = [NSString stringWithFormat:@"%@/user/createNewUser.action",BASEURL];
+    NSDictionary *enrollParams = @{@"userName":userName,@"userPwd":userPwd,@"huanxid":huanxid};
     [AFHttpTool requestWihtMethod:RequestMethodTypePost url:enrollUrl params:enrollParams  success:^(AFHTTPRequestOperation* operation,id response){
         [self hideHud];
         NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];

@@ -89,6 +89,8 @@
     pageNo = 0;
     updateOption = 1;
     imageCache = [[NSCache alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTopicSucceed:) name:@"deleteTopicSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTopicSucceed:) name:@"distributeTopicSucceed" object:nil];
 }
 
 - (void)initView
@@ -111,6 +113,9 @@
     self.tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block,刷新
         [self.tableview.header performSelector:@selector(endRefreshing) withObject:nil afterDelay:1.0];
+        updateOption = 1;
+        pageNo = 0;
+        [self loadNearbyUserShow:YES];
     }];
     
     self.tableview.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -118,6 +123,9 @@
         self.tableview.footer.hidden = NO;
         // 进入刷新状态后会自动调用这个block，加载更多
         [self performSelector:@selector(endRefreshing) withObject:nil afterDelay:1.0];
+        updateOption = 2;
+        pageNo++;
+        [self loadNearbyUserShow:YES];
     }];
     
     //初始化BMKLocationService
@@ -141,8 +149,21 @@
         self.tableview.footer.automaticallyHidden = YES;
         self.tableview.footer.hidden = NO;
         // 进入刷新状态后会自动调用这个block，加载更多
+        
         [self performSelector:@selector(endRefreshing) withObject:nil afterDelay:1.0];
     }];
+}
+
+- (void)deleteTopicSucceed:(NSNotification *)notification
+{
+    updateOption = 1;
+    [self loadNearbyUserShow:NO];
+}
+
+- (void)distributeTopicSucceed:(NSNotification *)notification
+{
+    updateOption = 1;
+    [self loadNearbyUserShow:NO];
 }
 
 - (void)loadNearbyUserShow:(BOOL)show
@@ -164,7 +185,10 @@
     }
     NSNumber *pageNum = [NSNumber numberWithInteger:pageNo];
     NSDictionary *requestMessageParams = @{@"userId":userid,@"pageNum":pageNum,@"latitude":latitudeStr,@"longitude":longitudeStr};
-    [self showHudInView:self.view hint:@"正在获取..."];
+    if (show) {
+        [self showHudInView:self.view hint:@"正在获取..."];
+    }
+    
     
     [AFHttpTool requestWihtMethod:RequestMethodTypePost url:requestWorkingTaskPath params:requestMessageParams success:^(AFHTTPRequestOperation* operation,id response){
         [self hideHud];
@@ -177,6 +201,9 @@
                 [dataSource removeAllObjects];
             }
             NSArray *resultArray = [respondDict objectForKey:@"json"];
+            if ([resultArray isMemberOfClass:[NSNull class]]) {
+                return;
+            }
             for (NSDictionary *zoneDict in resultArray) {
                 [dataSource addObject:zoneDict];
             }
@@ -197,9 +224,6 @@
             }
         }
     } failure:^(NSError *error){
-        if (show) {
-            [Waiting dismiss];
-        }
         [self showHint:ERRORREQUESTTIP];
     }];
 }
@@ -236,7 +260,7 @@
             [userLocationDict setObject:longitudeStr forKey:@"longitude"];
             [_locService stopUserLocationService];
             
-            
+            [HeSysbsModel getSysModel].userLocationDict = [[NSDictionary alloc] initWithDictionary:userLocationDict];
             //上传坐标
             NSString *latitudeStr = [userLocationDict objectForKey:@"latitude"];
             if (latitudeStr == nil) {
@@ -274,8 +298,10 @@
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
 {
     if ([eventName isEqualToString:@"chatUserEvent"]) {
-        ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:@"马天宇" conversationType:EMConversationTypeChat];
-        chatView.title = @"马天宇";
+        NSString *chatID = userInfo[@"huanxId"];
+        NSString *nick = userInfo[@"nick"];
+        ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:chatID conversationType:EMConversationTypeChat];
+        chatView.title = nick;
         chatView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chatView animated:YES];
         return;
@@ -302,16 +328,17 @@
                 [dataSource removeAllObjects];
             }
             NSArray *resultArray = [respondDict objectForKey:@"json"];
-            for (NSDictionary *zoneDict in resultArray) {
-                [dataSource addObject:zoneDict];
+            if ([resultArray isMemberOfClass:[NSNull class]]) {
+                return;
             }
+            [self loadNearbyUserShow:NO];
             //            [self performSelector:@selector(addFooterView) withObject:nil afterDelay:0.5];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // *** 将UI操作放到主线程中执行 ***
-                [self.tableview reloadData];
-                return ;
-            });
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                // *** 将UI操作放到主线程中执行 ***
+//                [self.tableview reloadData];
+//                return ;
+//            });
             
         }
         else{
@@ -331,6 +358,7 @@
 {
     NSLog(@"distribuetButtonClick");
     HeDistributeTopicVC *distributeTopicVC = [[HeDistributeTopicVC alloc] init];
+    distributeTopicVC.locationDict = [[NSDictionary alloc] initWithDictionary:userLocationDict];
     distributeTopicVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:distributeTopicVC animated:YES];
 }
@@ -599,6 +627,7 @@
     }
     HeTopicDetailVC *topicDetailVC = [[HeTopicDetailVC alloc] init];
     topicDetailVC.topicDetailDict = [[NSDictionary alloc] initWithDictionary:dict];
+    topicDetailVC.locationDict = [[NSDictionary alloc] initWithDictionary:userLocationDict];
     topicDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:topicDetailVC animated:YES];
 }
@@ -608,6 +637,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"distributeTopicSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteTopicSucceed" object:nil];
+}
 /*
  #pragma mark - Navigation
  

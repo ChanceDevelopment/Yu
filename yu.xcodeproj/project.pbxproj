@@ -755,6 +755,7 @@
 		EA8DAED51D5A190100487BF4 /* loading_anim1.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAED11D5A190100487BF4 /* loading_anim1.png */; };
 		EA8DAED61D5A190100487BF4 /* loading_anim2.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8DAED21D5A190100487BF4 /* loading_anim2.png */; };
 		EA8DAED71D5A190100487BF4 /* Waiting.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8DAED41D5A190100487BF4 /* Waiting.m */; };
+		EA96A13A1DBC55E600AB49DA /* AppDelegate+EaseMob.m in Sources */ = {isa = PBXBuildFile; fileRef = EA96A1391DBC55E600AB49DA /* AppDelegate+EaseMob.m */; };
 		EABBC8491DBA5CCA004B68AD /* HeUserTopicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC8471DBA5CCA004B68AD /* HeUserTopicVC.m */; };
 		EABBC84A1DBA5CCA004B68AD /* HeUserTopicVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABBC8481DBA5CCA004B68AD /* HeUserTopicVC.xib */; };
 		EABBC84E1DBA5CE5004B68AD /* HeUserReplyTopicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC84C1DBA5CE5004B68AD /* HeUserReplyTopicVC.m */; };
@@ -2142,6 +2143,8 @@
 		EA8DAEDB1D5A19A300487BF4 /* appAPIDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appAPIDefine.h; sourceTree = "<group>"; };
 		EA8DAEDC1D5A19C400487BF4 /* sishiDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sishiDefine.h; sourceTree = "<group>"; };
 		EA8DAEDD1D5A19F400487BF4 /* sishi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sishi-Prefix.pch"; sourceTree = "<group>"; };
+		EA96A1381DBC55E600AB49DA /* AppDelegate+EaseMob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+EaseMob.h"; path = "Controller/AppDelegate+EaseMob.h"; sourceTree = "<group>"; };
+		EA96A1391DBC55E600AB49DA /* AppDelegate+EaseMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+EaseMob.m"; path = "Controller/AppDelegate+EaseMob.m"; sourceTree = "<group>"; };
 		EABBC8461DBA5CCA004B68AD /* HeUserTopicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeUserTopicVC.h; sourceTree = "<group>"; };
 		EABBC8471DBA5CCA004B68AD /* HeUserTopicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeUserTopicVC.m; sourceTree = "<group>"; };
 		EABBC8481DBA5CCA004B68AD /* HeUserTopicVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeUserTopicVC.xib; sourceTree = "<group>"; };
@@ -3686,12 +3689,13 @@
 		EA8DA9611D5A171A00487BF4 /* sishi */ = {
 			isa = PBXGroup;
 			children = (
-				EAFC13911D9BA6C0005D00AB /* 遇.entitlements */,
 				EA8DAECE1D5A18FA00487BF4 /* View */,
 				EA8DAE511D5A18E600487BF4 /* Model */,
 				EA8DA9E61D5A18C700487BF4 /* Controller */,
 				EA8DA9651D5A171A00487BF4 /* AppDelegate.h */,
 				EA8DA9661D5A171A00487BF4 /* AppDelegate.m */,
+				EA96A1381DBC55E600AB49DA /* AppDelegate+EaseMob.h */,
+				EA96A1391DBC55E600AB49DA /* AppDelegate+EaseMob.m */,
 				EA8DA9681D5A171A00487BF4 /* ViewController.h */,
 				EA8DA9691D5A171A00487BF4 /* ViewController.m */,
 				EA8DA96B1D5A171A00487BF4 /* Main.storyboard */,
@@ -3706,6 +3710,7 @@
 		EA8DA9621D5A171A00487BF4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EAFC13911D9BA6C0005D00AB /* 遇.entitlements */,
 				EA8DAEDB1D5A19A300487BF4 /* appAPIDefine.h */,
 				EA8DA9631D5A171A00487BF4 /* main.m */,
 				EA8DAEDC1D5A19C400487BF4 /* sishiDefine.h */,
@@ -5841,6 +5846,7 @@
 				EA8987A11D746D0C00A2A392 /* UIViewController+DismissKeyboard.m in Sources */,
 				EA8DACEA1D5A18D000487BF4 /* AFURLConnectionOperation.m in Sources */,
 				EA8DAD061D5A18D000487BF4 /* DCWebImageManager.m in Sources */,
+				EA96A13A1DBC55E600AB49DA /* AppDelegate+EaseMob.m in Sources */,
 				EA1C39EE1D74327C008557B4 /* TestViewController.m in Sources */,
 				EA8DACFC1D5A18D000487BF4 /* ASIDownloadCache.m in Sources */,
 				EA8DADF81D5A18D000487BF4 /* UISlider+RACSignalSupport.m in Sources */,

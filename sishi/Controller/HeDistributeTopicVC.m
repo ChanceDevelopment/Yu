@@ -33,6 +33,7 @@
 @synthesize addPictureButton;
 @synthesize takePhotoArray;
 @synthesize pictureArray;
+@synthesize locationDict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,6 +107,64 @@
 - (void)distributeButtonClick:(id)sender
 {
     NSLog(@"distributeButtonClick");
+    NSString *content = recommendTextView.text;
+    if (content == nil || [content isEqualToString:@""]) {
+        [self showHint:@"请输入话题内容"];
+        return;
+    }
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    NSString *latitude = [locationDict objectForKey:@"latitude"];
+    if (latitude == nil) {
+        latitude = @"";
+    }
+    NSString *longitude = [locationDict objectForKey:@"longitude"];
+    if (longitude == nil) {
+        longitude = @"";
+    }
+    AsynImageView *imageview = nil;
+    UIImage *imageData = nil;
+    if ([pictureArray count] > 0) {
+        imageview = pictureArray[0];
+        imageData = imageview.image;
+        
+    }
+    NSString *zoneCover = @"";
+    if (imageData) {
+        NSData *data = UIImageJPEGRepresentation(imageData,0.2);
+        NSData *base64Data = [GTMBase64 encodeData:data];
+        zoneCover = [[NSString alloc] initWithData:base64Data encoding:NSUTF8StringEncoding];
+    }
+    NSDictionary *commentDict = @{@"userId":userId,@"img":zoneCover,@"content":content,@"longitude":longitude,@"latitude":latitude};
+    NSString *replyUrl = [NSString stringWithFormat:@"%@/topic/Releasetopic.action",BASEURL];
+    [self showHudInView:self.view hint:@"发布中..."];
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:replyUrl params:commentDict success:^(AFHTTPRequestOperation* operation,id response){
+        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"distributeTopicSucceed" object:nil];
+            [self showHint:@"发布成功"];
+            [self performSelector:@selector(backToLastView) withObject:nil afterDelay:0.3];
+            
+        }
+        else{
+            NSString *data = respondDict[@"data"];
+            if ([data isMemberOfClass:[NSNull class]] || data == nil) {
+                data = ERRORREQUESTTIP;
+            }
+            [self showHint:data];
+        }
+        
+    } failure:^(NSError *error){
+        [self showHint:ERRORREQUESTTIP];
+    }];
+}
+
+- (void)backToLastView
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)addPhotoButtonClick:(id)sender

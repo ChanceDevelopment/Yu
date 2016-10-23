@@ -25,6 +25,7 @@
 @property(strong,nonatomic)IBOutlet UITableView *infoTable;
 @property(strong,nonatomic)UISearchBar *searchBar;
 @property(strong,nonatomic)NSMutableArray *dataSource;
+@property(strong,nonatomic)NSMutableArray *userdataSource;
 @property(strong,nonatomic)NSMutableArray *headerArray;
 @property(strong,nonatomic)NSCache *imageCache;
 @property(strong,nonatomic)EGORefreshTableHeaderView *refreshHeaderView;
@@ -35,6 +36,7 @@
 @implementation HeSearchInfoVC
 @synthesize infoTable;
 @synthesize dataSource;
+@synthesize userdataSource;
 @synthesize headerArray;
 @synthesize imageCache;
 @synthesize refreshFooterView;
@@ -286,12 +288,24 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        if ([dataSource count] > 0) {
+            return [dataSource count];
+        }
+    }
     return 1;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [dataSource count];
+    NSInteger num = 0;
+    if ([dataSource count] > 0) {
+        num++;
+    }
+    if ([userdataSource count] > 0) {
+        num++;
+    }
+    return num;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

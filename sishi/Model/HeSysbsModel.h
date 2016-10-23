@@ -12,6 +12,7 @@
 @property(strong,nonatomic)NSString *seesionid; //本次登录的sessionid
 @property(strong,nonatomic)User *user;//用户
 @property(strong,nonatomic)NSArray *albumArray;//当前用户相册的可操作权限
+@property(strong,nonatomic)NSDictionary *userLocationDict;
 
 + (HeSysbsModel *)getSysModel;
 
