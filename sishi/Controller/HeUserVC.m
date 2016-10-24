@@ -11,14 +11,17 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "HeUserTopicVC.h"
 #import "HeUserReplyTopicVC.h"
+#import "HeSettingVC.h"
 
 @interface HeUserVC ()
 @property(strong,nonatomic)IBOutlet UIView *topicBgView;
+@property(strong,nonatomic)IBOutlet UIButton *settingButton;
 
 @end
 
 @implementation HeUserVC
 @synthesize topicBgView;
+@synthesize settingButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -105,6 +108,16 @@
     [myReplyButton addTarget:self action:@selector(topicButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     myTopicButton.tag = 1;
     myReplyButton.tag = 2;
+    
+    settingButton.layer.masksToBounds = YES;
+    settingButton.layer.cornerRadius = 20.0;
+}
+
+- (IBAction)settingButtonClick:(id)sender
+{
+    HeSettingVC *settingVC = [[HeSettingVC alloc] init];
+    settingVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (void)topicButtonClick:(UIButton *)button

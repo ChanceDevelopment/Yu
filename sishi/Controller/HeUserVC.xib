@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeUserVC">
             <connections>
                 <outlet property="_mapView" destination="PjQ-7t-Ih6" id="Qxh-hh-bfT"/>
+                <outlet property="settingButton" destination="8gd-GA-Lbl" id="ULC-uD-W5f"/>
                 <outlet property="topicBgView" destination="vfi-1X-OfC" id="Yaz-1H-dMb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -37,6 +38,16 @@
                         </mask>
                     </variation>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gd-GA-Lbl">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="KS5-63-IKA"/>
+                        <constraint firstAttribute="width" constant="40" id="jZn-zm-cnV"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="settingIcon.png"/>
+                    <connections>
+                        <action selector="settingButtonClick:" destination="-1" eventType="touchUpInside" id="NzQ-f2-fgA"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -47,11 +58,13 @@
                     <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                 </constraint>
                 <constraint firstItem="PjQ-7t-Ih6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EdP-Ya-Ymd"/>
+                <constraint firstItem="vfi-1X-OfC" firstAttribute="top" secondItem="8gd-GA-Lbl" secondAttribute="bottom" constant="10" id="Fd7-ug-4Pb"/>
                 <constraint firstAttribute="bottom" secondItem="PjQ-7t-Ih6" secondAttribute="bottom" id="PNR-ya-37X"/>
                 <constraint firstAttribute="trailing" secondItem="vfi-1X-OfC" secondAttribute="trailing" constant="40" id="TpB-nr-2qc">
                     <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                 </constraint>
                 <constraint firstItem="PjQ-7t-Ih6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XJV-FL-7al"/>
+                <constraint firstAttribute="trailing" secondItem="8gd-GA-Lbl" secondAttribute="trailing" constant="17" id="esX-cQ-GPP"/>
                 <constraint firstAttribute="trailing" secondItem="PjQ-7t-Ih6" secondAttribute="trailing" id="tgz-Wi-K6P"/>
             </constraints>
             <variation key="default">
@@ -86,4 +99,7 @@
             </variation>
         </view>
     </objects>
+    <resources>
+        <image name="settingIcon.png" width="150" height="150"/>
+    </resources>
 </document>

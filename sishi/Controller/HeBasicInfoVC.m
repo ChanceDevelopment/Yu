@@ -70,8 +70,9 @@
     NSString *huanxid = @"";
     NSString *enrollUrl = [NSString stringWithFormat:@"%@/user/createNewUser.action",BASEURL];
     NSDictionary *enrollParams = @{@"userName":userName,@"userPwd":userPwd,@"huanxid":huanxid};
+    [self showHudInView:self.view hint:@"注册中..."];
     [AFHttpTool requestWihtMethod:RequestMethodTypePost url:enrollUrl params:enrollParams  success:^(AFHTTPRequestOperation* operation,id response){
-        [self hideHud];
+//        [self hideHud];
         NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
         
         NSDictionary *respondDict = [respondString objectFromJSONString];
@@ -79,6 +80,7 @@
         if (errorCode == REQUESTCODE_SUCCEED) {
             NSDictionary *userDictInfo = [respondDict objectForKey:@"json"];
             NSInteger userState = [[userDictInfo objectForKey:@"userState"] integerValue];
+            [self registerWithAccount:userPwd password:EASEPASSWORD];
             //            if (userState == 0) {
             //                [self showHint:@"当前用户不可用"];
             //                return ;
@@ -108,7 +110,7 @@
             [self hideHud];
             NSString *data = [respondDict objectForKey:@"data"];
             if ([data isMemberOfClass:[NSNull class]] || data == nil) {
-                data = @"登录失败!";
+                data = @"注册失败!";
             }
             [self showHint:data];
         }
@@ -117,6 +119,43 @@
         [self hideHud];
         [self showHint:ERRORREQUESTTIP];
     }];
+}
+
+- (void)registerWithAccount:(NSString *)account password:(NSString *)password
+{
+    __weak typeof(self) weakself = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        EMError *error = [[EMClient sharedClient] registerWithUsername:account password:password];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself hideHud];
+            if (!error) {
+                [self showHint:@"注册成功"];
+                [self.navigationController popViewControllerAnimated:YES];
+//                TTAlertNoTitle(NSLocalizedString(@"register.success", @"Registered successfully, please log in"));
+            }else{
+                switch (error.code) {
+                    case EMErrorServerNotReachable:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                        break;
+                    case EMErrorUserAlreadyExist:
+                        TTAlertNoTitle(NSLocalizedString(@"register.repeat", @"You registered user already exists!"));
+                        break;
+                    case EMErrorNetworkUnavailable:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                        break;
+                    case EMErrorServerTimeout:
+                        TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                        break;
+//                    case EMErrorServerServingForbidden:
+//                        TTAlertNoTitle(NSLocalizedString(@"servingIsBanned", @"Serving is banned"));
+//                        break;
+                    default:
+                        TTAlertNoTitle(NSLocalizedString(@"register.fail", @"Registration failed"));
+                        break;
+                }
+            }
+        });
+    });
 }
 
 //取消输入

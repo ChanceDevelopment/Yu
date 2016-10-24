@@ -27,6 +27,7 @@
 #define BAIDUMAPKEY @"Nhiuwh4kqnGBAIGTOfcaHFjhQNnRI5Oz"
 //自己服务器的通信模块
 #define EASEMOBKEY @"klxair#meetingapp"
+#define EASEPASSWORD @"meetinghuanxinpwd"
 //Client Id:	YXA6ksUBQG3tEeaCpctLxk-EQg
 //Client Secret:	YXA6S2njzHZ-IDI3Fus2QpCMPz_zIGM
 //meetingAppPushServiceDev	开发

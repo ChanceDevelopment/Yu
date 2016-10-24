@@ -11,17 +11,18 @@
 
 @interface User : NSObject
 
-@property(strong,nonatomic)NSString *username; //用户名
-@property(strong,nonatomic)NSString *password;  //用户密码
-@property(strong,nonatomic)NSString *nickname; //昵称
-@property(strong,nonatomic)NSString *truename; //真实姓名
-@property(assign,nonatomic)BOOL isnewappuser; //判断是否单独的手机用户
-@property(assign,nonatomic)BOOL hasMultiUser;
-@property(strong,nonatomic)NSString *roles;  //用户充当的角色
-@property(strong,nonatomic)NSString *usertoken;  //用户的token，身份的唯一凭证
-@property(strong,nonatomic)NSString *headurl;  //用户的头像
-@property(strong,nonatomic)NSString *userID;  //用户的ID
-@property(strong,nonatomic)NSString *birthday;//生日
+@property(strong,nonatomic)NSString *userId; //用户名
+@property(strong,nonatomic)NSString *huanxId;  //用户密码
+@property(strong,nonatomic)NSString *userNick; //昵称
+@property(strong,nonatomic)NSString *userAddress; //真实姓名
+@property(assign,nonatomic)NSInteger userSex;  //用户充当的角色
+@property(strong,nonatomic)NSString *userHeader;  //用户的token，身份的唯一凭证
+@property(strong,nonatomic)NSString *userPositionX;  //用户的头像
+@property(strong,nonatomic)NSString *userPositionY;  //用户的ID
+@property(strong,nonatomic)NSString *userEmail;//生日
+@property(strong,nonatomic)NSString *userPhone;//生日
+@property(strong,nonatomic)NSString *userSign;//生日
+@property(assign,nonatomic)NSInteger userAge;//生日
 
 
 @property(strong,nonatomic)NSString *schoolName;//学校

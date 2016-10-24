@@ -38,6 +38,7 @@ static NSString *kGroupName = @"GroupName";
     [self initializaiton];
 //    [self setUpAllViewController];
     [self initView];
+    [self getUserInfo];
 }
 
 - (void)initializaiton
@@ -122,6 +123,41 @@ static NSString *kGroupName = @"GroupName";
     NSArray *titleViewArray = @[@"main_meet_select",@"main_message_select",@"main_mine_select"];
     
     [self setSelectedTitleViewArrayWith:titleViewArray size:CGSizeMake(SCREENWIDTH / 3.0, 50)];
+}
+
+- (void)getUserInfo
+{
+    NSString *getUserUrl = [NSString stringWithFormat:@"%@/user/getUserInfo.action",BASEURL];
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if (!userId) {
+        userId = @"";
+    }
+    NSDictionary *requestParams = @{@"userId":userId};
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:getUserUrl params:requestParams  success:^(AFHTTPRequestOperation* operation,id response){
+        //        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger errorCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        if (errorCode == REQUESTCODE_SUCCEED) {
+            NSDictionary *userDictInfo = [respondDict objectForKey:@"json"];
+            User *userInfo = [[User alloc] initUserWithDict:userDictInfo];
+            [HeSysbsModel getSysModel].user = userInfo;
+            
+        }
+        else{
+            [self hideHud];
+            NSString *data = [respondDict objectForKey:@"data"];
+            if ([data isMemberOfClass:[NSNull class]] || data == nil) {
+                data = @"登录失败!";
+            }
+//            [self showHint:data];
+        }
+        
+    } failure:^(NSError *error){
+//        [self hideHud];
+//        [self showHint:ERRORREQUESTTIP];
+    }];
 }
 
 - (void)searchInfo:(id)sender

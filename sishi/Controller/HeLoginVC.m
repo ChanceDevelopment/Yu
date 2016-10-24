@@ -108,7 +108,7 @@
     [self showHudInView:self.view hint:@"登录中..."];
     NSDictionary *loginParams = @{@"userName":userName,@"userPwd":userPwd};
     [AFHttpTool requestWihtMethod:RequestMethodTypePost url:loginUrl params:loginParams  success:^(AFHTTPRequestOperation* operation,id response){
-//        [self hideHud];
+        //        [self hideHud];
         NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
         
         NSDictionary *respondDict = [respondString objectFromJSONString];
@@ -116,22 +116,22 @@
         if (errorCode == REQUESTCODE_SUCCEED) {
             NSDictionary *userDictInfo = [respondDict objectForKey:@"json"];
             NSInteger userState = [[userDictInfo objectForKey:@"userState"] integerValue];
-//            if (userState == 0) {
-//                [self showHint:@"当前用户不可用"];
-//                return ;
-//            }
-//            NSString *userDataPath = [Tool getUserDataPath];
-//            NSString *userFileName = [userDataPath stringByAppendingPathComponent:@"userInfo.plist"];
-//            BOOL succeed = [@{@"user":respondString} writeToFile:userFileName atomically:YES];
-//            if (succeed) {
-//                NSLog(@"用户资料写入成功");
-//            }
-//            User *user = [[User alloc] initUserWithDict:userDictInfo];
-//            [HeSysbsModel getSysModel].user = user;
-//            NSString *userId = [HeSysbsModel getSysModel].user.userId;
-//            if (userId == nil) {
-//                userId = @"";
-//            }
+            //            if (userState == 0) {
+            //                [self showHint:@"当前用户不可用"];
+            //                return ;
+            //            }
+            //            NSString *userDataPath = [Tool getUserDataPath];
+            //            NSString *userFileName = [userDataPath stringByAppendingPathComponent:@"userInfo.plist"];
+            //            BOOL succeed = [@{@"user":respondString} writeToFile:userFileName atomically:YES];
+            //            if (succeed) {
+            //                NSLog(@"用户资料写入成功");
+            //            }
+            //            User *user = [[User alloc] initUserWithDict:userDictInfo];
+            //            [HeSysbsModel getSysModel].user = user;
+            //            NSString *userId = [HeSysbsModel getSysModel].user.userId;
+            //            if (userId == nil) {
+            //                userId = @"";
+            //            }
             NSString *userId = userDictInfo[@"userId"];
             if ([userId isMemberOfClass:[NSNull class]] || userId == nil) {
                 userId = @"";
@@ -140,11 +140,11 @@
             [[NSUserDefaults standardUserDefaults] setObject:userPwd forKey:USERPASSWORDKEY];
             [[NSUserDefaults standardUserDefaults] setObject:userId forKey:USERIDKEY];
             [self loginWithUsername:userName password:userPwd];
-//            User *userInfo = [[User alloc] initUserWithDict:userDictInfo];
-//            [HeSysbsModel getSysModel].user = userInfo;
-//            
+            //            User *userInfo = [[User alloc] initUserWithDict:userDictInfo];
+            //            [HeSysbsModel getSysModel].user = userInfo;
+            //
             //发送自动登陆状态通知
-//            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+            //            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
         }
         else{
             [self hideHud];
