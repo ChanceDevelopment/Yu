@@ -7,7 +7,8 @@
 //
 
 #import "HeBaseTableViewCell.h"
+#import "HeDiscoverTableCell.h"
 
-@interface HeSearchInfoCell : HeBaseTableViewCell
+@interface HeSearchInfoCell : HeDiscoverTableCell
 
 @end

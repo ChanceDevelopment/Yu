@@ -18,13 +18,13 @@
 }
 */
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellSize:(CGSize)cellSize
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier cellSize:cellSize];
-    if (self) {
-        
-    }
-    return self;
-}
+//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier cellSize:(CGSize)cellSize
+//{
+//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier cellSize:cellSize];
+//    if (self) {
+//        
+//    }
+//    return self;
+//}
 
 @end

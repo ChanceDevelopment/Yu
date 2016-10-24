@@ -18,6 +18,7 @@
 @implementation HeBasicInfoVC
 @synthesize passwordField;
 @synthesize enrollButton;
+@synthesize userInfoDict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,9 +66,9 @@
         [self showHint:@"请输入注册密码"];
         return;
     }
-    NSString *userName = @"";
-    NSString *userPwd = @"";
-    NSString *huanxid = @"";
+    NSString *userName = userInfoDict[@"userName"];
+    NSString *userPwd = password;
+    NSString *huanxid = userInfoDict[@"huanxid"];;
     NSString *enrollUrl = [NSString stringWithFormat:@"%@/user/createNewUser.action",BASEURL];
     NSDictionary *enrollParams = @{@"userName":userName,@"userPwd":userPwd,@"huanxid":huanxid};
     [self showHudInView:self.view hint:@"注册中..."];
@@ -81,30 +82,7 @@
             NSDictionary *userDictInfo = [respondDict objectForKey:@"json"];
             NSInteger userState = [[userDictInfo objectForKey:@"userState"] integerValue];
             [self registerWithAccount:userPwd password:EASEPASSWORD];
-            //            if (userState == 0) {
-            //                [self showHint:@"当前用户不可用"];
-            //                return ;
-            //            }
-            //            NSString *userDataPath = [Tool getUserDataPath];
-            //            NSString *userFileName = [userDataPath stringByAppendingPathComponent:@"userInfo.plist"];
-            //            BOOL succeed = [@{@"user":respondString} writeToFile:userFileName atomically:YES];
-            //            if (succeed) {
-            //                NSLog(@"用户资料写入成功");
-            //            }
-            //            User *user = [[User alloc] initUserWithDict:userDictInfo];
-            //            [HeSysbsModel getSysModel].user = user;
-            //            NSString *userId = [HeSysbsModel getSysModel].user.userId;
-            //            if (userId == nil) {
-            //                userId = @"";
-            //            }
-            //            [[NSUserDefaults standardUserDefaults] setObject:account forKey:USERACCOUNTKEY];
-            //            [[NSUserDefaults standardUserDefaults] setObject:password forKey:USERPASSWORDKEY];
-            //            [[NSUserDefaults standardUserDefaults] setObject:userId forKey:USERIDKEY];
-            //            User *userInfo = [[User alloc] initUserWithDict:userDictInfo];
-            //            [HeSysbsModel getSysModel].user = userInfo;
-            //
-            //            //发送自动登陆状态通知
-            //            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+            
         }
         else{
             [self hideHud];
@@ -130,7 +108,7 @@
             [weakself hideHud];
             if (!error) {
                 [self showHint:@"注册成功"];
-                [self.navigationController popViewControllerAnimated:YES];
+                [self performSelector:@selector(backToLastView) withObject:nil afterDelay:0.3];
 //                TTAlertNoTitle(NSLocalizedString(@"register.success", @"Registered successfully, please log in"));
             }else{
                 switch (error.code) {
@@ -156,6 +134,11 @@
             }
         });
     });
+}
+
+- (void)backToLastView
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //取消输入

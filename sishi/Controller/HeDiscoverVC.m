@@ -107,7 +107,7 @@
     sectionHeaderView.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
     sectionHeaderView.userInteractionEnabled = YES;
     
-    UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
+    UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 80)];
     self.tableview.tableFooterView = footerview;
     
     self.tableview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -186,7 +186,7 @@
     NSNumber *pageNum = [NSNumber numberWithInteger:pageNo];
     NSDictionary *requestMessageParams = @{@"userId":userid,@"pageNum":pageNum,@"latitude":latitudeStr,@"longitude":longitudeStr};
     if (show) {
-        [self showHudInView:self.view hint:@"正在获取..."];
+        [self showHudInView:self.tableview hint:@"正在获取..."];
     }
     
     
@@ -201,12 +201,13 @@
                 [dataSource removeAllObjects];
             }
             NSArray *resultArray = [respondDict objectForKey:@"json"];
-            if ([resultArray isMemberOfClass:[NSNull class]]) {
-                return;
+            if (![resultArray isMemberOfClass:[NSNull class]]) {
+                for (NSDictionary *zoneDict in resultArray) {
+                    [dataSource addObject:zoneDict];
+                }
             }
-            for (NSDictionary *zoneDict in resultArray) {
-                [dataSource addObject:zoneDict];
-            }
+            
+            
 //            [self performSelector:@selector(addFooterView) withObject:nil afterDelay:0.5];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -328,10 +329,11 @@
             if (updateOption == 1) {
                 [dataSource removeAllObjects];
             }
-            NSArray *resultArray = [respondDict objectForKey:@"json"];
-            if ([resultArray isMemberOfClass:[NSNull class]]) {
-                return;
-            }
+//            NSArray *resultArray = [respondDict objectForKey:@"json"];
+//            if ([resultArray isMemberOfClass:[NSNull class]]) {
+//                return;
+//            }
+            updateOption = 1;
             [self loadNearbyUserShow:NO];
             //            [self performSelector:@selector(addFooterView) withObject:nil afterDelay:0.5];
             
@@ -538,6 +540,9 @@
     cell.timeLabel.text = timeTips;
     
     id udcountNum = dict[@"udcountNum"];
+    if ([udcountNum isMemberOfClass:[NSNull class]]) {
+        udcountNum = @"";
+    }
     cell.rankNumLabel.text = [NSString stringWithFormat:@"%ld",[udcountNum integerValue]];
     
     NSString *nick = dict[@"nick"];

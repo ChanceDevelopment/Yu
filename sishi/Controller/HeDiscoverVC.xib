@@ -54,7 +54,7 @@
                 <constraint firstAttribute="bottom" secondItem="eug-Xh-jfm" secondAttribute="bottom" id="Xp3-Bz-GHw"/>
                 <constraint firstAttribute="trailing" secondItem="eug-Xh-jfm" secondAttribute="trailing" id="atY-d0-H3a"/>
                 <constraint firstAttribute="bottom" secondItem="ajv-bI-XIi" secondAttribute="bottom" constant="50" id="cDT-DT-WXh">
-                    <variation key="heightClass=regular-widthClass=compact" constant="100"/>
+                    <variation key="heightClass=regular-widthClass=compact" constant="126"/>
                 </constraint>
                 <constraint firstItem="eug-Xh-jfm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ggA-ue-aLG"/>
             </constraints>

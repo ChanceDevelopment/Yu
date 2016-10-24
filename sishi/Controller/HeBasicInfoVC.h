@@ -9,5 +9,6 @@
 #import "HeBaseViewController.h"
 
 @interface HeBasicInfoVC : HeBaseViewController
+@property(strong,nonatomic)NSDictionary *userInfoDict;
 
 @end

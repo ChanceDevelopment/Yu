@@ -11,6 +11,10 @@
 #import "DCWebImageManager.h"
 #import "HeSearchInfoVC.h"
 #import "AppDelegate.h"
+#import "MLLinkLabel.h"
+#import "MLLabel+Size.h"
+#import "HeTopicDetailVC.h"
+#import "ChatViewController.h"
 
 #define HEADVIEWHEIGH 150
 #define SCROLLTAG 300
@@ -22,7 +26,7 @@
     NSInteger limit;
     NSInteger offset;
 }
-@property(strong,nonatomic)IBOutlet UITableView *infoTable;
+@property(strong,nonatomic)IBOutlet UITableView *tableview;
 @property(strong,nonatomic)UISearchBar *searchBar;
 @property(strong,nonatomic)NSMutableArray *dataSource;
 @property(strong,nonatomic)NSMutableArray *userdataSource;
@@ -34,7 +38,7 @@
 @end
 
 @implementation HeSearchInfoVC
-@synthesize infoTable;
+@synthesize tableview;
 @synthesize dataSource;
 @synthesize userdataSource;
 @synthesize headerArray;
@@ -42,6 +46,7 @@
 @synthesize refreshFooterView;
 @synthesize refreshHeaderView;
 @synthesize searchBar;
+@synthesize userLocationDict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,15 +83,20 @@
     
     limit = LOADRECORDNUM;
     offset = [dataSource count];
-    
+    updateOption = 1;
     isShowLeft = NO;
     dataSource = [[NSMutableArray alloc] initWithCapacity:0];
+    userdataSource = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTopicSucceed:) name:@"deleteTopicSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTopicSucceed:) name:@"distributeTopicSucceed" object:nil];
+    
 }
 
 - (void)initView
 {
     [super initView];
-    [Tool setExtraCellLineHidden:infoTable];
+    [Tool setExtraCellLineHidden:tableview];
     CGFloat itembuttonW = 25;
     CGFloat itembuttonH = 25;
     
@@ -110,23 +120,183 @@
     searchBar.placeholder = @"搜索话题、用户";
     self.navigationItem.titleView = searchBar;
     
-    [searchBar becomeFirstResponder];
+//    [searchBar becomeFirstResponder];
     
-    [self pullUpUpdate];
+//    [self pullUpUpdate];
+}
+
+- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
+{
+    if ([eventName isEqualToString:@"chatUserEvent"]) {
+        NSString *chatID = userInfo[@"huanxId"];
+        NSString *nick = userInfo[@"nick"];
+        ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:chatID conversationType:EMConversationTypeChat];
+        chatView.title = nick;
+        chatView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:chatView animated:YES];
+        return;
+    }
+    else if ([eventName isEqualToString:@"upDownButtonClick"]){
+        [self upDownButtonClickWithDict:userInfo];
+        return;
+    }
+    [super routerEventWithName:eventName userInfo:userInfo];
+}
+
+- (void)deleteTopicSucceed:(NSNotification *)notification
+{
+    updateOption = 1;
+    [self searchTopicWithKey:searchBar.text];
+}
+
+- (void)distributeTopicSucceed:(NSNotification *)notification
+{
+    updateOption = 1;
+    [self searchTopicWithKey:searchBar.text];
+}
+
+- (void)upDownButtonClickWithDict:(NSDictionary *)dict
+{
+    NSString *upDownUrl = [NSString stringWithFormat:@"%@/UpOrDown/insertUd.action",BASEURL];
+    
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:upDownUrl params:dict success:^(AFHTTPRequestOperation* operation,id response){
+        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            if (updateOption == 1) {
+                [dataSource removeAllObjects];
+            }
+            //            NSArray *resultArray = [respondDict objectForKey:@"json"];
+            //            if ([resultArray isMemberOfClass:[NSNull class]]) {
+            //                return;
+            //            }
+            updateOption = 1;
+            [self searchUserWithKey:searchBar.text];
+            //            [self performSelector:@selector(addFooterView) withObject:nil afterDelay:0.5];
+            
+            //            dispatch_async(dispatch_get_main_queue(), ^{
+            //                // *** 将UI操作放到主线程中执行 ***
+            //                [self.tableview reloadData];
+            //                return ;
+            //            });
+            
+        }
+        else{
+            NSString *data = respondDict[@"data"];
+            if ([data isMemberOfClass:[NSNull class]] || data == nil) {
+                data = ERRORREQUESTTIP;
+            }
+            [self showHint:data];
+        }
+    } failure:^(NSError *error){
+        
+        [self showHint:ERRORREQUESTTIP];
+    }];
+}
+
+- (void)searchTopicWithKey:(NSString *)keyword
+{
+    self.navigationItem.titleView = searchBar;
+    NSString *requestWorkingTaskPath = [NSString stringWithFormat:@"%@/topic/AllTopicKeyword.action",BASEURL];
+    
+    
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if (!userId) {
+        userId = @"";
+    }
+    NSDictionary *requestMessageParams = @{@"userId":userId,@"keyword":keyword};
+    [self showHudInView:self.tableview hint:@"正在搜索..."];
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:requestWorkingTaskPath params:requestMessageParams success:^(AFHTTPRequestOperation* operation,id response){
+        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            if (updateOption == 1) {
+                [dataSource removeAllObjects];
+            }
+            NSArray *resultArray = [respondDict objectForKey:@"json"];
+            if (![resultArray isMemberOfClass:[NSNull class]]) {
+                for (NSDictionary *zoneDict in resultArray) {
+                    [dataSource addObject:zoneDict];
+                }
+            }
+            //            [self performSelector:@selector(addFooterView) withObject:nil afterDelay:0.5];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // *** 将UI操作放到主线程中执行 ***
+                [self.tableview reloadData];
+                return ;
+            });
+            
+        }
+        
+    } failure:^(NSError *error){
+        [self hideHud];
+        [self showHint:ERRORREQUESTTIP];
+    }];
+}
+
+- (void)searchUserWithKey:(NSString *)keyword
+{
+    self.navigationItem.titleView = searchBar;
+    NSString *requestWorkingTaskPath = [NSString stringWithFormat:@"%@/user/selectuserbykeword.action",BASEURL];
+    
+    
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if (!userId) {
+        userId = @"";
+    }
+    NSDictionary *requestMessageParams = @{@"userId":userId,@"keyword":keyword};
+//    [self showHudInView:self.tableview hint:@"正在搜索..."];
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:requestWorkingTaskPath params:requestMessageParams success:^(AFHTTPRequestOperation* operation,id response){
+//        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            if (updateOption == 1) {
+                [userdataSource removeAllObjects];
+            }
+            NSArray *resultArray = [respondDict objectForKey:@"json"];
+            if (![resultArray isMemberOfClass:[NSNull class]]) {
+                for (NSDictionary *zoneDict in resultArray) {
+                    [userdataSource addObject:zoneDict];
+                }
+            }
+            //            [self performSelector:@selector(addFooterView) withObject:nil afterDelay:0.5];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // *** 将UI操作放到主线程中执行 ***
+                [self.tableview reloadData];
+                return ;
+            });
+            
+        }
+        
+    } failure:^(NSError *error){
+        [self hideHud];
+        [self showHint:ERRORREQUESTTIP];
+    }];
 }
 
 - (void)addFooterView
 {
-    if (infoTable.contentSize.height >= SCREENHEIGH) {
+    if (tableview.contentSize.height >= SCREENHEIGH) {
         [self pullDownUpdate];
     }
 }
 
 -(void)pullUpUpdate
 {
-    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.infoTable.bounds.size.height, SCREENWIDTH, self.infoTable.bounds.size.height)];
+    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableview.bounds.size.height, SCREENWIDTH, self.tableview.bounds.size.height)];
     refreshHeaderView.delegate = self;
-    [infoTable addSubview:refreshHeaderView];
+    [tableview addSubview:refreshHeaderView];
     [refreshHeaderView refreshLastUpdatedDate];
 }
 -(void)pullDownUpdate
@@ -134,9 +304,9 @@
     if (refreshFooterView == nil) {
         self.refreshFooterView = [[EGORefreshTableFootView alloc] init];
     }
-    refreshFooterView.frame = CGRectMake(0, infoTable.contentSize.height, SCREENWIDTH, 650);
+    refreshFooterView.frame = CGRectMake(0, tableview.contentSize.height, SCREENWIDTH, 650);
     refreshFooterView.delegate = self;
-    [infoTable addSubview:refreshFooterView];
+    [tableview addSubview:refreshFooterView];
     [refreshFooterView refreshLastUpdatedDate];
     
 }
@@ -174,7 +344,9 @@
     limit = 20;
     offset = 0;
     NSLog(@"searchKey = %@",searchKey);
-    [self loadInfoDataWithKey:searchKey];
+//    [self loadInfoDataWithKey:searchKey];
+    [self searchTopicWithKey:searchKey];
+    [self searchUserWithKey:searchKey];
 }
 
 - (void)loadInfoDataWithKey:(NSString *)searchKey
@@ -204,10 +376,10 @@
     _reloading = NO;
     switch (updateOption) {
         case 1:
-            [refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:infoTable];
+            [refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tableview];
             break;
         case 2:
-            [refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:infoTable];
+            [refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:tableview];
             break;
         default:
             break;
@@ -293,7 +465,7 @@
             return [dataSource count];
         }
     }
-    return 1;
+    return [userdataSource count];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -312,33 +484,143 @@
 {
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
-    CGSize cellsize = [tableView rectForRowAtIndexPath:indexPath].size;
-    static NSString *cellIndentifier = @"HeSearchInfoCell";
-    HeSearchInfoCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
-    if (!cell) {
-        cell = [[HeSearchInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellsize];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    CGSize cellSize = [tableView rectForRowAtIndexPath:indexPath].size;
+    if ([dataSource count] > 0 && section == 0) {
+        static NSString *cellIndentifier = @"HeDiscoverTableCell";
         
+        NSDictionary *dict = nil;
+        @try {
+            dict = [dataSource objectAtIndex:row];
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+        HeDiscoverTableCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
+        if (!cell) {
+            cell = [[HeDiscoverTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        cell.topicDict = dict;
+        id topicCreatetimeObj = [dict objectForKey:@"topicCreatetime"];
+        if ([topicCreatetimeObj isMemberOfClass:[NSNull class]] || topicCreatetimeObj == nil) {
+            NSTimeInterval  timeInterval = [[NSDate date] timeIntervalSince1970];
+            topicCreatetimeObj = [NSString stringWithFormat:@"%.0f000",timeInterval];
+        }
+        long long topicCreatetimeStamp = [topicCreatetimeObj longLongValue];
+        NSString *topicCreatetime = [NSString stringWithFormat:@"%lld",topicCreatetimeStamp];
+        NSString *timeTips = [Tool compareCurrentTime:topicCreatetime];
+        
+        cell.timeLabel.text = timeTips;
+        
+        id udcountNum = dict[@"udcountNum"];
+        if ([udcountNum isMemberOfClass:[NSNull class]]) {
+            udcountNum = @"";
+        }
+        cell.rankNumLabel.text = [NSString stringWithFormat:@"%ld",[udcountNum integerValue]];
+        
+        NSString *nick = dict[@"nick"];
+        if ([nick isMemberOfClass:[NSNull class]] || nick == nil) {
+            nick = @"";
+        }
+        cell.nameLabel.text = nick;
+        
+        NSString *img = dict[@"img"];
+        NSString *imgKey = [NSString stringWithFormat:@"%@_%ld",img,row];
+        UIImageView *imageView = [imageCache objectForKey:imgKey];
+        if (imageView == nil) {
+            NSString *imageUrl = [NSString stringWithFormat:@"%@/%@",HYTIMAGEURL,img];
+            [cell.disCoverImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:cell.disCoverImage.image];
+            imageView = cell.disCoverImage;
+            [imageCache setObject:imageView forKey:imgKey];
+        }
+        cell.disCoverImage = imageView;
+        [cell.imageInfoBg addSubview:imageView];
+        
+        NSString *content = dict[@"content"];
+        if ([content isMemberOfClass:[NSNull class]] || content == nil) {
+            content = @"";
+        }
+        if ([content isMemberOfClass:[NSNull class]] || content == nil) {
+            content = @"";
+        }
+        CGFloat maxWidth = SCREENWIDTH - 20;
+        UIFont *font = [UIFont systemFontOfSize:15.0];
+        CGSize size = [MLLinkLabel getViewSizeByString:content maxWidth:maxWidth font:font lineHeight:1.2f lines:0];
+        if (size.height < 40) {
+            size.height = 40;
+        }
+        
+        CGRect contentFrame = cell.contentTextInfoBg.frame;
+        contentFrame.size.height = size.height;
+        CGRect contentLabelFrame = cell.contentLabel.frame;
+        contentLabelFrame.size.height = size.height;
+        
+        cell.contentTextInfoBg.frame = contentFrame;
+        cell.contentLabel.frame = contentLabelFrame;
+        cell.contentLabel.text = content;
+        
+        [cell updateFrame];
+        return cell;
     }
     NSDictionary *dict = nil;
     @try {
-        dict = dataSource[section];
-    } @catch (NSException *exception) {
-        
-    } @finally {
+        dict = [userdataSource objectAtIndex:row];
+    }
+    @catch (NSException *exception) {
         
     }
-    
-    
+    @finally {
+        
+    }
+    NSString *userNick = dict[@"userNick"];
+    static NSString *cellIndentifier = @"UserHeBaseTableViewCell";
+    HeBaseTableViewCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
+    if (!cell) {
+        cell = [[HeBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier cellSize:cellSize];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    cell.textLabel.text = userNick;
     return cell;
-    
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    if ([dataSource count] > 0 && section == 0) {
+        NSDictionary *dict = nil;
+        @try {
+            dict = [dataSource objectAtIndex:row];
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            
+        }
+        
+        NSString *content = dict[@"content"];
+        if ([content isMemberOfClass:[NSNull class]] || content == nil) {
+            content = @"";
+        }
+        CGFloat maxWidth = SCREENWIDTH - 20;
+        UIFont *font = [UIFont systemFontOfSize:15.0];
+        CGSize size = [MLLinkLabel getViewSizeByString:content maxWidth:maxWidth font:font lineHeight:1.2f lines:0];
+        if (size.height < 40) {
+            size.height = 40;
+        }
+        return 250 + (size.height - 40);
+    }
     
-    return 100.0;
+    
+    return 50.0;
 }
 
 
@@ -348,15 +630,68 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
-    NSDictionary *dict = nil;
+    if ([dataSource count] > 0 && section == 0) {
+        NSDictionary *dict = nil;
+        @try {
+            dict = dataSource[row];
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
+        HeTopicDetailVC *topicDetailVC = [[HeTopicDetailVC alloc] init];
+        topicDetailVC.topicDetailDict = [[NSDictionary alloc] initWithDictionary:dict];
+        topicDetailVC.locationDict = [[NSDictionary alloc] initWithDictionary:userLocationDict];
+        topicDetailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:topicDetailVC animated:YES];
+        return;
+    }
+    NSDictionary *userInfo = nil;
     @try {
-        dict = dataSource[section];
-    } @catch (NSException *exception) {
-        
-    } @finally {
+        userInfo = [userdataSource objectAtIndex:row];
+    }
+    @catch (NSException *exception) {
         
     }
+    @finally {
+        
+    }
+    NSString *chatID = userInfo[@"huanxId"];
+    NSString *nick = userInfo[@"userNick"];
+    ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:chatID conversationType:EMConversationTypeChat];
+    chatView.title = nick;
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
     
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+        {
+            if ([dataSource count] > 0) {
+                return @"相关话题";
+            }
+            if ([userdataSource count] > 0) {
+                return @"相关用户";
+            }
+            break;
+        }
+        case 1:
+        {
+            return @"相关用户";
+            break;
+        }
+        default:
+            break;
+    }
+    return @"";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30.0;
 }
 
 - (void)didReceiveMemoryWarning {

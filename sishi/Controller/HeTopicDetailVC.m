@@ -90,7 +90,16 @@
     deleteButton.frame = CGRectMake(0, 0, 25, 25);
     UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
     deleteItem.target = self;
-    self.navigationItem.rightBarButtonItem = deleteItem;
+    NSString *userId = topicDetailDict[@"topicUserId"];
+    if ([userId isMemberOfClass:[NSNull class]]) {
+        userId = @"";
+    }
+    NSString *myuserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    
+    if ([userId isEqualToString:myuserId]) {
+        self.navigationItem.rightBarButtonItem = deleteItem;
+    }
+    
     
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
@@ -477,6 +486,9 @@
         cell.timeLabel.text = timeTips;
         
         id udcountNum = dict[@"udcountNum"];
+        if ([udcountNum isMemberOfClass:[NSNull class]]) {
+            udcountNum = @"";
+        }
         cell.rankNumLabel.text = [NSString stringWithFormat:@"%ld",[udcountNum integerValue]];
         
         NSString *nick = dict[@"nick"];

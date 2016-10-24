@@ -139,7 +139,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:userName forKey:USERACCOUNTKEY];
             [[NSUserDefaults standardUserDefaults] setObject:userPwd forKey:USERPASSWORDKEY];
             [[NSUserDefaults standardUserDefaults] setObject:userId forKey:USERIDKEY];
-            [self loginWithUsername:userName password:userPwd];
+            [self loginWithUsername:userName password:EASEPASSWORD];
             //            User *userInfo = [[User alloc] initUserWithDict:userDictInfo];
             //            [HeSysbsModel getSysModel].user = userInfo;
             //

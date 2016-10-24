@@ -202,6 +202,8 @@
         downIcon.tag = 1;
         [otherInfoBg addSubview:downIcon];
         
+        otherInfoBg.userInteractionEnabled = YES;
+        
         CGFloat rankNumLabelW = 40;
         CGFloat rankNumLabelX = CGRectGetMinX(downIcon.frame) - rankNumLabelW;
         CGFloat rankNumLabelY = downY;

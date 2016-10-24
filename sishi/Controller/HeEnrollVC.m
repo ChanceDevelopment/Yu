@@ -153,7 +153,9 @@
         }
         else{
             //验证码验证成功
+            NSDictionary *userInfoDict = @{@"userName":userPhone,@"huanxid":userPhone};
             HeBasicInfoVC *basicInfoVC = [[HeBasicInfoVC alloc] init];
+            basicInfoVC.userInfoDict = [[NSDictionary alloc] initWithDictionary:userInfoDict];
             basicInfoVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:basicInfoVC animated:YES];
         }

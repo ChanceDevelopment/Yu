@@ -163,6 +163,7 @@ static NSString *kGroupName = @"GroupName";
 - (void)searchInfo:(id)sender
 {
     HeSearchInfoVC *searchInfoVC = [[HeSearchInfoVC alloc] init];
+    searchInfoVC.userLocationDict = [[NSDictionary alloc] initWithDictionary:[HeSysbsModel getSysModel].userLocationDict];
     searchInfoVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:searchInfoVC animated:YES];
 }
