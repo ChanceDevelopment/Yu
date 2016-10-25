@@ -614,7 +614,7 @@
     if (size.height < 40) {
         size.height = 40;
     }
-    return 250 + (size.height - 40);
+    return 250 + (size.height - 40) + (SCREENWIDTH * 0.618 - 120);
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

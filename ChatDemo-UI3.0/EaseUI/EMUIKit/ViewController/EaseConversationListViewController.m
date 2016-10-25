@@ -91,8 +91,13 @@
         EMConversation *conversation = model.conversation;
         NSMutableAttributedString *attributedText = [[_dataSource conversationListViewController:self latestMessageTitleForConversationModel:model] mutableCopy];
         NSRange range = [attributedText.string rangeOfString:@":"];
-        [attributedText addAttributes:@{NSFontAttributeName : cell.detailLabel.font} range:NSMakeRange(range.location, attributedText.length - range.location)];
-        cell.detailLabel.text =  [attributedText.string substringFromIndex:range.location + 1];
+        if (range.length != 0) {
+            [attributedText addAttributes:@{NSFontAttributeName : cell.detailLabel.font} range:NSMakeRange(range.location, attributedText.length - range.location)];
+            cell.detailLabel.text =  [attributedText.string substringFromIndex:range.location + 1];
+        }
+        else{
+            cell.detailLabel.text = attributedText.string;
+        }
     } else {
         cell.detailLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[self _latestMessageTitleForConversationModel:model]textFont:cell.detailLabel.font];
     }

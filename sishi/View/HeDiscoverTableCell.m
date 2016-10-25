@@ -120,7 +120,7 @@
         CGFloat imageX = 0;
         CGFloat imageY = CGRectGetMaxY(headInfoBg.frame);
         CGFloat imageW = SCREENWIDTH;
-        CGFloat imageH = 120;
+        CGFloat imageH = SCREENWIDTH * 0.618;
         imageInfoBg = [[UIView alloc] initWithFrame:CGRectMake(imageX, imageY, imageW, imageH)];
         imageInfoBg.backgroundColor = [UIColor whiteColor];
         imageInfoBg.userInteractionEnabled = YES;

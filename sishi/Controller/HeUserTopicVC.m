@@ -260,7 +260,7 @@
         size.height = 25;
     }
     
-    return 60 + size.height - 25;;
+    return 60 + size.height - 25;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
