@@ -9,6 +9,7 @@
 #import "HeSettingVC.h"
 #import "UIButton+Bootstrap.h"
 #import "HeFeedbackVC.h"
+#import "HeModifyUserInfoVC.h"
 
 @interface HeSettingVC ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 @property(strong,nonatomic)NSArray *dataSource;
@@ -200,7 +201,7 @@
     UITableViewCell *cell  = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-        //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     NSString *string = nil;
@@ -235,7 +236,7 @@
                     [cell addSubview:contentLabel];
                     rightContent = [HeSysbsModel getSysModel].user.userNick;
                     contentLabel.text = rightContent;
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     break;
                 }
                 case 1:
@@ -253,6 +254,7 @@
                     rightContent = [HeSysbsModel getSysModel].user.huanxId;
                     contentLabel.text = rightContent;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.accessoryType = UITableViewCellAccessoryNone;
                     break;
                 }
                 default:
@@ -282,6 +284,13 @@
     switch (section) {
         case 0:
             switch (row) {
+                case 0:
+                {
+                    HeModifyUserInfoVC *modifyUserInfoVC = [[HeModifyUserInfoVC alloc] init];
+                    modifyUserInfoVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:modifyUserInfoVC animated:YES];
+                    break;
+                }
                 case 2:
                 {
                     [self showHint:@"清理成功"];

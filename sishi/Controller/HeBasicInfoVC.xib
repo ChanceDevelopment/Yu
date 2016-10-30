@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -20,10 +20,10 @@
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7fJ-8o-jpg">
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="zbI-G1-JiY"/>
+                        <constraint firstAttribute="height" constant="40" id="zbI-G1-JiY"/>
                     </constraints>
                     <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Idr-9g-vw9"/>
@@ -37,25 +37,27 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-l5-jYH">
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="tc3-Vt-oWg"/>
+                        <constraint firstAttribute="height" constant="40" id="tc3-Vt-oWg"/>
                     </constraints>
-                    <state key="normal" title="注    册"/>
+                    <state key="normal" title="注        册">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="nextButtonClick:" destination="-1" eventType="touchUpInside" id="lYF-ta-Nuu"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="cZB-l5-jYH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="BJG-mb-v9E"/>
-                <constraint firstItem="7fJ-8o-jpg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="Fih-Iq-M0B"/>
-                <constraint firstAttribute="trailing" secondItem="jUA-4l-xnO" secondAttribute="trailing" constant="30" id="Hya-Lb-hwM"/>
+                <constraint firstItem="cZB-l5-jYH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="BJG-mb-v9E"/>
+                <constraint firstItem="7fJ-8o-jpg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Fih-Iq-M0B"/>
+                <constraint firstAttribute="trailing" secondItem="jUA-4l-xnO" secondAttribute="trailing" constant="20" id="Hya-Lb-hwM"/>
                 <constraint firstItem="7fJ-8o-jpg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="67" id="Mj3-KO-s28"/>
-                <constraint firstItem="cZB-l5-jYH" firstAttribute="top" secondItem="jUA-4l-xnO" secondAttribute="bottom" constant="33" id="N4U-HW-rN7"/>
-                <constraint firstItem="jUA-4l-xnO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="S9J-Y5-1Ty"/>
-                <constraint firstItem="jUA-4l-xnO" firstAttribute="top" secondItem="7fJ-8o-jpg" secondAttribute="bottom" constant="8" id="VVp-QU-7hf"/>
-                <constraint firstAttribute="trailing" secondItem="7fJ-8o-jpg" secondAttribute="trailing" constant="30" id="jFD-uz-Jff"/>
-                <constraint firstAttribute="trailing" secondItem="cZB-l5-jYH" secondAttribute="trailing" constant="48" id="oPy-rZ-t00"/>
+                <constraint firstItem="cZB-l5-jYH" firstAttribute="top" secondItem="jUA-4l-xnO" secondAttribute="bottom" constant="31" id="N4U-HW-rN7"/>
+                <constraint firstItem="jUA-4l-xnO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="S9J-Y5-1Ty"/>
+                <constraint firstItem="jUA-4l-xnO" firstAttribute="top" secondItem="7fJ-8o-jpg" secondAttribute="bottom" id="VVp-QU-7hf"/>
+                <constraint firstAttribute="trailing" secondItem="7fJ-8o-jpg" secondAttribute="trailing" constant="20" id="jFD-uz-Jff"/>
+                <constraint firstAttribute="trailing" secondItem="cZB-l5-jYH" secondAttribute="trailing" constant="20" id="oPy-rZ-t00"/>
             </constraints>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="J1h-dh-kZW" appends="YES" id="8eG-VW-SnL"/>

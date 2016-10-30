@@ -114,11 +114,14 @@ static NSString *kGroupName = @"GroupName";
     
     self.norColor = [UIColor whiteColor];
     self.selColor = [UIColor whiteColor];
-    self.titleFont = [UIFont systemFontOfSize:20.0];
+    self.titleFont = [UIFont systemFontOfSize:17.5];
     self.isShowUnderLine = YES;
     self.underLineColor = [UIColor whiteColor];
     self.underLineH = 3.0;
     self.underLineW = SCREENWIDTH / 5.0;
+//    self.isDelayScroll = NO;
+//    self.isShowTitleGradient = YES;
+//    self.isShowUnderLine = NO;
     
     NSArray *titleViewArray = @[@"main_meet_select",@"main_message_select",@"main_mine_select"];
     

@@ -15,6 +15,7 @@
 #import "TZImageManager.h"
 
 #define MAXUPLOADIMAGE 1
+#define MAXINPUTTEXTLENGTH 64
 
 @interface HeDistributeTopicVC ()<UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,TZImagePickerControllerDelegate>
 @property(strong,nonatomic)SAMTextView *recommendTextView;
@@ -25,6 +26,7 @@
 @property(strong,nonatomic)NSMutableArray *selectedPhotos;
 
 @property(strong,nonatomic)NSMutableArray *takePhotoArray;
+@property(strong,nonatomic)IBOutlet UILabel *inputTextLengthLabel;
 
 @end
 
@@ -34,6 +36,7 @@
 @synthesize takePhotoArray;
 @synthesize pictureArray;
 @synthesize locationDict;
+@synthesize inputTextLengthLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,7 +76,7 @@
     CGFloat textViewX = 20;
     CGFloat textViewY = 20;
     CGFloat textViewW = SCREENWIDTH - 2 * textViewX;
-    CGFloat textViewH = 120;
+    CGFloat textViewH = 100;
     recommendTextView = [[SAMTextView alloc] initWithFrame:CGRectMake(textViewX, textViewY, textViewW, textViewH)];
     recommendTextView.layer.borderWidth = 1.0;
     recommendTextView.layer.borderColor = APPDEFAULTORANGE.CGColor;
@@ -85,11 +88,19 @@
     recommendTextView.delegate = self;
     [self.view addSubview:recommendTextView];
     
+    UIImage *buttonIcon = [UIImage imageNamed:@"icon_put"];
+    CGFloat buttonX = 0;
+    CGFloat buttonY = 0;
+    CGFloat buttonH = 25.0;
+    CGFloat buttonW = buttonH;
+    if (buttonIcon) {
+        buttonW = buttonIcon.size.width * buttonH / buttonIcon.size.height;
+    }
     UIButton *distributeButton = [[UIButton alloc] init];
     [distributeButton setBackgroundImage:[UIImage imageNamed:@"icon_put"] forState:UIControlStateNormal];
     [distributeButton addTarget:self action:@selector(distributeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    distributeButton.frame = CGRectMake(0, 0, 25, 25);
+    distributeButton.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
     UIBarButtonItem *distributeItem = [[UIBarButtonItem alloc] initWithCustomView:distributeButton];
     distributeItem.target = self;
     self.navigationItem.rightBarButtonItem = distributeItem;
@@ -102,6 +113,9 @@
     }
     takePhotoArray = [[NSMutableArray alloc] initWithCapacity:0];
     pictureArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    inputTextLengthLabel.backgroundColor = [UIColor clearColor];
+    inputTextLengthLabel.textColor = [UIColor grayColor];
 }
 
 - (void)distributeButtonClick:(id)sender
@@ -487,6 +501,29 @@
         [textField resignFirstResponder];
     }
     return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@""] && range.length > 0) {
+        //删除字符肯定是安全的
+        return YES;
+    }
+    else {
+        if (textView.text.length - range.length + text.length > MAXINPUTTEXTLENGTH) {
+            
+            return NO;
+        }
+        else {
+            return YES;
+        }
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    NSInteger currentLength = textView.text.length;
+    inputTextLengthLabel.text = [NSString stringWithFormat:@"%ld/%d",currentLength,MAXINPUTTEXTLENGTH];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -64,7 +64,7 @@
     
     contentTextView.placeholder = @"请献上您的宝贵意见";
     contentTextView.layer.borderWidth = 1.0;
-    contentTextView.layer.borderColor = [UIColor grayColor].CGColor;
+    contentTextView.layer.borderColor = APPDEFAULTORANGE.CGColor;
     contentTextView.layer.cornerRadius = 4.0;
     contentTextView.layer.masksToBounds = YES;
 }

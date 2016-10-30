@@ -66,6 +66,10 @@
 
 - (IBAction)setLocationService:(id)sender
 {
+    if (ISIOS10) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        return;
+    }
     NSURL * url = [NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
     
     if([[UIApplication sharedApplication] canOpenURL:url]) {

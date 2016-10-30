@@ -56,6 +56,9 @@
     [enrollButton setBackgroundImage:[Tool buttonImageFromColor:APPDEFAULTORANGE withImageSize:enrollButton.frame.size] forState:UIControlStateNormal];
     [enrollButton bootstrapStyle];
     [enrollButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    enrollButton.layer.cornerRadius = 5.0;
+    enrollButton.layer.masksToBounds = YES;
 }
 
 - (IBAction)nextButtonClick:(id)sender

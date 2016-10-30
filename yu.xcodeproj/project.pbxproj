@@ -13,6 +13,8 @@
 		0767A5401DB9B8430032D951 /* HeBasicInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0767A53E1DB9B8430032D951 /* HeBasicInfoVC.xib */; };
 		0767A5441DB9BB120032D951 /* HeSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0767A5421DB9BB120032D951 /* HeSettingVC.m */; };
 		0767A5451DB9BB120032D951 /* HeSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0767A5431DB9BB120032D951 /* HeSettingVC.xib */; };
+		07A7E9CE1DC597B30043802C /* HeModifyUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7E9CC1DC597B30043802C /* HeModifyUserInfoVC.m */; };
+		07A7E9CF1DC597B30043802C /* HeModifyUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A7E9CD1DC597B30043802C /* HeModifyUserInfoVC.xib */; };
 		07D2A4731DBDA9530031DDE0 /* settingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D2A4721DBDA9530031DDE0 /* settingIcon.png */; };
 		07D2A4771DBDDBA10031DDE0 /* HeFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2A4751DBDDBA10031DDE0 /* HeFeedbackVC.m */; };
 		07D2A4781DBDDBA10031DDE0 /* HeFeedbackVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07D2A4761DBDDBA10031DDE0 /* HeFeedbackVC.xib */; };
@@ -847,6 +849,9 @@
 		0767A5411DB9BB120032D951 /* HeSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeSettingVC.h; sourceTree = "<group>"; };
 		0767A5421DB9BB120032D951 /* HeSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeSettingVC.m; sourceTree = "<group>"; };
 		0767A5431DB9BB120032D951 /* HeSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeSettingVC.xib; sourceTree = "<group>"; };
+		07A7E9CB1DC597B30043802C /* HeModifyUserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeModifyUserInfoVC.h; sourceTree = "<group>"; };
+		07A7E9CC1DC597B30043802C /* HeModifyUserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeModifyUserInfoVC.m; sourceTree = "<group>"; };
+		07A7E9CD1DC597B30043802C /* HeModifyUserInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeModifyUserInfoVC.xib; sourceTree = "<group>"; };
 		07D2A4721DBDA9530031DDE0 /* settingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingIcon.png; sourceTree = "<group>"; };
 		07D2A4741DBDDBA10031DDE0 /* HeFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeFeedbackVC.h; sourceTree = "<group>"; };
 		07D2A4751DBDDBA10031DDE0 /* HeFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeFeedbackVC.m; sourceTree = "<group>"; };
@@ -5360,6 +5365,9 @@
 				07D2A4741DBDDBA10031DDE0 /* HeFeedbackVC.h */,
 				07D2A4751DBDDBA10031DDE0 /* HeFeedbackVC.m */,
 				07D2A4761DBDDBA10031DDE0 /* HeFeedbackVC.xib */,
+				07A7E9CB1DC597B30043802C /* HeModifyUserInfoVC.h */,
+				07A7E9CC1DC597B30043802C /* HeModifyUserInfoVC.m */,
+				07A7E9CD1DC597B30043802C /* HeModifyUserInfoVC.xib */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -5566,6 +5574,7 @@
 				EA8988361D746D0C00A2A392 /* tabbarSelectBg.png in Resources */,
 				EA8987E11D746D0C00A2A392 /* chat_location_preview@2x.png in Resources */,
 				EA89883D1D746D0C00A2A392 /* Settings.bundle in Resources */,
+				07A7E9CF1DC597B30043802C /* HeModifyUserInfoVC.xib in Resources */,
 				EA686E1A1DB7572B00669EBC /* WeiboSDK.bundle in Resources */,
 				EA89876E1D746D0C00A2A392 /* MJRefresh.bundle in Resources */,
 				EA8DADA01D5A18D000487BF4 /* LICENSE.txt in Resources */,
@@ -5951,6 +5960,7 @@
 				EA8DAEB91D5A18F200487BF4 /* split.c in Sources */,
 				EA89883C1D746D0C00A2A392 /* RobotManager.m in Sources */,
 				EA8DAD9A1D5A18D000487BF4 /* SINavigationMenuView.m in Sources */,
+				07A7E9CE1DC597B30043802C /* HeModifyUserInfoVC.m in Sources */,
 				EA8DADEB1D5A18D000487BF4 /* RACValueTransformer.m in Sources */,
 				EA8DAE2D1D5A18D000487BF4 /* TZPhotoPreviewCell.m in Sources */,
 				EA8DAE391D5A18D000487BF4 /* VIPhotoView.m in Sources */,

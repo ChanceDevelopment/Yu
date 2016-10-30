@@ -35,10 +35,10 @@
         label.textColor = APPDEFAULTTITLECOLOR;
         label.textAlignment = NSTextAlignmentCenter;
         self.navigationItem.titleView = label;
-        label.text = @"登录";
+        label.text = @"登录账号";
         
         [label sizeToFit];
-        self.title = @"登录";
+        self.title = @"登录账号";
     }
     return self;
 }
@@ -53,13 +53,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
-    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)initializaiton
@@ -70,20 +70,25 @@
 - (void)initView
 {
     [super initView];
+    
+    CGFloat cornerRadius = 15.0;
+    
     [loginButton dangerStyle];
     loginButton.layer.borderWidth = 0;
     loginButton.layer.borderColor = [UIColor clearColor].CGColor;
     [loginButton setBackgroundImage:[Tool buttonImageFromColor:APPDEFAULTORANGE withImageSize:loginButton.frame.size] forState:UIControlStateNormal];
+    loginButton.layer.cornerRadius = 5.0;
+    loginButton.layer.masksToBounds = YES;
     
     accountField.layer.borderWidth = 1.0;
     accountField.layer.borderColor = [UIColor whiteColor].CGColor;
     accountField.layer.masksToBounds = YES;
-    accountField.layer.cornerRadius = 5.0;
+    accountField.layer.cornerRadius = cornerRadius;
     
     passwordField.layer.borderWidth = 1.0;
     passwordField.layer.borderColor = [UIColor whiteColor].CGColor;
     passwordField.layer.masksToBounds = YES;
-    passwordField.layer.cornerRadius = 5.0;
+    passwordField.layer.cornerRadius = cornerRadius;
     
 }
 

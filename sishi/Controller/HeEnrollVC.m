@@ -66,10 +66,11 @@
     [getCodeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [getCodeButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:14.0]];
     
-    
     [nextButton setBackgroundImage:[Tool buttonImageFromColor:APPDEFAULTORANGE withImageSize:nextButton.frame.size] forState:UIControlStateNormal];
     [nextButton bootstrapStyle];
     [nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    nextButton.layer.cornerRadius = 5.0;
+    nextButton.layer.masksToBounds = YES;
 }
 
 

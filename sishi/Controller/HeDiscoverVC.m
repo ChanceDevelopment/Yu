@@ -97,7 +97,7 @@
 {
     [super initView];
     tableview.backgroundView = nil;
-    tableview.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
+    tableview.backgroundColor = [UIColor whiteColor];
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [Tool setExtraCellLineHidden:tableview];
@@ -300,6 +300,7 @@
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
 {
     if ([eventName isEqualToString:@"chatUserEvent"]) {
+        NSLog(@"chatUserEvent");
         NSString *chatID = userInfo[@"huanxId"];
         NSString *nick = userInfo[@"nick"];
         ChatViewController *chatView = [[ChatViewController alloc] initWithConversationChatter:chatID conversationType:EMConversationTypeChat];
@@ -309,6 +310,7 @@
         return;
     }
     else if ([eventName isEqualToString:@"upDownButtonClick"]){
+        NSLog(@"upDownButtonClick");
         [self upDownButtonClickWithDict:userInfo];
         return;
     }
@@ -531,9 +533,9 @@
     id topicCreatetimeObj = [dict objectForKey:@"topicCreatetime"];
     if ([topicCreatetimeObj isMemberOfClass:[NSNull class]] || topicCreatetimeObj == nil) {
         NSTimeInterval  timeInterval = [[NSDate date] timeIntervalSince1970];
-        topicCreatetimeObj = [NSString stringWithFormat:@"%.0f000",timeInterval];
+        topicCreatetimeObj = [NSString stringWithFormat:@"%.0f",timeInterval];
     }
-    long long topicCreatetimeStamp = [topicCreatetimeObj longLongValue];
+    long long topicCreatetimeStamp = [topicCreatetimeObj longLongValue] / 1000;
     NSString *topicCreatetime = [NSString stringWithFormat:@"%lld",topicCreatetimeStamp];
     NSString *timeTips = [Tool compareCurrentTime:topicCreatetime];
     
@@ -613,6 +615,15 @@
     CGSize size = [MLLinkLabel getViewSizeByString:content maxWidth:maxWidth font:font lineHeight:1.2f lines:0];
     if (size.height < 40) {
         size.height = 40;
+    }
+    CGFloat imageW = SCREENWIDTH;
+    CGFloat imageH = imageW * 0.618;
+    NSString *img = dict[@"img"];
+    if ([img isMemberOfClass:[NSNull class]] || img == nil || [img hasSuffix:@"null"]) {
+        img = @"";
+    }
+    if ([img isEqualToString:@""]) {
+        return 250 + (size.height - 40) + (SCREENWIDTH * 0.618 - 120) - imageH;
     }
     return 250 + (size.height - 40) + (SCREENWIDTH * 0.618 - 120);
 }

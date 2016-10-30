@@ -75,6 +75,29 @@
         tap.numberOfTouchesRequired = 1;
         [nameLabel addGestureRecognizer:tap];
         
+        /********文字区域*******/
+        CGFloat contentX = 0;
+        CGFloat contentY = CGRectGetMaxY(nameLabel.frame);
+        CGFloat contentW = SCREENWIDTH;
+        CGFloat contentH = 40;
+        contentTextInfoBg = [[UIView alloc] initWithFrame:CGRectMake(contentX, contentY, contentW, contentH)];
+        contentTextInfoBg.backgroundColor = [UIColor whiteColor];
+        contentTextInfoBg.userInteractionEnabled = YES;
+        [self addSubview:contentTextInfoBg];
+        
+        CGFloat contentLabelX = 10;
+        CGFloat contentLabelY = 0;
+        CGFloat contentLabelH = contentH;
+        CGFloat contentLabelW = SCREENWIDTH - 2 * contentLabelX;
+        contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(contentLabelX, contentLabelY, contentLabelW, contentLabelH)];
+        contentLabel.text = @"她的智慧、学识超过她的年龄。";
+        contentLabel.numberOfLines = 0;
+        contentLabel.textAlignment = NSTextAlignmentLeft;
+        contentLabel.backgroundColor = [UIColor clearColor];
+        contentLabel.font = [UIFont systemFontOfSize:15.0];
+        contentLabel.textColor = [UIColor blackColor];
+        [contentTextInfoBg addSubview:contentLabel];
+        
         CGFloat timeW = 100;
         CGFloat timeX = SCREENWIDTH - headImageX - timeW;
         CGFloat timeY = headImageY;
@@ -120,7 +143,7 @@
         
         /********图片区域*******/
         CGFloat imageX = 0;
-        CGFloat imageY = CGRectGetMaxY(headInfoBg.frame);
+        CGFloat imageY = CGRectGetMaxY(contentTextInfoBg.frame);
         CGFloat imageW = SCREENWIDTH;
         CGFloat imageH = imageW * 0.618;
         imageInfoBg = [[UIView alloc] initWithFrame:CGRectMake(imageX, imageY, imageW, imageH)];
@@ -142,52 +165,39 @@
         tapGes.numberOfTapsRequired = 1;
         [disCoverImage addGestureRecognizer:tapGes];
         
-        /********文字区域*******/
-        CGFloat contentX = 0;
-        CGFloat contentY = CGRectGetMaxY(imageInfoBg.frame);
-        CGFloat contentW = SCREENWIDTH;
-        CGFloat contentH = 40;
-        contentTextInfoBg = [[UIView alloc] initWithFrame:CGRectMake(contentX, contentY, contentW, contentH)];
-        contentTextInfoBg.backgroundColor = [UIColor whiteColor];
-        contentTextInfoBg.userInteractionEnabled = YES;
-        [self addSubview:contentTextInfoBg];
         
-        CGFloat contentLabelX = 10;
-        CGFloat contentLabelY = 0;
-        CGFloat contentLabelH = contentH;
-        CGFloat contentLabelW = SCREENWIDTH - 2 * contentLabelX;
-        contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(contentLabelX, contentLabelY, contentLabelW, contentLabelH)];
-        contentLabel.text = @"她的智慧、学识超过她的年龄。";
-        contentLabel.numberOfLines = 0;
-        contentLabel.textAlignment = NSTextAlignmentLeft;
-        contentLabel.backgroundColor = [UIColor clearColor];
-        contentLabel.font = [UIFont systemFontOfSize:15.0];
-        contentLabel.textColor = [UIColor blackColor];
-        [contentTextInfoBg addSubview:contentLabel];
         
-        UIView *sepLine = [[UIView alloc] initWithFrame:CGRectMake(0, contentLabelH - 1, SCREENWIDTH, 1)];
+        UIView *sepLine = [[UIView alloc] initWithFrame:CGRectMake(0, imageH - 1, SCREENWIDTH, 1)];
         sepLine.tag = 100;
         sepLine.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
-        [contentTextInfoBg addSubview:sepLine];
+//        [imageInfoBg addSubview:sepLine];
         
         /********其他区域*******/
         CGFloat otherX = 0;
-        CGFloat otherY = CGRectGetMaxY(contentTextInfoBg.frame);
+        CGFloat otherY = CGRectGetMaxY(imageInfoBg.frame) + 1;
         CGFloat otherW = SCREENWIDTH;
-        CGFloat otherH = 40;
-        otherInfoBg = [[UIView alloc] initWithFrame:CGRectMake(otherX, otherY, otherW, otherH - 1)];
-        otherInfoBg.backgroundColor = [UIColor whiteColor];
+        CGFloat otherH = 50;
+        otherInfoBg = [[UIView alloc] initWithFrame:CGRectMake(otherX, otherY, otherW, otherH)];
+        otherInfoBg.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
         otherInfoBg.userInteractionEnabled = YES;
         [self addSubview:otherInfoBg];
         
+        UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, otherH)];
+        tipLabel.text = @"全部评论";
+        tipLabel.backgroundColor = [UIColor clearColor];
+        tipLabel.textColor = [UIColor blackColor];
+        tipLabel.font = [UIFont systemFontOfSize:15.0];
+        [otherInfoBg addSubview:tipLabel];
+        
         UIView *sepLine1 = [[UIView alloc] initWithFrame:CGRectMake(0, otherH - 1, SCREENWIDTH, 1)];
         sepLine1.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
-        [otherInfoBg addSubview:sepLine1];
+//        [otherInfoBg addSubview:sepLine1];
         
-        CGFloat commentX = SCREENWIDTH / 2.0;
         CGFloat commentY = 5;
         CGFloat commentH = otherH - 2 * commentY;
-        CGFloat commentW = 80;
+        CGFloat commentW = 50;
+        CGFloat commentX = SCREENWIDTH - 2 * commentW - 10;
+        
         commentButton = [Tool getButton:CGRectMake(commentX, commentY, commentW, commentH) title:@"10" image:@"icon_comment"];
         [commentButton addTarget:self action:@selector(commment:) forControlEvents:UIControlEventTouchUpInside];
         [otherInfoBg addSubview:commentButton];
@@ -195,7 +205,7 @@
         CGFloat forwardX = CGRectGetMaxX(commentButton.frame) + 10;
         CGFloat forwardY = 5;
         CGFloat forwardH = otherH - 2 * commentY;
-        CGFloat forwardW = 80;
+        CGFloat forwardW = 50;
         forwardButton = [Tool getButton:CGRectMake(forwardX, forwardY, forwardW, forwardH) title:@"10" image:@"icon_share"];
         [forwardButton addTarget:self action:@selector(foward:) forControlEvents:UIControlEventTouchUpInside];
         [otherInfoBg addSubview:forwardButton];
@@ -238,8 +248,20 @@
         [downIcon addTarget:self action:@selector(upDownButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [upIcon addTarget:self action:@selector(upDownButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
+        UITapGestureRecognizer *emptyTapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptyTap:)];
+        tapGes.numberOfTouchesRequired = 1;
+        tapGes.numberOfTapsRequired = 1;
+        [otherInfoBg addGestureRecognizer:emptyTapGes];
+        otherInfoBg.userInteractionEnabled = YES;
+        
+        
     }
     return self;
+}
+
+- (void)emptyTap:(UITapGestureRecognizer *)tap
+{
+    NSLog(@"emptyTapGes = %@",tap);
 }
 
 - (void)enlargeImage:(UITapGestureRecognizer *)ges
@@ -265,18 +287,21 @@
 {
     CGFloat contentLabelH = contentTextInfoBg.frame.size.height;
     
-    UIView *sepLine = [contentTextInfoBg viewWithTag:100];
-    CGRect frame = sepLine.frame;
-    frame.origin.y = contentLabelH - 1;
-    sepLine.frame = frame;
+    CGRect imageFrame = imageInfoBg.frame;
+    imageFrame.origin.y = CGRectGetMaxY(contentTextInfoBg.frame);
     
-    sepLine.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
-    [contentTextInfoBg addSubview:sepLine];
+//    UIView *sepLine = [contentTextInfoBg viewWithTag:100];
+//    CGRect frame = sepLine.frame;
+//    frame.origin.y = contentLabelH - 1;
+//    sepLine.frame = frame;
+//    
+//    sepLine.backgroundColor = [UIColor colorWithWhite:237.0 / 255.0 alpha:1.0];
+//    [contentTextInfoBg addSubview:sepLine];
     
     CGFloat otherX = 0;
-    CGFloat otherY = CGRectGetMaxY(contentTextInfoBg.frame);
+    CGFloat otherY = CGRectGetMaxY(imageInfoBg.frame);
     CGFloat otherW = SCREENWIDTH;
-    CGFloat otherH = 40;
+    CGFloat otherH = otherInfoBg.frame.size.height;
     otherInfoBg.frame = CGRectMake(otherX, otherY, otherW, otherH);
 }
 

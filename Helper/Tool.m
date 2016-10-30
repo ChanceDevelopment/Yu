@@ -1006,25 +1006,25 @@
     
     if (timeInterval < 60) {
         
-        result = [NSString stringWithFormat:@"今天"];
+        result = [NSString stringWithFormat:@"刚刚"];
         
     }
     
-    else if((temp = timeInterval / 60) <60){
+    else if((temp = timeInterval / 60.0) < 60){
         
-        result = [NSString stringWithFormat:@"今天"];
-        
-    }
-    
-    
-    
-    else if((temp = temp / 60) <24){
-        
-        result = [NSString stringWithFormat:@"今天"];
+        result = [NSString stringWithFormat:@"%.0f分钟前",timeInterval / 60.0];
         
     }
     
-    else if((temp = temp/24) <30){
+    
+    
+    else if((temp = temp / 60.0) < 24){
+        
+        result = [NSString stringWithFormat:@"%ld小时前",temp];
+        
+    }
+    
+    else if((temp = temp / 24.0) <30){
         if (temp == 1) {
             result = [NSString stringWithFormat:@"昨天"];
         }
@@ -1043,7 +1043,7 @@
         
     }
     
-    else if((temp = temp/30) <12){
+    else if((temp = temp / 30.0) < 12){
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         NSTimeZone *timeZone = [NSTimeZone localTimeZone];

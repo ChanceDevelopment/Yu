@@ -178,7 +178,7 @@
         CGFloat commentX = 10;
         CGFloat commentY = 5;
         CGFloat commentH = otherH - 2 * commentY;
-        CGFloat commentW = 80;
+        CGFloat commentW = 60;
         UIButton *commentButton = [Tool getButton:CGRectMake(commentX, commentY, commentW, commentH) title:@"10" image:@"icon_comment"];
         [commentButton addTarget:self action:@selector(commment:) forControlEvents:UIControlEventTouchUpInside];
 //        [otherInfoBg addSubview:commentButton];
@@ -186,15 +186,15 @@
         CGFloat forwardX = CGRectGetMaxX(commentButton.frame) + 10;
         CGFloat forwardY = 5;
         CGFloat forwardH = otherH - 2 * commentY;
-        CGFloat forwardW = 80;
+        CGFloat forwardW = 60;
         UIButton *forwardButton = [Tool getButton:CGRectMake(forwardX, forwardY, forwardW, forwardH) title:@"10" image:@"icon_share"];
         [forwardButton addTarget:self action:@selector(foward:) forControlEvents:UIControlEventTouchUpInside];
 //        [otherInfoBg addSubview:forwardButton];
         
         
-        CGFloat downY = 12;
+        CGFloat downY = 10;
         CGFloat downH = otherH - 2 * downY;
-        CGFloat downW = downH * 1.1;
+        CGFloat downW = downH * 1.4;
         CGFloat downX = SCREENWIDTH - 10 - downW;
         UIButton *downIcon = [[UIButton alloc] init];
         [downIcon setImage:[UIImage imageNamed:@"icon_down"] forState:UIControlStateNormal];
@@ -217,9 +217,9 @@
         rankNumLabel.textColor = [UIColor grayColor];
         [otherInfoBg addSubview:rankNumLabel];
         
-        CGFloat upY = 12;
+        CGFloat upY = 10;
         CGFloat upH = otherH - 2 * upY;
-        CGFloat upW = downH * 1.1;
+        CGFloat upW = downH * 1.4;
         CGFloat upX = CGRectGetMinX(rankNumLabel.frame) - upW;
         UIButton *upIcon = [[UIButton alloc] init];
         [upIcon setImage:[UIImage imageNamed:@"icon_up"] forState:UIControlStateNormal];
@@ -231,8 +231,18 @@
         [downIcon addTarget:self action:@selector(upDownButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [upIcon addTarget:self action:@selector(upDownButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptyTap:)];
+        tapGes.numberOfTapsRequired = 1;
+        tapGes.numberOfTouchesRequired = 1;
+        [otherInfoBg addGestureRecognizer:tapGes];
+        
     }
     return self;
+}
+
+- (void)emptyTap:(UITapGestureRecognizer *)tap
+{
+    NSLog(@"tap = %@",tap);
 }
 
 - (void)commment:(UIButton *)sender
@@ -247,6 +257,19 @@
 
 - (void)updateFrame
 {
+    CGFloat imageH = SCREENWIDTH * 0.618;
+    NSString *img = topicDict[@"img"];
+    imageInfoBg.hidden = NO;
+    if ([img isMemberOfClass:[NSNull class]] || img == nil || [img hasSuffix:@"null"]) {
+        img = @"";
+    } {
+        img = @"";
+        imageInfoBg.hidden = YES;
+        CGRect contentFrame = contentTextInfoBg.frame;
+        contentFrame.origin.y = CGRectGetMaxY(headInfoBg.frame);
+        contentTextInfoBg.frame = contentFrame;
+    }
+    
     CGFloat contentLabelH = contentTextInfoBg.frame.size.height;
     
     UIView *sepLine = [contentTextInfoBg viewWithTag:100];

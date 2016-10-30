@@ -982,6 +982,36 @@
     }
     
     // 点击时候需要动画
+    NSInteger searchIndex = BGVIEWTAG + label.tag;
+    for (NSInteger index = 0; index < [self.childViewControllers count]; index++) {
+        UIView *bgView = [self.titleScrollView viewWithTag:BGVIEWTAG + index];
+        if (searchIndex == BGVIEWTAG + index) {
+            
+            UILabel *myLbael = (UILabel *)label;
+            //                myLbael.hidden = YES;
+            CGRect labelFrame = myLbael.frame;
+            bgView.frame = labelFrame;
+            
+            UIImageView *imageViewIcon = [bgView.subviews firstObject];
+            CGRect iconFrame = imageViewIcon.frame;
+            
+            iconFrame.size.height = self.titleHeight / 4.0;
+            iconFrame.size.width = iconFrame.size.height;
+            
+            CGPoint iconCenter = imageViewIcon.center;
+            imageViewIcon.frame = iconFrame;
+            imageViewIcon.center = iconCenter;
+            
+            bgView.hidden = NO;
+            [myLbael.superview addSubview:bgView];
+            
+        }
+        else{
+            bgView.hidden = YES;
+        }
+        
+    }
+    
     [UIView animateWithDuration:0.25 animations:^{
         self.underLine.width = underLineW;
         self.underLine.center = CGPointMake(label.centerX, self.underLine.center.y);
@@ -990,19 +1020,33 @@
         for (NSInteger index = 0; index < [self.childViewControllers count]; index++) {
             UIView *bgView = [self.titleScrollView viewWithTag:BGVIEWTAG + index];
             if (searchIndex == BGVIEWTAG + index) {
-                bgView.hidden = NO;
+//                bgView.hidden = NO;
                 UILabel *myLbael = (UILabel *)label;
-//                myLbael.hidden = YES;
+                //                myLbael.hidden = YES;
                 CGRect labelFrame = myLbael.frame;
                 labelFrame.size.height = labelFrame.size.height - underLineH;
                 bgView.frame = labelFrame;
+                
+                UIImageView *imageViewIcon = [bgView.subviews firstObject];
+                CGRect iconFrame = imageViewIcon.frame;
+                iconFrame.size.width = self.titleHeight / 2.0;
+                iconFrame.size.height = self.titleHeight / 2.0;
+                
+                CGPoint iconCenter = imageViewIcon.center;
+                imageViewIcon.frame = iconFrame;
+                imageViewIcon.center = iconCenter;
+                
+                bgView.hidden = NO;
+                
                 [myLbael.superview addSubview:bgView];
+//                self.titleHeight
             }
             else{
                 bgView.hidden = YES;
             }
             
         }
+        
     }];
     
 }

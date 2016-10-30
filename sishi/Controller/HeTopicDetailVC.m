@@ -21,6 +21,12 @@
 #import "UIImageView+EMWebCache.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKExtension/SSEShareHelper.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <ShareSDKUI/SSUIShareActionSheetStyle.h>
+#import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
+#import <ShareSDK/ShareSDK+Base.h>
 
 @interface HeTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
@@ -329,6 +335,7 @@
     }
     else if ([eventName isEqualToString:@"foward"]){
         NSLog(@"foward");
+        [self shareTopic];
     }
     else if ([eventName isEqualToString:@"enlargeImage"]){
         UIImageView *imageView = userInfo[@"view"];
@@ -337,6 +344,86 @@
     else{
         [super routerEventWithName:eventName userInfo:userInfo];
     }
+}
+
+- (void)shareTopic
+{
+    NSString *shareContent = @"遇-上最好的您";
+    NSString *shareTitleStr = @"遇";
+    NSString *imagePath = nil;
+    
+    NSArray* imageArray = nil;
+    if ([imagePath isMemberOfClass:[NSNull class]] || imagePath == nil || [imagePath isEqualToString:@""]) {
+        imagePath =[[NSBundle mainBundle] pathForResource:@"appIcon"  ofType:@"png"];
+    }
+    imageArray = @[imagePath];
+    
+    
+    NSArray *sharePlatFormArray = @[@(SSDKPlatformSubTypeWechatSession),@(SSDKPlatformSubTypeWechatTimeline),@(SSDKPlatformSubTypeQQFriend),@(SSDKPlatformSubTypeQZone)];
+    
+    NSString *shareUrl = @"http://114.55.226.224:8088/xuanmei/shareZone.action?";;
+    
+    //1、创建分享参数（必要）
+    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+    [shareParams SSDKSetupShareParamsByText:shareContent
+                                     images:imageArray
+                                        url:[NSURL URLWithString:shareUrl]
+                                      title:shareTitleStr
+                                       type:SSDKContentTypeWebPage];
+    //2、分享
+    [ShareSDK showShareActionSheet:nil
+                             items:sharePlatFormArray
+                       shareParams:shareParams
+               onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                   switch (state) {
+                           
+                       case SSDKResponseStateBegin:
+                       {
+                           
+                           break;
+                       }
+                       case SSDKResponseStateSuccess:
+                       {
+                           break;
+                       }
+                       case SSDKResponseStateFail:
+                       {
+                           if (platformType == SSDKPlatformTypeSMS && [error code] == 201)
+                           {
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                               message:@"失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。"
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil, nil];
+                               [alert show];
+                               break;
+                           }
+                           else if(platformType == SSDKPlatformTypeMail && [error code] == 201)
+                           {
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                               message:@"失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；"
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil, nil];
+                               [alert show];
+                               break;
+                           }
+                           else
+                           {
+                               break;
+                           }
+                           break;
+                       }
+                       case SSDKResponseStateCancel:
+                       {
+                           break;
+                       }
+                       default:
+                           break;
+                   }
+                   
+                   
+               }];
 }
 
 - (void)beginEdit
@@ -477,9 +564,9 @@
         id topicCreatetimeObj = [dict objectForKey:@"topicCreatetime"];
         if ([topicCreatetimeObj isMemberOfClass:[NSNull class]] || topicCreatetimeObj == nil) {
             NSTimeInterval  timeInterval = [[NSDate date] timeIntervalSince1970];
-            topicCreatetimeObj = [NSString stringWithFormat:@"%.0f000",timeInterval];
+            topicCreatetimeObj = [NSString stringWithFormat:@"%.0f",timeInterval];
         }
-        long long topicCreatetimeStamp = [topicCreatetimeObj longLongValue];
+        long long topicCreatetimeStamp = [topicCreatetimeObj longLongValue] / 1000;
         NSString *topicCreatetime = [NSString stringWithFormat:@"%lld",topicCreatetimeStamp];
         NSString *timeTips = [Tool compareCurrentTime:topicCreatetime];
         
@@ -535,9 +622,11 @@
         id replyNum = dict[@"replyNum"];
         id shareNum = dict[@"shareNum"];
         UILabel *titleLabel = [cell.commentButton viewWithTag:10086];
+        titleLabel.textColor = [UIColor grayColor];
         titleLabel.text = [NSString stringWithFormat:@"%ld",[replyNum integerValue]];
         
         titleLabel = [cell.forwardButton viewWithTag:10086];
+        titleLabel.textColor = [UIColor grayColor];
         titleLabel.text = [NSString stringWithFormat:@"%ld",[shareNum integerValue]];
         
         [cell updateFrame];
