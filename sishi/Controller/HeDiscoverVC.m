@@ -135,8 +135,6 @@
     _locService.desiredAccuracy = kCLLocationAccuracyBest;
     _locService.distanceFilter  = 1.5f;
     
-    
-    
     userLocationDict = [[NSMutableDictionary alloc] initWithCapacity:0];
     locationSucceedNum = 0;
 }
