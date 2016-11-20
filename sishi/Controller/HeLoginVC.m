@@ -36,7 +36,6 @@
         label.textAlignment = NSTextAlignmentCenter;
         self.navigationItem.titleView = label;
         label.text = @"登录账号";
-        
         [label sizeToFit];
         self.title = @"登录账号";
     }
