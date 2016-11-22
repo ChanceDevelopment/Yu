@@ -11,6 +11,7 @@
 
 @interface HeBasicInfoVC ()<UITextFieldDelegate>
 @property(strong,nonatomic)IBOutlet UITextField *passwordField;
+@property(strong,nonatomic)IBOutlet UITextField *nickField;
 @property(strong,nonatomic)IBOutlet UIButton *enrollButton;
 
 @end
@@ -19,6 +20,7 @@
 @synthesize passwordField;
 @synthesize enrollButton;
 @synthesize userInfoDict;
+@synthesize nickField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -69,11 +71,17 @@
         [self showHint:@"请输入注册密码"];
         return;
     }
+    NSString *userNick = nickField.text;
+    if (userNick == nil || [userNick isEqualToString:@""]) {
+        [self showHint:@"请输入用户昵称"];
+        return;
+    }
+    
     NSString *userName = userInfoDict[@"userName"];
     NSString *userPwd = password;
     NSString *huanxid = userInfoDict[@"huanxid"];;
     NSString *enrollUrl = [NSString stringWithFormat:@"%@/user/createNewUser.action",BASEURL];
-    NSDictionary *enrollParams = @{@"userName":userName,@"userPwd":userPwd,@"huanxid":huanxid};
+    NSDictionary *enrollParams = @{@"userName":userName,@"userPwd":userPwd,@"huanxId":huanxid,@"userNick":userNick};
     [self showHudInView:self.view hint:@"注册中..."];
     [AFHttpTool requestWihtMethod:RequestMethodTypePost url:enrollUrl params:enrollParams  success:^(AFHTTPRequestOperation* operation,id response){
 //        [self hideHud];
@@ -82,9 +90,7 @@
         NSDictionary *respondDict = [respondString objectFromJSONString];
         NSInteger errorCode = [[respondDict objectForKey:@"errorCode"] integerValue];
         if (errorCode == REQUESTCODE_SUCCEED) {
-            NSDictionary *userDictInfo = [respondDict objectForKey:@"json"];
-            NSInteger userState = [[userDictInfo objectForKey:@"userState"] integerValue];
-            [self registerWithAccount:userPwd password:EASEPASSWORD];
+            [self registerWithAccount:huanxid password:EASEPASSWORD];
             
         }
         else{
@@ -119,8 +125,12 @@
                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
                         break;
                     case EMErrorUserAlreadyExist:
-                        TTAlertNoTitle(NSLocalizedString(@"register.repeat", @"You registered user already exists!"));
+                    {
+                        [self showHint:@"注册成功"];
+                        [self performSelector:@selector(backToLastView) withObject:nil afterDelay:0.3];
+//                        TTAlertNoTitle(NSLocalizedString(@"register.repeat", @"You registered user already exists!"));
                         break;
+                    }
                     case EMErrorNetworkUnavailable:
                         TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
                         break;
@@ -141,7 +151,7 @@
 
 - (void)backToLastView
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 //取消输入
@@ -150,7 +160,9 @@
     if ([passwordField isFirstResponder]) {
         [passwordField resignFirstResponder];
     }
-    
+    if ([nickField isFirstResponder]) {
+        [nickField resignFirstResponder];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

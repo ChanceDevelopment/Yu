@@ -150,11 +150,11 @@
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
     [_mapView updateLocationData:userLocation];
-    [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
+    
     BMKCoordinateSpan span = BMKCoordinateSpanMake(0.013142, 0.011678);
     BMKCoordinateRegion region = BMKCoordinateRegionMake(userLocation.location.coordinate, span);
     [_mapView setRegion:region animated:YES];
-    
+    [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
     NSLog(@"heading is %@",userLocation.heading);
 }
 

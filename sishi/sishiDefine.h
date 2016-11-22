@@ -22,6 +22,8 @@
 #define ISIOS6 ([[[UIDevice currentDevice] systemVersion] floatValue] < 6.9)
 #define IOS7OFFSET        64
 
+//黑名单
+#define BLOCKINGLIST @"blockingList"
 
 //百度地图的appKey
 #define BAIDUMAPKEY @"Nhiuwh4kqnGBAIGTOfcaHFjhQNnRI5Oz"

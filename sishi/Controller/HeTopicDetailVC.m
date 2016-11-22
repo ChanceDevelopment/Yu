@@ -27,6 +27,8 @@
 #import <ShareSDKUI/SSUIShareActionSheetStyle.h>
 #import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
 #import <ShareSDK/ShareSDK+Base.h>
+#import "FTPopOverMenu.h"
+#import "HeComplaintVC.h"
 
 @interface HeTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
@@ -89,22 +91,13 @@
 - (void)initView
 {
     [super initView];
-    UIButton *deleteButton = [[UIButton alloc] init];
-    [deleteButton setBackgroundImage:[UIImage imageNamed:@"icon_delete"] forState:UIControlStateNormal];
-    [deleteButton addTarget:self action:@selector(deleteButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    deleteButton.frame = CGRectMake(0, 0, 25, 25);
-    UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
-    deleteItem.target = self;
-    NSString *userId = topicDetailDict[@"topicUserId"];
-    if ([userId isMemberOfClass:[NSNull class]]) {
-        userId = @"";
-    }
-    NSString *myuserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
-    
-    if ([userId isEqualToString:myuserId]) {
-        self.navigationItem.rightBarButtonItem = deleteItem;
-    }
+
+    UIButton *distributeButton = [[UIButton alloc] init];
+    [distributeButton setBackgroundImage:[UIImage imageNamed:@"icon_more"] forState:UIControlStateNormal];
+    [distributeButton addTarget:self action:@selector(moreItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    distributeButton.frame = CGRectMake(0, 0, 25, 25);
+    UIBarButtonItem *distributeItem = [[UIBarButtonItem alloc] initWithCustomView:distributeButton];
+    self.navigationItem.rightBarButtonItem = distributeItem;
     
     
     tableview.backgroundView = nil;
@@ -115,6 +108,142 @@
     [Tool setExtraCellLineHidden:tableview];
     
     [self performSelector:@selector(addCommentTextField) withObject:nil afterDelay:0.5];
+}
+
+- (void)moreItemClick:(id)sender
+{
+    NSArray *menuArray = @[@"举报",@"屏蔽该发布人"];
+    NSString *userId = topicDetailDict[@"topicUserId"];
+    if ([userId isMemberOfClass:[NSNull class]]) {
+        userId = @"";
+    }
+    NSString *myuserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    
+    if ([userId isEqualToString:myuserId]) {
+       menuArray = @[@"举报",@"屏蔽该发布人",@"删除话题"];
+    }
+    
+    [FTPopOverMenu setTintColor:APPDEFAULTORANGE];
+    [FTPopOverMenu showForSender:sender
+                        withMenu:menuArray
+                  imageNameArray:nil
+                       doneBlock:^(NSInteger selectedIndex) {
+                           switch (selectedIndex) {
+                               case 0:
+                               {
+                                   HeComplaintVC *complaintVC = [[HeComplaintVC alloc] init];
+                                   complaintVC.hidesBottomBarWhenPushed = YES;
+                                   [self.navigationController pushViewController:complaintVC animated:YES];
+                                   break;
+                               }
+                               case 1:
+                               {
+                                   //屏蔽用户
+                                   [self blockUserButtonClick];
+                                   break;
+                               }
+                               case 2:
+                               {
+                                   
+                                   break;
+                               }
+                               default:
+                                   break;
+                           }
+                           
+                           
+                           
+                       } dismissBlock:^{
+                           
+                           NSLog(@"user canceled. do nothing.");
+                           
+                       }];
+}
+
+//屏蔽用户
+- (void)blockUserButtonClick
+{
+    NSString *userId = topicDetailDict[@"userId"]; //发布人的ID
+    if ([userId isMemberOfClass:[NSNull class]]) {
+        userId = nil;
+    }
+    NSString *myUserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if ([userId isEqualToString:myUserId]) {
+        [self showHint:@"不能屏蔽自己"];
+        return;
+    }
+    if (ISIOS8) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"屏蔽该用户之后，他发布的内容将不会出现你的内容列表里面" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+            NSLog(@"cancelAction");
+        }];
+        UIAlertAction *blockAction = [UIAlertAction actionWithTitle:@"屏蔽" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            NSString *userId = topicDetailDict[@"userId"]; //发布人的ID
+            if ([userId isMemberOfClass:[NSNull class]] || userId == nil) {
+                userId = @"";
+            }
+            NSString *userNick = topicDetailDict[@"userNick"];
+            if ([userNick isMemberOfClass:[NSNull class]] || userNick == nil) {
+                userNick = @"";
+            }
+            NSDictionary *userDict = @{@"userId":userId,@"userNick":userNick};
+            [self blockUserWithUser:userDict];
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:blockAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"屏蔽该用户之后，他发布的内容将不会出现你的内容列表里面" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"屏蔽", nil];
+    alertview.tag = 200;
+    [alertview show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 200) {
+        switch (buttonIndex) {
+            case 1:
+            {
+                NSString *userId = topicDetailDict[@"userId"]; //发布人的ID
+                if ([userId isMemberOfClass:[NSNull class]] || userId == nil) {
+                    userId = @"";
+                }
+                NSString *userNick = topicDetailDict[@"userNick"];
+                if ([userNick isMemberOfClass:[NSNull class]] || userNick == nil) {
+                    userNick = @"";
+                }
+                NSDictionary *userDict = @{@"userId":userId,@"userNick":userNick};
+                [self blockUserWithUser:userDict];
+                break;
+            }
+            default:
+                break;
+        }
+    }
+    else if (alertView.tag == 1){
+        if (buttonIndex == 1) {
+            [self deleteTopic];
+        }
+    }
+}
+
+- (void)blockUserWithUser:(NSDictionary *)userDict
+{
+    NSLog(@"blockUser");
+    NSString *myUserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:0];
+    NSString *blockKey = [NSString stringWithFormat:@"%@_%@",BLOCKINGLIST,myUserId];
+    NSArray *blockArray = [[NSUserDefaults standardUserDefaults] objectForKey:blockKey];
+    if (blockArray != nil) {
+        [tmpArray addObjectsFromArray:blockArray];
+    }
+    [tmpArray addObject:userDict];
+    blockArray = [[NSArray alloc] initWithArray:tmpArray];
+    [[NSUserDefaults standardUserDefaults] setObject:blockArray forKey:blockKey];
+    NSNotification *notification = [NSNotification notificationWithName:@"blockUserSucceed" object:nil userInfo:userDict];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    [self showHint:@"成功屏蔽用户"];
 }
 
 - (void)loadReplyData
@@ -218,12 +347,6 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [self deleteTopic];
-    }
-}
 
 - (void)deleteTopic
 {

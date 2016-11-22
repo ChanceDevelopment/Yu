@@ -9,6 +9,7 @@
 #import "HeDiscoverTableCell.h"
 #import "MLLabel+Size.h"
 #import "MLLinkLabel.h"
+#import "FTPopOverMenu.h"
 
 #define TextLineHeight 1.2f
 
@@ -68,7 +69,7 @@
         nameLabel.userInteractionEnabled = YES;
         [headInfoBg addSubview:nameLabel];
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chatWithUser:)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMenu:)];
         tap.numberOfTapsRequired = 1;
         tap.numberOfTouchesRequired = 1;
         [nameLabel addGestureRecognizer:tap];
@@ -262,8 +263,8 @@
     imageInfoBg.hidden = NO;
     if ([img isMemberOfClass:[NSNull class]] || img == nil || [img hasSuffix:@"null"]) {
         img = @"";
-    } {
-        img = @"";
+    }
+    if ([img isEqualToString:@""]) {
         imageInfoBg.hidden = YES;
         CGRect contentFrame = contentTextInfoBg.frame;
         contentFrame.origin.y = CGRectGetMaxY(headInfoBg.frame);
@@ -308,6 +309,38 @@
 - (void)chatWithUser:(id)sender
 {
     [self routerEventWithName:@"chatUserEvent" userInfo:topicDict];
+}
+
+- (void)showMenu:(id)sender
+{
+    NSArray *menuArray = @[@"备注",@"聊天"];
+    [FTPopOverMenu setTintColor:APPDEFAULTORANGE];
+    [FTPopOverMenu showForSender:sender
+                        withMenu:menuArray
+                  imageNameArray:nil
+                       doneBlock:^(NSInteger selectedIndex) {
+                           switch (selectedIndex) {
+                               case 0:
+                               {
+                                   NSLog(@"备注");
+                                   break;
+                               }
+                               case 1:
+                               {
+                                   [self routerEventWithName:@"chatUserEvent" userInfo:topicDict];
+                                   break;
+                               }
+                               default:
+                                   break;
+                           }
+                           
+                           
+                           
+                       } dismissBlock:^{
+                           
+                           NSLog(@"user canceled. do nothing.");
+                           
+                       }];
 }
 
 - (void)drawRect:(CGRect)rect

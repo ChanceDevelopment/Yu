@@ -84,6 +84,26 @@
 		EA1C39EA1D743059008557B4 /* NavBarIOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1C39E61D743059008557B4 /* NavBarIOS7.png */; };
 		EA1C39EB1D743059008557B4 /* navigationBar_back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1C39E71D743059008557B4 /* navigationBar_back_icon.png */; };
 		EA1C39EE1D74327C008557B4 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1C39ED1D74327C008557B4 /* TestViewController.m */; };
+		EA6098CC1DE428F6004ECB0C /* UIButton+countDown.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6098CB1DE428F6004ECB0C /* UIButton+countDown.m */; };
+		EA6098D01DE439BB004ECB0C /* FTPopOverMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6098CF1DE439BB004ECB0C /* FTPopOverMenu.m */; };
+		EA6098D21DE43A9A004ECB0C /* icon_more.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098D11DE43A9A004ECB0C /* icon_more.png */; };
+		EA6098D61DE43C36004ECB0C /* HeComplaintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6098D41DE43C36004ECB0C /* HeComplaintVC.m */; };
+		EA6098D71DE43C36004ECB0C /* HeComplaintVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6098D51DE43C36004ECB0C /* HeComplaintVC.xib */; };
+		EA6098DB1DE43CBC004ECB0C /* HeBlockUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6098D91DE43CBC004ECB0C /* HeBlockUserVC.m */; };
+		EA6098DC1DE43CBC004ECB0C /* HeBlockUserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6098DA1DE43CBC004ECB0C /* HeBlockUserVC.xib */; };
+		EA6098E61DE44005004ECB0C /* 加图片图标.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098DE1DE44005004ECB0C /* 加图片图标.png */; };
+		EA6098E71DE44005004ECB0C /* 加图片图标高亮.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098DF1DE44005004ECB0C /* 加图片图标高亮.png */; };
+		EA6098E81DE44005004ECB0C /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098E01DE44005004ECB0C /* checkBox.png */; };
+		EA6098E91DE44005004ECB0C /* checkBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098E11DE44005004ECB0C /* checkBox@2x.png */; };
+		EA6098EA1DE44005004ECB0C /* had_checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098E21DE44005004ECB0C /* had_checkBox.png */; };
+		EA6098EB1DE44005004ECB0C /* had_checkBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098E31DE44005004ECB0C /* had_checkBox@2x.png */; };
+		EA6098EC1DE44005004ECB0C /* uncheckBox.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098E41DE44005004ECB0C /* uncheckBox.png */; };
+		EA6098ED1DE44005004ECB0C /* uncheckBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA6098E51DE44005004ECB0C /* uncheckBox@2x.png */; };
+		EA6098F31DE4400E004ECB0C /* TKAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6098EF1DE4400E004ECB0C /* TKAddressBook.m */; };
+		EA6098F41DE4400E004ECB0C /* HeComplaintUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6098F11DE4400E004ECB0C /* HeComplaintUserVC.m */; };
+		EA6098F51DE4400E004ECB0C /* HeComplaintUserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6098F21DE4400E004ECB0C /* HeComplaintUserVC.xib */; };
+		EA6098F91DE4405E004ECB0C /* ScanPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6098F81DE4405E004ECB0C /* ScanPictureView.m */; };
+		EA6098FC1DE44091004ECB0C /* UIView+Genie.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6098FB1DE44091004ECB0C /* UIView+Genie.m */; };
 		EA686D501DB743FD00669EBC /* login_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = EA686D4F1DB743FD00669EBC /* login_BG.png */; };
 		EA686DBE1DB7531F00669EBC /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686DBC1DB7531F00669EBC /* MOBFoundation.framework */; };
 		EA686DBF1DB7531F00669EBC /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA686DBD1DB7531F00669EBC /* SMS_SDK.framework */; };
@@ -944,6 +964,35 @@
 		EA1C39E71D743059008557B4 /* navigationBar_back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBar_back_icon.png; sourceTree = "<group>"; };
 		EA1C39EC1D74327C008557B4 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		EA1C39ED1D74327C008557B4 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		EA6098CA1DE428F6004ECB0C /* UIButton+countDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+countDown.h"; sourceTree = "<group>"; };
+		EA6098CB1DE428F6004ECB0C /* UIButton+countDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+countDown.m"; sourceTree = "<group>"; };
+		EA6098CE1DE439BB004ECB0C /* FTPopOverMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPopOverMenu.h; sourceTree = "<group>"; };
+		EA6098CF1DE439BB004ECB0C /* FTPopOverMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPopOverMenu.m; sourceTree = "<group>"; };
+		EA6098D11DE43A9A004ECB0C /* icon_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_more.png; sourceTree = "<group>"; };
+		EA6098D31DE43C36004ECB0C /* HeComplaintVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeComplaintVC.h; sourceTree = "<group>"; };
+		EA6098D41DE43C36004ECB0C /* HeComplaintVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeComplaintVC.m; sourceTree = "<group>"; };
+		EA6098D51DE43C36004ECB0C /* HeComplaintVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeComplaintVC.xib; sourceTree = "<group>"; };
+		EA6098D81DE43CBC004ECB0C /* HeBlockUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeBlockUserVC.h; sourceTree = "<group>"; };
+		EA6098D91DE43CBC004ECB0C /* HeBlockUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeBlockUserVC.m; sourceTree = "<group>"; };
+		EA6098DA1DE43CBC004ECB0C /* HeBlockUserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeBlockUserVC.xib; sourceTree = "<group>"; };
+		EA6098DE1DE44005004ECB0C /* 加图片图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加图片图标.png"; sourceTree = "<group>"; };
+		EA6098DF1DE44005004ECB0C /* 加图片图标高亮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加图片图标高亮.png"; sourceTree = "<group>"; };
+		EA6098E01DE44005004ECB0C /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
+		EA6098E11DE44005004ECB0C /* checkBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBox@2x.png"; sourceTree = "<group>"; };
+		EA6098E21DE44005004ECB0C /* had_checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = had_checkBox.png; sourceTree = "<group>"; };
+		EA6098E31DE44005004ECB0C /* had_checkBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "had_checkBox@2x.png"; sourceTree = "<group>"; };
+		EA6098E41DE44005004ECB0C /* uncheckBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheckBox.png; sourceTree = "<group>"; };
+		EA6098E51DE44005004ECB0C /* uncheckBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uncheckBox@2x.png"; sourceTree = "<group>"; };
+		EA6098EE1DE4400E004ECB0C /* TKAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKAddressBook.h; sourceTree = "<group>"; };
+		EA6098EF1DE4400E004ECB0C /* TKAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKAddressBook.m; sourceTree = "<group>"; };
+		EA6098F01DE4400E004ECB0C /* HeComplaintUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeComplaintUserVC.h; sourceTree = "<group>"; };
+		EA6098F11DE4400E004ECB0C /* HeComplaintUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeComplaintUserVC.m; sourceTree = "<group>"; };
+		EA6098F21DE4400E004ECB0C /* HeComplaintUserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeComplaintUserVC.xib; sourceTree = "<group>"; };
+		EA6098F61DE4404E004ECB0C /* DeleteImageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteImageProtocol.h; sourceTree = "<group>"; };
+		EA6098F71DE4405E004ECB0C /* ScanPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanPictureView.h; sourceTree = "<group>"; };
+		EA6098F81DE4405E004ECB0C /* ScanPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanPictureView.m; sourceTree = "<group>"; };
+		EA6098FA1DE44091004ECB0C /* UIView+Genie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Genie.h"; sourceTree = "<group>"; };
+		EA6098FB1DE44091004ECB0C /* UIView+Genie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Genie.m"; sourceTree = "<group>"; };
 		EA686D4F1DB743FD00669EBC /* login_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_BG.png; sourceTree = "<group>"; };
 		EA686DBC1DB7531F00669EBC /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		EA686DBD1DB7531F00669EBC /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
@@ -2505,6 +2554,7 @@
 		EA1C39CC1D743015008557B4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				EA6098D11DE43A9A004ECB0C /* icon_more.png */,
 				07D2A4721DBDA9530031DDE0 /* settingIcon.png */,
 				EABBC85C1DBA622F004B68AD /* icon_put.png */,
 				EABBC85A1DBA6219004B68AD /* icon_add_photo.png */,
@@ -2544,6 +2594,40 @@
 				EA1C39CF1D743049008557B4 /* appIcon30.png */,
 			);
 			name = TabbarIcon;
+			sourceTree = "<group>";
+		};
+		EA6098CD1DE439BB004ECB0C /* FTPopOverMenu */ = {
+			isa = PBXGroup;
+			children = (
+				EA6098CE1DE439BB004ECB0C /* FTPopOverMenu.h */,
+				EA6098CF1DE439BB004ECB0C /* FTPopOverMenu.m */,
+			);
+			path = FTPopOverMenu;
+			sourceTree = "<group>";
+		};
+		EA6098DD1DE43FF7004ECB0C /* Complaint */ = {
+			isa = PBXGroup;
+			children = (
+				EA6098FA1DE44091004ECB0C /* UIView+Genie.h */,
+				EA6098FB1DE44091004ECB0C /* UIView+Genie.m */,
+				EA6098F71DE4405E004ECB0C /* ScanPictureView.h */,
+				EA6098F81DE4405E004ECB0C /* ScanPictureView.m */,
+				EA6098F61DE4404E004ECB0C /* DeleteImageProtocol.h */,
+				EA6098EE1DE4400E004ECB0C /* TKAddressBook.h */,
+				EA6098EF1DE4400E004ECB0C /* TKAddressBook.m */,
+				EA6098F01DE4400E004ECB0C /* HeComplaintUserVC.h */,
+				EA6098F11DE4400E004ECB0C /* HeComplaintUserVC.m */,
+				EA6098F21DE4400E004ECB0C /* HeComplaintUserVC.xib */,
+				EA6098DE1DE44005004ECB0C /* 加图片图标.png */,
+				EA6098DF1DE44005004ECB0C /* 加图片图标高亮.png */,
+				EA6098E01DE44005004ECB0C /* checkBox.png */,
+				EA6098E11DE44005004ECB0C /* checkBox@2x.png */,
+				EA6098E21DE44005004ECB0C /* had_checkBox.png */,
+				EA6098E31DE44005004ECB0C /* had_checkBox@2x.png */,
+				EA6098E41DE44005004ECB0C /* uncheckBox.png */,
+				EA6098E51DE44005004ECB0C /* uncheckBox@2x.png */,
+			);
+			name = Complaint;
 			sourceTree = "<group>";
 		};
 		EA686DBB1DB7531F00669EBC /* SMS_SDK */ = {
@@ -3924,6 +4008,8 @@
 		EA8DA9D01D5A18BB00487BF4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				EA6098CA1DE428F6004ECB0C /* UIButton+countDown.h */,
+				EA6098CB1DE428F6004ECB0C /* UIButton+countDown.m */,
 				EA8DA9D11D5A18BB00487BF4 /* NSDate+Category.h */,
 				EA8DA9D21D5A18BB00487BF4 /* NSDate+Category.m */,
 				EA8DA9D31D5A18BB00487BF4 /* NSDateFormatter+Category.h */,
@@ -3945,6 +4031,7 @@
 		EA8DA9E61D5A18C700487BF4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EA6098DD1DE43FF7004ECB0C /* Complaint */,
 				EABBC8451DBA5CAC004B68AD /* Topic */,
 				EAC709BB1D8245C300A5F969 /* Common */,
 				EAFCB5E31D8152C700A23BAA /* Search */,
@@ -3993,6 +4080,7 @@
 		EA8DA9FF1D5A18CF00487BF4 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				EA6098CD1DE439BB004ECB0C /* FTPopOverMenu */,
 				EA0229531D741CFC00F57965 /* LXSegmentController */,
 				EAC718C11D71324100BBC106 /* HeInstructionView */,
 				EA8DAECF1D5A190100487BF4 /* Waiting */,
@@ -5347,6 +5435,12 @@
 		EAC718C51D71325600BBC106 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				EA6098D81DE43CBC004ECB0C /* HeBlockUserVC.h */,
+				EA6098D91DE43CBC004ECB0C /* HeBlockUserVC.m */,
+				EA6098DA1DE43CBC004ECB0C /* HeBlockUserVC.xib */,
+				EA6098D31DE43C36004ECB0C /* HeComplaintVC.h */,
+				EA6098D41DE43C36004ECB0C /* HeComplaintVC.m */,
+				EA6098D51DE43C36004ECB0C /* HeComplaintVC.xib */,
 				0767A5371DB9AD740032D951 /* HeEnrollVC.h */,
 				0767A5381DB9AD740032D951 /* HeEnrollVC.m */,
 				0767A5391DB9AD740032D951 /* HeEnrollVC.xib */,
@@ -5530,6 +5624,7 @@
 				EA8987DA1D746D0C00A2A392 /* chat_location_annotation_someone.png in Resources */,
 				EA8987D81D746D0C00A2A392 /* callBg@2x.png in Resources */,
 				07D2A4A81DBDDC160031DDE0 /* save@2x.png in Resources */,
+				EA6098ED1DE44005004ECB0C /* uncheckBox@2x.png in Resources */,
 				EA8987F01D746D0C00A2A392 /* chat_sender_audio_playing_003@2x.png in Resources */,
 				EA8988181D746D0C00A2A392 /* add@2x.png in Resources */,
 				EA1C39EB1D743059008557B4 /* navigationBar_back_icon.png in Resources */,
@@ -5541,6 +5636,8 @@
 				07D2A4AC1DBDDC160031DDE0 /* ToolViewInputVoiceHL@2x.png in Resources */,
 				EA89882C1D746D0C00A2A392 /* tabbar_contacts.png in Resources */,
 				EA8987991D746D0C00A2A392 /* MWPhotoBrowser.bundle in Resources */,
+				EA6098E91DE44005004ECB0C /* checkBox@2x.png in Resources */,
+				EA6098D71DE43C36004ECB0C /* HeComplaintVC.xib in Resources */,
 				EA8DAD401D5A18D000487BF4 /* blackArrow.png in Resources */,
 				EA8987E71D746D0C00A2A392 /* chat_receiver_audio_playing001@2x.png in Resources */,
 				EA8988301D746D0C00A2A392 /* tabbar_setting.png in Resources */,
@@ -5575,9 +5672,11 @@
 				EA8987E11D746D0C00A2A392 /* chat_location_preview@2x.png in Resources */,
 				EA89883D1D746D0C00A2A392 /* Settings.bundle in Resources */,
 				07A7E9CF1DC597B30043802C /* HeModifyUserInfoVC.xib in Resources */,
+				EA6098E71DE44005004ECB0C /* 加图片图标高亮.png in Resources */,
 				EA686E1A1DB7572B00669EBC /* WeiboSDK.bundle in Resources */,
 				EA89876E1D746D0C00A2A392 /* MJRefresh.bundle in Resources */,
 				EA8DADA01D5A18D000487BF4 /* LICENSE.txt in Resources */,
+				EA6098EB1DE44005004ECB0C /* had_checkBox@2x.png in Resources */,
 				EA8988291D746D0C00A2A392 /* tabbar_chats@2x.png in Resources */,
 				EA89880F1D746D0C00A2A392 /* icon_030_cover.png in Resources */,
 				07D2A4AD1DBDDC160031DDE0 /* umeng_add_photo@2x.png in Resources */,
@@ -5593,6 +5692,7 @@
 				EA8987D41D746D0C00A2A392 /* call_silence.png in Resources */,
 				EA1C39E11D743049008557B4 /* icon_reward.png in Resources */,
 				EA8987FB1D746D0C00A2A392 /* icon_012_cover.png in Resources */,
+				EA6098EA1DE44005004ECB0C /* had_checkBox.png in Resources */,
 				EA89882B1D746D0C00A2A392 /* tabbar_chatsHL@2x.png in Resources */,
 				EA8987FC1D746D0C00A2A392 /* icon_013.gif in Resources */,
 				EA8987E51D746D0C00A2A392 /* messageSendFail@2x.png in Resources */,
@@ -5605,6 +5705,7 @@
 				EA8DAD541D5A18D000487BF4 /* IQKeyboardManager.bundle in Resources */,
 				EA8987F31D746D0C00A2A392 /* chat_sender_bg@2x.png in Resources */,
 				EA8DAD2E1D5A18D000487BF4 /* fail@3x.png in Resources */,
+				EA6098DC1DE43CBC004ECB0C /* HeBlockUserVC.xib in Resources */,
 				EA1C39E01D743049008557B4 /* icon_love.png in Resources */,
 				EA89882A1D746D0C00A2A392 /* tabbar_chatsHL.png in Resources */,
 				07D2A4B31DBDDC160031DDE0 /* umeng_fb_audio_play_default@2x.png in Resources */,
@@ -5634,6 +5735,7 @@
 				EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */,
 				EA686E151DB7572B00669EBC /* ShareSDKUI.bundle in Resources */,
 				EA8DAD371D5A18D000487BF4 /* down_dark.png in Resources */,
+				EA6098EC1DE44005004ECB0C /* uncheckBox.png in Resources */,
 				EA8987D71D746D0C00A2A392 /* call_silence_h@2x.png in Resources */,
 				EA8988131D746D0C00A2A392 /* icon_040_cover.png in Resources */,
 				EA686D501DB743FD00669EBC /* login_BG.png in Resources */,
@@ -5645,6 +5747,7 @@
 				EAFCB5E81D8152D700A23BAA /* HeSearchInfoVC.xib in Resources */,
 				EA8987EA1D746D0C00A2A392 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				EA8988151D746D0C00A2A392 /* account@2x.png in Resources */,
+				EA6098F51DE4400E004ECB0C /* HeComplaintUserVC.xib in Resources */,
 				EA8987C71D746D0C00A2A392 /* EaseUIResource.bundle in Resources */,
 				0767A5401DB9B8430032D951 /* HeBasicInfoVC.xib in Resources */,
 				EA1C39E21D743049008557B4 /* icon_sex_boy.png in Resources */,
@@ -5719,6 +5822,7 @@
 				EA8987F21D746D0C00A2A392 /* chat_sender_bg.png in Resources */,
 				EA8988281D746D0C00A2A392 /* tabbar_chats.png in Resources */,
 				EA8987CD1D746D0C00A2A392 /* 80.png in Resources */,
+				EA6098E81DE44005004ECB0C /* checkBox.png in Resources */,
 				EA8DAD301D5A18D000487BF4 /* refresh@3x.png in Resources */,
 				EABBC85D1DBA622F004B68AD /* icon_put.png in Resources */,
 				EA8987C91D746D0C00A2A392 /* 120.png in Resources */,
@@ -5729,6 +5833,7 @@
 				EA89881E1D746D0C00A2A392 /* group_creategroup@2x.png in Resources */,
 				EA8988081D746D0C00A2A392 /* icon_024.gif in Resources */,
 				EA1C39DA1D743049008557B4 /* appIcon30.png in Resources */,
+				EA6098E61DE44005004ECB0C /* 加图片图标.png in Resources */,
 				EA8988271D746D0C00A2A392 /* newFriends@2x.png in Resources */,
 				EA686E211DB7590C00669EBC /* img_meeting_logo.png in Resources */,
 				EA8987CC1D746D0C00A2A392 /* 58.png in Resources */,
@@ -5741,6 +5846,7 @@
 				EABBC84F1DBA5CE5004B68AD /* HeUserReplyTopicVC.xib in Resources */,
 				EA8DAECB1D5A18F300487BF4 /* zbar-helpicons.png in Resources */,
 				EA8DAD031D5A18D000487BF4 /* BrowserView.xib in Resources */,
+				EA6098D21DE43A9A004ECB0C /* icon_more.png in Resources */,
 				EABBC8541DBA5CFA004B68AD /* HeTopicVC.xib in Resources */,
 				EA8DAD911D5A18D000487BF4 /* arrow_down.png in Resources */,
 				EA8DAD2D1D5A18D000487BF4 /* fail@2x.png in Resources */,
@@ -5812,6 +5918,7 @@
 				EA8DADC41D5A18D000487BF4 /* RACDynamicSequence.m in Sources */,
 				EA8987431D746D0C00A2A392 /* AddFriendCell.m in Sources */,
 				EA8DAD0C1D5A18D000487BF4 /* UILabel+Corner.m in Sources */,
+				EA6098F41DE4400E004ECB0C /* HeComplaintUserVC.m in Sources */,
 				EA8DAD111D5A18D000487BF4 /* DFBaseViewController.m in Sources */,
 				EA8DADFE1D5A18D000487BF4 /* UITextView+RACSignalSupport.m in Sources */,
 				EA8DAD4F1D5A18D000487BF4 /* FMDatabaseQueue.m in Sources */,
@@ -5892,6 +5999,7 @@
 				EA8DAD1B1D5A18D000487BF4 /* PullToRefreshView.m in Sources */,
 				EA8DAD021D5A18D000487BF4 /* BrowserView.m in Sources */,
 				EA8DAD4D1D5A18D000487BF4 /* FMDatabaseAdditions.m in Sources */,
+				EA6098D61DE43C36004ECB0C /* HeComplaintVC.m in Sources */,
 				EA8DA9DF1D5A18BB00487BF4 /* NSDate+Category.m in Sources */,
 				EA8DAD5B1D5A18D000487BF4 /* UIView+Hierarchy.m in Sources */,
 				EA8985081D746CE100A2A392 /* HeChatTableCell.m in Sources */,
@@ -5945,6 +6053,7 @@
 				EA8987A21D746D0C00A2A392 /* UIViewController+HUD.m in Sources */,
 				EA8987B91D746D0C00A2A392 /* EaseBubbleView+Location.m in Sources */,
 				EA8DAD1C1D5A18D000487BF4 /* DFReachabilityUtil.m in Sources */,
+				EA6098FC1DE44091004ECB0C /* UIView+Genie.m in Sources */,
 				EA8DAD8D1D5A18D000487BF4 /* NSString+MLLabel.m in Sources */,
 				EA8DAD391D5A18D000487BF4 /* i2KEPCBasePickerView.m in Sources */,
 				EA8DADB31D5A18D000487BF4 /* NSOrderedSet+RACSequenceAdditions.m in Sources */,
@@ -6003,9 +6112,11 @@
 				EA8DACF71D5A18D000487BF4 /* UIWebView+AFNetworking.m in Sources */,
 				EA89872F1D746D0C00A2A392 /* ChatDemoHelper.m in Sources */,
 				EA8DADCE1D5A18D000487BF4 /* RACKVOChannel.m in Sources */,
+				EA6098F91DE4405E004ECB0C /* ScanPictureView.m in Sources */,
 				EA89876D1D746D0C00A2A392 /* MJRefreshStateHeader.m in Sources */,
 				EA89879D1D746D0C00A2A392 /* EaseUserModel.m in Sources */,
 				EA8DA9FC1D5A18C700487BF4 /* RDVTabBar.m in Sources */,
+				EA6098CC1DE428F6004ECB0C /* UIButton+countDown.m in Sources */,
 				EA8987BC1D746D0C00A2A392 /* EaseBubbleView+Voice.m in Sources */,
 				EA8DAE381D5A18D000487BF4 /* UUDatePicker_DateModel.m in Sources */,
 				EA8DADAC1D5A18D000487BF4 /* NSNotificationCenter+RACSupport.m in Sources */,
@@ -6058,6 +6169,7 @@
 				EA8DADE21D5A18D000487BF4 /* RACSubscriber.m in Sources */,
 				EA8987231D746D0C00A2A392 /* EMAlertView.m in Sources */,
 				EA8DADD71D5A18D000487BF4 /* RACScheduler.m in Sources */,
+				EA6098D01DE439BB004ECB0C /* FTPopOverMenu.m in Sources */,
 				EA8DAE4E1D5A18DF00487BF4 /* NSData+ASE128.m in Sources */,
 				EA8DAD621D5A18D000487BF4 /* MBProgressHUD+Add.m in Sources */,
 				EA8DAE261D5A18D000487BF4 /* TSLocation.m in Sources */,
@@ -6122,6 +6234,7 @@
 				EA8DACEB1D5A18D000487BF4 /* AFURLRequestSerialization.m in Sources */,
 				EA8987871D746D0C00A2A392 /* UIImage+EMMultiFormat.m in Sources */,
 				EA8DAD851D5A18D000487BF4 /* MLLabelLayoutManager.m in Sources */,
+				EA6098F31DE4400E004ECB0C /* TKAddressBook.m in Sources */,
 				EA8DAD4B1D5A18D000487BF4 /* README.markdown in Sources */,
 				EA8984C01D74674E00A2A392 /* HeBaseIconTitleTableCell.m in Sources */,
 				EA8DA9F71D5A18C700487BF4 /* CustomNavigationController.m in Sources */,
@@ -6225,6 +6338,7 @@
 				EA8987B61D746D0C00A2A392 /* EaseBubbleView+File.m in Sources */,
 				EA8DAD0F1D5A18D000487BF4 /* DFBaseTabBarController.m in Sources */,
 				EA8DAE241D5A18D000487BF4 /* TSLocateView.m in Sources */,
+				EA6098DB1DE43CBC004ECB0C /* HeBlockUserVC.m in Sources */,
 				EA8987AA1D746D0C00A2A392 /* FixFopen.c in Sources */,
 				EA8987841D746D0C00A2A392 /* NSData+EMImageContentType.m in Sources */,
 				EA8DAE291D5A18D000487BF4 /* TZImageManager.m in Sources */,

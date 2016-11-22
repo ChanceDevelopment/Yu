@@ -10,6 +10,7 @@
 #import "UIButton+Bootstrap.h"
 #import "HeFeedbackVC.h"
 #import "HeModifyUserInfoVC.h"
+#import "HeBlockUserVC.h"
 
 @interface HeSettingVC ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 @property(strong,nonatomic)NSArray *dataSource;
@@ -52,7 +53,7 @@
 - (void)initializaiton
 {
     [super initializaiton];
-    dataSource = @[@[@"昵称",@"手机号",@"清理缓存",@"意见反馈",@"联系我们"]];
+    dataSource = @[@[@"昵称",@"手机号",@"清理缓存",@"意见反馈",@"联系我们",@"黑名单"]];
 }
 
 - (void)initView
@@ -307,6 +308,12 @@
                 {
                     UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请发邮件至 327993669@qq.com" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
                     [alertview show];
+                    break;
+                }
+                case 5:{
+                    HeBlockUserVC *blockUserVC = [[HeBlockUserVC alloc] init];
+                    blockUserVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:blockUserVC animated:YES];
                     break;
                 }
                 default:

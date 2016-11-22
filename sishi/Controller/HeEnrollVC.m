@@ -10,6 +10,7 @@
 #import "UIButton+Bootstrap.h"
 #import <SMS_SDK/SMSSDK.h>
 #import "HeBasicInfoVC.h"
+#import "UIButton+countDown.h"
 
 @interface HeEnrollVC ()<UITextFieldDelegate>
 @property(strong,nonatomic)IBOutlet UITextField *phoneField;
@@ -99,8 +100,8 @@
         [self showHint:@"请输入正确的手机号"];
         return;
     }
-    
-    [self myTimer];
+    [sender startWithTime:60 title:@"获取验证码" countDownTitle:@"s" mainColor:APPDEFAULTORANGE countColor:[UIColor lightGrayColor]];
+//    [self myTimer];
     //获取注册手机号的验证码
     NSString *zone = @"86"; //区域号
     NSString *phoneNumber = phoneField.text;
@@ -112,16 +113,14 @@
         [self hideHud];
         if (!error)
         {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                     // *** 将UI操作放到主线程中执行 ***
-                     
-                     return ;
-            });
+            [self showHint:@"验证码已发送，请注意查收!"];
         }
         else
         {
             NSString *errorString = [NSString stringWithFormat:@"错误描述：%@",[error.userInfo objectForKey:@"getVerificationCode"]];
-            [self showHint:errorString];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:errorString delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alertView show];
+//            [self showHint:errorString];
         }
     }];
 }
