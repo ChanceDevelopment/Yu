@@ -218,7 +218,6 @@ static NSString *kGroupName = @"GroupName";
     // Dispose of any resources that can be recreated.
 }
 
-
 //环信代码
 // 统计未读消息数
 -(void)setupUnreadMessageCount

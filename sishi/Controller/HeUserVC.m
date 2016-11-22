@@ -120,6 +120,8 @@
     [self.navigationController pushViewController:settingVC animated:YES];
 }
 
+
+
 - (void)topicButtonClick:(UIButton *)button
 {
     NSInteger tag = button.tag;
@@ -151,10 +153,11 @@
 {
     [_mapView updateLocationData:userLocation];
     
-    BMKCoordinateSpan span = BMKCoordinateSpanMake(0.013142, 0.011678);
+    BMKCoordinateSpan span = BMKCoordinateSpanMake(0.000000001, 0.000000001);
     BMKCoordinateRegion region = BMKCoordinateRegionMake(userLocation.location.coordinate, span);
-    [_mapView setRegion:region animated:YES];
+//    [_mapView setRegion:region animated:YES];
     [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
+    [_mapView regionThatFits:region];
     NSLog(@"heading is %@",userLocation.heading);
 }
 
