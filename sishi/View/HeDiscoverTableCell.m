@@ -313,9 +313,26 @@
 
 - (void)showMenu:(id)sender
 {
+    UIView *view = [sender view];
+    NSString *topicUserId = topicDict[@"topicUserId"];
+    if ([topicUserId isMemberOfClass:[NSNull class]] || topicUserId == nil) {
+        topicUserId = @"";
+    }
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if ([userId isEqualToString:topicUserId]) {
+        return;
+    }
+    UIButton *button = [view viewWithTag:100888];
+    if (!button) {
+        button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        button.tag = 100888;
+        button.hidden = YES;
+        [view addSubview:button];
+    }
+    
     NSArray *menuArray = @[@"备注",@"聊天"];
     [FTPopOverMenu setTintColor:APPDEFAULTORANGE];
-    [FTPopOverMenu showForSender:sender
+    [FTPopOverMenu showForSender:button
                         withMenu:menuArray
                   imageNameArray:nil
                        doneBlock:^(NSInteger selectedIndex) {
@@ -323,6 +340,7 @@
                                case 0:
                                {
                                    NSLog(@"备注");
+                                   [self routerEventWithName:@"modifyNoteUserNoteEvent" userInfo:topicDict];
                                    break;
                                }
                                case 1:

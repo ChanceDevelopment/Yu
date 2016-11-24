@@ -11,7 +11,7 @@
  */
 
 #import "ChatViewController.h"
-
+#import "FTPopOverMenu.h"
 #import "ChatGroupDetailViewController.h"
 #import "ChatroomDetailViewController.h"
 //#import "UserProfileViewController.h"
@@ -123,10 +123,17 @@
     
     //单聊
     if (self.conversation.type == EMConversationTypeChat) {
-        UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-        [clearButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
-        [clearButton addTarget:self action:@selector(deleteAllMessages:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:clearButton];
+        UIButton *distributeButton = [[UIButton alloc] init];
+        [distributeButton setBackgroundImage:[UIImage imageNamed:@"icon_more"] forState:UIControlStateNormal];
+        [distributeButton addTarget:self action:@selector(moreItemClick:) forControlEvents:UIControlEventTouchUpInside];
+        distributeButton.frame = CGRectMake(0, 0, 25, 25);
+        UIBarButtonItem *distributeItem = [[UIBarButtonItem alloc] initWithCustomView:distributeButton];
+        self.navigationItem.rightBarButtonItem = distributeItem;
+        
+//        UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//        [clearButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+//        [clearButton addTarget:self action:@selector(deleteAllMessages:) forControlEvents:UIControlEventTouchUpInside];
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:clearButton];
     }
     else{//群聊
         UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
@@ -137,10 +144,140 @@
     }
 }
 
+- (void)moreItemClick:(id)sender
+{
+    NSArray *menuArray = @[@"删除记录",@"屏蔽该用户"];
+    NSString *userId = self.conversation.conversationId;
+    if ([userId isMemberOfClass:[NSNull class]]) {
+        userId = @"";
+    }
+    NSString *myuserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    
+    
+    
+    [FTPopOverMenu setTintColor:APPDEFAULTORANGE];
+    [FTPopOverMenu showForSender:sender
+                        withMenu:menuArray
+                  imageNameArray:nil
+                       doneBlock:^(NSInteger selectedIndex) {
+                           switch (selectedIndex) {
+                               case 0:
+                               {
+                                   [self deleteAllMessages:nil];
+                                   break;
+                               }
+                               case 1:
+                               {
+                                   //屏蔽用户
+                                   [self blockUserButtonClick];
+                                   break;
+                               }
+                               case 2:
+                               {
+                                   
+                                   break;
+                               }
+                               default:
+                                   break;
+                           }
+                           
+                           
+                           
+                       } dismissBlock:^{
+                           
+                           NSLog(@"user canceled. do nothing.");
+                           
+                       }];
+}
+
+//屏蔽用户
+- (void)blockUserButtonClick
+{
+    NSString *userId = self.conversation.conversationId; //发布人的ID
+    if ([userId isMemberOfClass:[NSNull class]]) {
+        userId = nil;
+    }
+    NSString *myUserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if ([userId isEqualToString:myUserId]) {
+        [self showHint:@"不能屏蔽自己"];
+        return;
+    }
+    if (ISIOS8) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"屏蔽该用户之后，将不会接收该用户的消息" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+            NSLog(@"cancelAction");
+        }];
+        UIAlertAction *blockAction = [UIAlertAction actionWithTitle:@"屏蔽" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            NSString *userId = self.conversation.conversationId; //发布人的ID
+            if ([userId isMemberOfClass:[NSNull class]] || userId == nil) {
+                userId = @"";
+            }
+            NSDictionary *dict = @{@"userId":userId};
+            [self blockUserWithUser:dict];
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:blockAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"屏蔽该用户之后，将不会接收该用户的消息" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"屏蔽", nil];
+    alertview.tag = 200;
+    [alertview show];
+}
+
+
+- (void)blockUserWithUser:(NSDictionary *)userDict
+{
+    NSLog(@"blockUser");
+    NSString *blockUserId = userDict[@"userId"];
+    if ([blockUserId isMemberOfClass:[NSNull class]] || blockUserId == nil) {
+        blockUserId = @"";
+    }
+    [[EMClient sharedClient].contactManager asyncAddUserToBlackList:blockUserId relationshipBoth:YES success:^{
+        NSString *myUserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+        NSMutableArray *tmpArray = [[NSMutableArray alloc] initWithCapacity:0];
+        NSString *blockKey = [NSString stringWithFormat:@"%@_%@",CHATBLOCKINGLIST,myUserId];
+        NSArray *blockArray = [[NSUserDefaults standardUserDefaults] objectForKey:blockKey];
+        if (blockArray != nil) {
+            [tmpArray addObjectsFromArray:blockArray];
+        }
+        [tmpArray addObject:userDict];
+        blockArray = [[NSArray alloc] initWithArray:tmpArray];
+        [[NSUserDefaults standardUserDefaults] setObject:blockArray forKey:blockKey];
+        NSNotification *notification = [NSNotification notificationWithName:@"blockChatUserSucceed" object:nil userInfo:userDict];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+        [self showHint:@"成功屏蔽用户"];
+        [self performSelector:@selector(backToLastView) withObject:nil afterDelay:0.8];
+    } failure:^(EMError *error){
+        [self showHint:error.errorDescription];
+    }];
+    
+}
+
+- (void)backToLastView
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (alertView.tag == 200) {
+        switch (buttonIndex) {
+            case 1:
+            {
+                NSString *userId = self.conversation.conversationId;
+                NSDictionary *dict = @{@"userId":userId};
+                [self blockUserWithUser:dict];
+                break;
+            }
+            default:
+                break;
+        }
+        return;
+    }
+    
     if (alertView.cancelButtonIndex != buttonIndex) {
         self.messageTimeIntervalTag = -1;
         [self.conversation deleteAllMessages];

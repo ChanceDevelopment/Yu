@@ -56,10 +56,11 @@
 /** 计算上一次选中角标 */
 @property (nonatomic, assign) NSInteger selIndex;
 
+@property (nonatomic,strong) UIView *unReadMessageView;
 @end
 
 @implementation LXSegmentController
-
+@synthesize unReadMessageView;
 #pragma mark - 初始化方法
 
 - (instancetype)init
@@ -96,6 +97,17 @@
     }
 }
 
+- (void)setHaveUnReadMessage:(BOOL)haveUnReadMessage
+{
+    _haveUnReadMessage = haveUnReadMessage;
+    if (_haveUnReadMessage) {
+        unReadMessageView.hidden = NO;
+    }
+    else{
+        unReadMessageView.hidden = YES;
+    }
+    [unReadMessageView.superview addSubview:unReadMessageView];
+}
 
 #pragma mark - 懒加载
 
@@ -560,6 +572,10 @@
                 _contentScrollView.contentSize = CGSizeMake(count * LXScreenW, 0);
             }
             
+            if (i == 1) {
+                [unReadMessageView.superview addSubview:unReadMessageView];
+            }
+            
         }
 
         
@@ -626,6 +642,18 @@
                 _titleScrollView.contentSize = CGSizeMake(CGRectGetMaxX(label.frame), 0);
                 _titleScrollView.showsHorizontalScrollIndicator = NO;
                 _contentScrollView.contentSize = CGSizeMake(count * LXScreenW, 0);
+            }
+            if (!unReadMessageView) {
+                CGFloat viewW = 8;
+                CGFloat viewH = 8;
+                CGFloat viewX = CGRectGetWidth(label.frame) / 2.0 + 24;
+                CGFloat viewY = 10;
+                unReadMessageView = [[UIImageView alloc] initWithFrame:CGRectMake(viewX, viewY, viewW, viewH)];
+                ((UIImageView *)unReadMessageView).image = [UIImage imageNamed:@"redIcon"];
+                
+            }
+            if (i == 1) {
+                [label addSubview:unReadMessageView];
             }
         }
 
@@ -938,6 +966,7 @@
 // 设置下标的位置
 - (void)setUpUnderLine:(UIView *)label
 {
+    [unReadMessageView.superview addSubview:unReadMessageView];
     // 获取文字尺寸
     CGRect titleBounds;
     if ([label isKindOfClass:[UILabel class]]) {
@@ -972,10 +1001,6 @@
                 bgView.frame = labelFrame;
                 [myLbael.superview addSubview:bgView];
             }
-            else{
-                bgView.hidden = YES;
-            }
-            
         }
         return;
     }
@@ -1003,12 +1028,23 @@
             
             bgView.hidden = NO;
             [myLbael.superview addSubview:bgView];
-            
         }
         else{
             bgView.hidden = YES;
         }
-        
+        if (index == 1) {
+            if (!bgView.hidden) {
+                [bgView addSubview:unReadMessageView];
+            }
+            else{
+                for (UILabel *label in self.titleLabels) {
+                    if (label.tag == 1) {
+                        [label addSubview:unReadMessageView];
+                        break;
+                    }
+                }
+            }
+        }
     }
     
     [UIView animateWithDuration:0.25 animations:^{
@@ -1038,12 +1074,27 @@
                 bgView.hidden = NO;
                 
                 [myLbael.superview addSubview:bgView];
-//                self.titleHeight
             }
             else{
                 bgView.hidden = YES;
+                if (index == 1) {
+                    UILabel *myLbael = (UILabel *)label;
+                    [myLbael addSubview:unReadMessageView];
+                }
             }
-            
+            if (index == 1) {
+                if (!bgView.hidden) {
+                    [bgView addSubview:unReadMessageView];
+                }
+                else{
+                    for (UILabel *label in self.titleLabels) {
+                        if (label.tag == 1) {
+                            [label addSubview:unReadMessageView];
+                            break;
+                        }
+                    }
+                }
+            }
         }
         
     }];

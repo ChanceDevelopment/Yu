@@ -25,6 +25,8 @@
 //黑名单
 #define BLOCKINGLIST @"blockingList"
 
+#define CHATBLOCKINGLIST @"chatblockingList"
+
 //百度地图的appKey
 #define BAIDUMAPKEY @"Nhiuwh4kqnGBAIGTOfcaHFjhQNnRI5Oz"
 //自己服务器的通信模块
@@ -84,6 +86,7 @@
 //用户的签名 sign
 #define USERSIGNKEY @"userSignKey"
 //用户的ID userid
+#define USERCONTACTKEY @"userContactKey"
 #define USERIDKEY @"userIDKey"
 #define USERTOKENKEY @"userTokenKey"
 #define USERACCOUNTKEY @"userAccountKey"

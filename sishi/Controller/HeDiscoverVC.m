@@ -19,7 +19,9 @@
 
 #define MinLocationSucceedNum 1   //要求最少成功定位的次数
 
-@interface HeDiscoverVC ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
+#define ALERTTAG 200
+
+@interface HeDiscoverVC ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate,UITextFieldDelegate>
 {
     BMKLocationService *_locService;
 }
@@ -33,7 +35,9 @@
 @property(strong,nonatomic)NSCache *imageCache;
 @property (nonatomic,assign)NSInteger locationSucceedNum; //定位成功的次数
 @property (nonatomic,strong)NSMutableDictionary *userLocationDict;
+@property(strong,nonatomic)UIView *dismissView;
 
+@property(strong,nonatomic)NSDictionary *currentSelectTopicDict;
 @end
 
 @implementation HeDiscoverVC
@@ -47,6 +51,7 @@
 
 @synthesize locationSucceedNum;
 @synthesize userLocationDict;
+@synthesize dismissView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,10 +81,18 @@
     [self getLocation];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    _locService.delegate = self;
+    [_locService startUserLocationService];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
     [_locService stopUserLocationService];
+    _locService.delegate = nil;
 }
 
 - (void)initializaiton
@@ -91,11 +104,24 @@
     imageCache = [[NSCache alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTopicSucceed:) name:@"deleteTopicSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTopicSucceed:) name:@"distributeTopicSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(blockUserSucceed:) name:@"blockUserSucceed" object:nil];
+    
 }
 
 - (void)initView
 {
     [super initView];
+    
+    dismissView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, [UIScreen mainScreen].bounds.size.height)];
+    dismissView.backgroundColor = [UIColor blackColor];
+    dismissView.hidden = YES;
+    dismissView.alpha = 0.7;
+    [self.view addSubview:dismissView];
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissViewGes:)];
+    tapGes.numberOfTapsRequired = 1;
+    tapGes.numberOfTouchesRequired = 1;
+    [dismissView addGestureRecognizer:tapGes];
+    
     tableview.backgroundView = nil;
     tableview.backgroundColor = [UIColor whiteColor];
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -124,7 +150,7 @@
         // 进入刷新状态后会自动调用这个block，加载更多
         [self performSelector:@selector(endRefreshing) withObject:nil afterDelay:1.0];
         updateOption = 2;
-        pageNo++;
+        pageNo = [dataSource count];
         [self loadNearbyUserShow:YES];
     }];
     
@@ -137,6 +163,22 @@
     
     userLocationDict = [[NSMutableDictionary alloc] initWithCapacity:0];
     locationSucceedNum = 0;
+}
+
+- (void)blockUserSucceed:(NSNotification *)notificaiton
+{
+    updateOption = 1;
+    [self loadNearbyUserShow:NO];
+}
+- (void)dismissViewGes:(UITapGestureRecognizer *)ges
+{
+    
+    UIView *mydismissView = ges.view;
+    mydismissView.hidden = YES;
+    
+    UIView *alertview = [self.view viewWithTag:ALERTTAG];
+    
+    [alertview removeFromSuperview];
 }
 
 - (void)endRefreshing
@@ -199,8 +241,60 @@
             }
             NSArray *resultArray = [respondDict objectForKey:@"json"];
             if (![resultArray isMemberOfClass:[NSNull class]]) {
+                
+                NSString *myUserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+                NSString *blockKey = [NSString stringWithFormat:@"%@_%@",BLOCKINGLIST,myUserId];
+                
+                NSArray *blockArray = [[NSUserDefaults standardUserDefaults] objectForKey:blockKey];
+                
+                
                 for (NSDictionary *zoneDict in resultArray) {
-                    [dataSource addObject:zoneDict];
+                    BOOL isBlock = NO;
+                    for (NSDictionary *dict in blockArray) {
+                        NSString *userId = dict[@"userId"];
+                        NSString *zoneUserId = zoneDict[@"topicUserId"];
+                        if ([zoneUserId isMemberOfClass:[NSNull class]]) {
+                            zoneUserId = @"";
+                        }
+                        if ([zoneUserId isEqualToString:userId]) {
+                            isBlock = YES;
+                            break;
+                        }
+                    }
+                    if (!isBlock) {
+                        [dataSource addObject:zoneDict];
+                    }
+                    
+                    NSString *header = zoneDict[@"header"];
+                    if ([header isMemberOfClass:[NSNull class]] || header == nil) {
+                        header = @"";
+                    }
+                    NSString *huanxId = zoneDict[@"huanxId"];
+                    if ([huanxId isMemberOfClass:[NSNull class]] || huanxId == nil) {
+                        huanxId = @"";
+                    }
+                    NSString *nick = zoneDict[@"nick"];
+                    if ([nick isMemberOfClass:[NSNull class]] || nick == nil) {
+                        nick = @"";
+                    }
+                    id sex = zoneDict[@"sex"];
+                    if ([sex isMemberOfClass:[NSNull class]] || sex == nil) {
+                        sex = @"";
+                    }
+                    NSString *topicUserId = zoneDict[@"topicUserId"];
+                    if ([topicUserId isMemberOfClass:[NSNull class]] || topicUserId == nil) {
+                        topicUserId = @"";
+                    }
+                    NSDictionary *userDictInfo = @{@"huanxId":huanxId,@"userHeader":header,@"userNick":nick,@"userSex":sex,@"userId":topicUserId};
+                    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+                    NSString *contactKey = [NSString stringWithFormat:@"%@_%@",USERCONTACTKEY,userId];
+                    
+                    NSDictionary *contactDict = [[NSUserDefaults standardUserDefaults] objectForKey:contactKey];
+                    NSMutableDictionary *myContactDict = [[NSMutableDictionary alloc] initWithDictionary:contactDict];
+                    [myContactDict setObject:userDictInfo forKey:huanxId];
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject:myContactDict forKey:contactKey];
+                    
                 }
             }
             
@@ -270,8 +364,14 @@
                 longitudeStr = @"";
             }
             [self loadNearbyUserShow:YES];
-            
+            [self updateUserLocationWith:userLocationDict];
         }
+    }
+    else{
+        [userLocationDict setObject:latitudeStr forKey:@"latitude"];
+        [userLocationDict setObject:longitudeStr forKey:@"longitude"];
+        [HeSysbsModel getSysModel].userLocationDict = [[NSDictionary alloc] initWithDictionary:userLocationDict];
+        [self updateUserLocationWith:userLocationDict];
     }
     
 }
@@ -280,6 +380,82 @@
 {
     [self hideHud];
     [self showHint:@"定位失败!"];
+}
+
+- (void)updateUserLocationWith:(NSDictionary *)locatonDict
+{
+    NSString *requestWorkingTaskPath = [NSString stringWithFormat:@"%@/topic/updateCoordinate.action",BASEURL];
+    
+    NSString *latitudeStr = [userLocationDict objectForKey:@"latitude"];
+    if (latitudeStr == nil) {
+        latitudeStr = @"";
+    }
+    NSString *longitudeStr = [userLocationDict objectForKey:@"longitude"];
+    if (longitudeStr == nil) {
+        longitudeStr = @"";
+    }
+    
+    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if (!userid) {
+        userid = @"";
+    }
+    NSDictionary *requestMessageParams = @{@"userId":userid,@"latitude":latitudeStr,@"longitude":longitudeStr};
+    
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:requestWorkingTaskPath params:requestMessageParams success:^(AFHTTPRequestOperation* operation,id response){
+        
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            NSLog(@"上传坐标成功");
+        }
+        else{
+            NSLog(@"上传坐标失败");
+        }
+    } failure:^(NSError *error){
+    
+    }];
+}
+
+- (void)canChatWithUser:(NSString *)otherUserId
+{
+    NSString *requestWorkingTaskPath = [NSString stringWithFormat:@"%@/user/selectdistance.action",BASEURL];
+    
+    NSString *latitudeStr = [userLocationDict objectForKey:@"latitude"];
+    if (latitudeStr == nil) {
+        latitudeStr = @"";
+    }
+    NSString *longitudeStr = [userLocationDict objectForKey:@"longitude"];
+    if (longitudeStr == nil) {
+        longitudeStr = @"";
+    }
+    
+    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if (!userid) {
+        userid = @"";
+    }
+    NSDictionary *requestMessageParams = @{@"userId":userid,@"otherUserId":otherUserId};
+    
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:requestWorkingTaskPath params:requestMessageParams success:^(AFHTTPRequestOperation* operation,id response){
+        
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            //距离短，可以进行即时聊天
+           dispatch_async(dispatch_get_main_queue(), ^{
+               
+           });
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"当前用户距离您太远，不能进行即时聊天" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSError *error){
+        
+    }];
 }
 
 #pragma 火星坐标系 (GCJ-02) 转 mark-(BD-09) 百度坐标系 的转换算法
@@ -292,6 +468,145 @@
     CLLocationCoordinate2D GCJpoi=
     CLLocationCoordinate2DMake( z * sin(theta),z * cos(theta));
     return GCJpoi;
+}
+
+- (UIImage *) buttonImageFromColor:(UIColor *)color size:(CGSize)size{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
+- (void)modifyUserNote
+{
+    [self.view addSubview:dismissView];
+    dismissView.hidden = NO;
+    
+    CGFloat viewX = 10;
+    CGFloat viewY = 100;
+    CGFloat viewW = SCREENWIDTH - 2 * viewX;
+    CGFloat viewH = 150;
+    UIView *shareAlert = [[UIView alloc] init];
+    shareAlert.frame = CGRectMake(viewX, viewY, viewW, viewH);
+    shareAlert.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NavBarIOS7"]];
+    shareAlert.layer.cornerRadius = 5.0;
+    shareAlert.layer.borderWidth = 0;
+    shareAlert.layer.masksToBounds = YES;
+    shareAlert.tag = ALERTTAG;
+    shareAlert.layer.borderColor = [UIColor clearColor].CGColor;
+    shareAlert.userInteractionEnabled = YES;
+    
+    CGFloat labelH = 40;
+    CGFloat labelY = 0;
+    
+    UIFont *shareFont = [UIFont systemFontOfSize:15.0];
+    
+    UILabel *messageTitleLabel = [[UILabel alloc] init];
+    messageTitleLabel.font = shareFont;
+    messageTitleLabel.textColor = [UIColor whiteColor];
+    messageTitleLabel.textAlignment = NSTextAlignmentCenter;
+    messageTitleLabel.backgroundColor = APPDEFAULTORANGE;
+    messageTitleLabel.text = @"修改备注";
+    messageTitleLabel.frame = CGRectMake(0, 0, viewW, labelH);
+    [shareAlert addSubview:messageTitleLabel];
+    
+    UIImageView *logoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_logoImage"]];
+    logoImage.frame = CGRectMake(20, 5, 30, 30);
+    [shareAlert addSubview:logoImage];
+    
+    
+    
+    labelY = labelY + labelH + 10;
+    UITextField *textview = [[UITextField alloc] init];
+    textview.tag = 10;
+    textview.backgroundColor = [UIColor whiteColor];
+    textview.placeholder = @"请输入备注";
+    textview.font = shareFont;
+    textview.delegate = self;
+    textview.frame = CGRectMake(10, labelY, shareAlert.frame.size.width - 20, labelH);
+    textview.layer.borderWidth = 1.0;
+    textview.layer.cornerRadius = 2.0;
+    textview.layer.masksToBounds = YES;
+    textview.layer.borderColor = [UIColor colorWithWhite:0xcc / 255.0 alpha:1.0].CGColor;
+    [shareAlert addSubview:textview];
+    
+    CGFloat buttonDis = 10;
+    CGFloat buttonW = (viewW - 3 * buttonDis) / 2.0;
+    CGFloat buttonH = 40;
+    CGFloat buttonY = labelY = labelY + labelH + 10;
+    CGFloat buttonX = 10;
+    
+    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonX, buttonY, buttonW, buttonH)];
+    [shareButton setTitle:@"确定" forState:UIControlStateNormal];
+    [shareButton addTarget:self action:@selector(alertbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    shareButton.tag = 1;
+    [shareButton.titleLabel setFont:shareFont];
+    [shareButton setBackgroundColor:APPDEFAULTORANGE];
+    [shareButton setBackgroundImage:[self buttonImageFromColor:APPDEFAULTORANGE size:shareButton.frame.size] forState:UIControlStateHighlighted];
+    [shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [shareAlert addSubview:shareButton];
+    
+    UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonX + buttonDis + buttonW, buttonY, buttonW, buttonH)];
+    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelButton addTarget:self action:@selector(alertbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    cancelButton.tag = 0;
+    [cancelButton.titleLabel setFont:shareFont];
+    [cancelButton setBackgroundColor:APPDEFAULTORANGE];
+    [cancelButton setBackgroundImage:[self buttonImageFromColor:APPDEFAULTORANGE size:shareButton.frame.size] forState:UIControlStateHighlighted];
+    [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [shareAlert addSubview:cancelButton];
+    
+    CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    popAnimation.duration = 0.4;
+    popAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f, 1.1f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9f, 0.9f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DIdentity]];
+    popAnimation.keyTimes = @[@0.2f, @0.5f, @0.75f, @1.0f];
+    popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [shareAlert.layer addAnimation:popAnimation forKey:nil];
+    [self.view addSubview:shareAlert];
+}
+
+- (void)alertbuttonClick:(UIButton *)button
+{
+    UIView *mydismissView = dismissView;
+    mydismissView.hidden = YES;
+    
+    UIView *alertview = [self.view viewWithTag:ALERTTAG];
+    
+    UIView *subview = [alertview viewWithTag:10];
+    if (button.tag == 0) {
+        [alertview removeFromSuperview];
+        return;
+    }
+    UITextField *textview = nil;
+    if ([subview isMemberOfClass:[UITextField class]]) {
+        textview = (UITextField *)subview;
+    }
+    NSString *notename = textview.text;
+    [alertview removeFromSuperview];
+    if (notename == nil || [notename isEqualToString:@""]) {
+        
+        [self showHint:@"请输入备注"];
+        return;
+    }
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    if (!userId) {
+        userId = @"";
+    }
+    NSString *coveruserid = _currentSelectTopicDict[@"topicUserId"];
+    if ([coveruserid isMemberOfClass:[NSNull class]] || coveruserid == nil) {
+        coveruserid = @"";
+    }
+    NSDictionary *params = @{@"userId":userId,@"coveruserid":coveruserid,@"notename":notename};
+    [self modifyUserNoteithDict:params];
 }
 
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
@@ -311,7 +626,46 @@
         [self upDownButtonClickWithDict:userInfo];
         return;
     }
+    else if ([eventName isEqualToString:@"modifyNoteUserNoteEvent"]){
+        //修改备注
+        _currentSelectTopicDict = [[NSDictionary alloc] initWithDictionary:userInfo];
+        [self modifyUserNote];
+        
+        return;
+    }
     [super routerEventWithName:eventName userInfo:userInfo];
+}
+
+- (void)modifyUserNoteithDict:(NSDictionary *)dict
+{
+    NSString *upDownUrl = [NSString stringWithFormat:@"%@/note/createAndUpdateNewNote.action",BASEURL];
+    
+    [AFHttpTool requestWihtMethod:RequestMethodTypePost url:upDownUrl params:dict success:^(AFHTTPRequestOperation* operation,id response){
+        [self hideHud];
+        NSString *respondString = [[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding];
+        NSDictionary *respondDict = [respondString objectFromJSONString];
+        NSInteger statueCode = [[respondDict objectForKey:@"errorCode"] integerValue];
+        
+        if (statueCode == REQUESTCODE_SUCCEED){
+            //修改备注成功，重新加载
+            if (updateOption == 1) {
+                [dataSource removeAllObjects];
+            }
+            updateOption = 1;
+            [self loadNearbyUserShow:NO];
+            
+        }
+        else{
+            NSString *data = respondDict[@"data"];
+            if ([data isMemberOfClass:[NSNull class]] || data == nil) {
+                data = ERRORREQUESTTIP;
+            }
+            [self showHint:data];
+        }
+    } failure:^(NSError *error){
+        
+        [self showHint:ERRORREQUESTTIP];
+    }];
 }
 
 - (void)upDownButtonClickWithDict:(NSDictionary *)dict
@@ -472,7 +826,7 @@
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
     updateOption = 1;//刷新加载标志
-    pageNo = 1;
+    pageNo = [dataSource count];
     @try {
     }
     @catch (NSException *exception) {
@@ -655,6 +1009,8 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"distributeTopicSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteTopicSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"blockUserSucceed" object:nil];
+    
 }
 /*
  #pragma mark - Navigation

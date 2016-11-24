@@ -147,6 +147,28 @@ static NSString *kGroupName = @"GroupName";
             User *userInfo = [[User alloc] initUserWithDict:userDictInfo];
             [HeSysbsModel getSysModel].user = userInfo;
             
+            NSString *huanxId = [userDictInfo objectForKey:@"huanxId"];
+            if ([huanxId isMemberOfClass:[NSNull class]] || huanxId == nil) {
+                huanxId = @"";
+            }
+            NSMutableDictionary *tempDict = [[NSMutableDictionary alloc] initWithDictionary:userDictInfo];
+            for (id key in userDictInfo.allKeys) {
+                id object = userDictInfo[key];
+                if ([object isMemberOfClass:[NSNull class]] || object == nil) {
+                    object = @"";
+                }
+                [tempDict setObject:object forKey:key];
+            }
+            userDictInfo = [[NSDictionary alloc] initWithDictionary:tempDict];
+            
+            NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+            NSString *contactKey = [NSString stringWithFormat:@"%@_%@",USERCONTACTKEY,userId];
+            
+            NSDictionary *contactDict = [[NSUserDefaults standardUserDefaults] objectForKey:contactKey];
+            NSMutableDictionary *myContactDict = [[NSMutableDictionary alloc] initWithDictionary:contactDict];
+            [myContactDict setObject:userDictInfo forKey:huanxId];
+            [[NSUserDefaults standardUserDefaults] setObject:myContactDict forKey:contactKey];
+            
         }
         else{
             [self hideHud];
@@ -229,11 +251,16 @@ static NSString *kGroupName = @"GroupName";
     }
     if (newsVC) {
         if (unreadCount > 0) {
+            self.haveUnReadMessage = YES;
             newsVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
+            
         }else{
+            self.haveUnReadMessage = NO;
             newsVC.tabBarItem.badgeValue = nil;
         }
     }
+    
+    NSLog(@"未读消息 %ld 条",unreadCount);
     
     UIApplication *application = [UIApplication sharedApplication];
     [application setApplicationIconBadgeNumber:unreadCount];
@@ -242,6 +269,7 @@ static NSString *kGroupName = @"GroupName";
 - (void)setupUntreatedApplyCount
 {
     NSInteger unreadCount = [[[ApplyViewController shareController] dataSource] count];
+    
 //    if (_contactsVC) {
 //        if (unreadCount > 0) {
 //            _contactsVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];

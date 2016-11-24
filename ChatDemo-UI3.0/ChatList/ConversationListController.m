@@ -48,15 +48,21 @@
 @property (nonatomic, strong) EMSearchBar           *searchBar;
 
 @property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (strong,nonatomic) NSDictionary *contactDict;
 
 @end
 
 @implementation ConversationListController
+@synthesize contactDict;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    NSString *contactKey = [NSString stringWithFormat:@"%@_%@",USERCONTACTKEY,userId];
+    contactDict = [[NSUserDefaults standardUserDefaults] objectForKey:contactKey];
+    
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
@@ -75,6 +81,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    NSString *contactKey = [NSString stringWithFormat:@"%@_%@",USERCONTACTKEY,userId];
+    contactDict = [[NSUserDefaults standardUserDefaults] objectForKey:contactKey];
     [self refresh];
 }
 
@@ -238,6 +247,17 @@
                 model.avatarURLPath = profileEntity.imageUrl;
             }
         }
+        NSString *key = conversation.conversationId;
+        NSDictionary *userDict = [contactDict objectForKey:key];
+        NSString *userNick = userDict[@"userNick"];
+        if(![userNick isEqualToString:@""]){
+            model.title = userNick;
+        }
+        NSString *userHeader = userDict[@"userHeader"];
+        if(![userHeader isEqualToString:@""]){
+            model.avatarURLPath = [NSString stringWithFormat:@"%@/%@",HYTIMAGEURL,userHeader];
+        }
+        
     } else if (model.conversation.type == EMConversationTypeGroupChat) {
         NSString *imageName = @"groupPublicHeader";
         if (![conversation.ext objectForKey:@"subject"])

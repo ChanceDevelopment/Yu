@@ -106,6 +106,7 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, strong) UIFont *titleFont;
 
+@property (nonatomic, assign) BOOL haveUnReadMessage;
 // 一次性设置所有标题属性
 - (void)setUpTitleEffect:(void(^)(UIColor **titleScrollViewColor,UIColor **norColor,UIColor **selColor,UIFont **titleFont,CGFloat *titleHeight, CGFloat *titleWidth))titleEffectBlock;
 

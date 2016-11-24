@@ -117,6 +117,7 @@
     chatView.title = title;
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUnreadMessageCount" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

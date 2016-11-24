@@ -820,6 +820,7 @@
 		EABBC8621DBB06BA004B68AD /* HeTopicDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABBC8601DBB06BA004B68AD /* HeTopicDetailVC.xib */; };
 		EABBC8651DBB1878004B68AD /* HeCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC8641DBB1878004B68AD /* HeCommentCell.m */; };
 		EABBC8691DBBB721004B68AD /* HeTopicDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EABBC8681DBBB721004B68AD /* HeTopicDetailCell.m */; };
+		EABD58D61DE6C45C00C88BF5 /* redIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EABD58D51DE6C45C00C88BF5 /* redIcon.png */; };
 		EAC709BF1D82461800A5F969 /* HeLocationTipVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC709BD1D82461800A5F969 /* HeLocationTipVC.m */; };
 		EAC709C01D82461800A5F969 /* HeLocationTipVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC709BE1D82461800A5F969 /* HeLocationTipVC.xib */; };
 		EAC718B91D71315200BBC106 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC718B01D71315100BBC106 /* BaiduMapAPI_Base.framework */; };
@@ -833,6 +834,8 @@
 		EAC718C41D71324100BBC106 /* HeInstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC718C31D71324100BBC106 /* HeInstructionView.m */; };
 		EAC718C91D71326600BBC106 /* HeLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC718C71D71326600BBC106 /* HeLoginVC.m */; };
 		EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC718C81D71326600BBC106 /* HeLoginVC.xib */; };
+		EAE241CA1DE6D1050049EAEF /* HeChatBlockUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE241C81DE6D1050049EAEF /* HeChatBlockUserVC.m */; };
+		EAE241CB1DE6D1050049EAEF /* HeChatBlockUserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE241C91DE6D1050049EAEF /* HeChatBlockUserVC.xib */; };
 		EAF95C2D1D81240B00B4422D /* add_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF95C2C1D81240B00B4422D /* add_Icon.png */; };
 		EAFC13901D9B8F9A005D00AB /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */; };
 		EAFC13941D9BA6D5005D00AB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC13931D9BA6D5005D00AB /* UserNotifications.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -2289,6 +2292,7 @@
 		EABBC8641DBB1878004B68AD /* HeCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeCommentCell.m; sourceTree = "<group>"; };
 		EABBC8671DBBB721004B68AD /* HeTopicDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeTopicDetailCell.h; sourceTree = "<group>"; };
 		EABBC8681DBBB721004B68AD /* HeTopicDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeTopicDetailCell.m; sourceTree = "<group>"; };
+		EABD58D51DE6C45C00C88BF5 /* redIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redIcon.png; sourceTree = "<group>"; };
 		EAC709BC1D82461800A5F969 /* HeLocationTipVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeLocationTipVC.h; sourceTree = "<group>"; };
 		EAC709BD1D82461800A5F969 /* HeLocationTipVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeLocationTipVC.m; sourceTree = "<group>"; };
 		EAC709BE1D82461800A5F969 /* HeLocationTipVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeLocationTipVC.xib; sourceTree = "<group>"; };
@@ -2305,6 +2309,9 @@
 		EAC718C61D71326600BBC106 /* HeLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeLoginVC.h; sourceTree = "<group>"; };
 		EAC718C71D71326600BBC106 /* HeLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeLoginVC.m; sourceTree = "<group>"; };
 		EAC718C81D71326600BBC106 /* HeLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeLoginVC.xib; sourceTree = "<group>"; };
+		EAE241C71DE6D1050049EAEF /* HeChatBlockUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeChatBlockUserVC.h; sourceTree = "<group>"; };
+		EAE241C81DE6D1050049EAEF /* HeChatBlockUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeChatBlockUserVC.m; sourceTree = "<group>"; };
+		EAE241C91DE6D1050049EAEF /* HeChatBlockUserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeChatBlockUserVC.xib; sourceTree = "<group>"; };
 		EAF95C2C1D81240B00B4422D /* add_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Icon.png; sourceTree = "<group>"; };
 		EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
 		EAFC138F1D9B8F9A005D00AB /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
@@ -2503,6 +2510,7 @@
 		EA1C39B41D7428FB008557B4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				EABD58D51DE6C45C00C88BF5 /* redIcon.png */,
 				EA10189F1D747D2900B1051C /* DemoImage */,
 				EA1C39CD1D743020008557B4 /* TabbarIcon */,
 				EA1C39CC1D743015008557B4 /* Custom */,
@@ -5462,6 +5470,9 @@
 				07A7E9CB1DC597B30043802C /* HeModifyUserInfoVC.h */,
 				07A7E9CC1DC597B30043802C /* HeModifyUserInfoVC.m */,
 				07A7E9CD1DC597B30043802C /* HeModifyUserInfoVC.xib */,
+				EAE241C71DE6D1050049EAEF /* HeChatBlockUserVC.h */,
+				EAE241C81DE6D1050049EAEF /* HeChatBlockUserVC.m */,
+				EAE241C91DE6D1050049EAEF /* HeChatBlockUserVC.xib */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -5620,6 +5631,7 @@
 				EA89880A1D746D0C00A2A392 /* icon_027.gif in Resources */,
 				EA8987D61D746D0C00A2A392 /* call_silence_h.png in Resources */,
 				EA10189C1D747C8100B1051C /* main_mine_select.png in Resources */,
+				EAE241CB1DE6D1050049EAEF /* HeChatBlockUserVC.xib in Resources */,
 				07D2A4B11DBDDC160031DDE0 /* umeng_fb_audio_play_02@2x.png in Resources */,
 				EA8987DA1D746D0C00A2A392 /* chat_location_annotation_someone.png in Resources */,
 				EA8987D81D746D0C00A2A392 /* callBg@2x.png in Resources */,
@@ -5858,6 +5870,7 @@
 				EA686E181DB7572B00669EBC /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				07D2A4A61DBDDC160031DDE0 /* cancel@2x.png in Resources */,
 				EA8987FE1D746D0C00A2A392 /* icon_018.gif in Resources */,
+				EABD58D61DE6C45C00C88BF5 /* redIcon.png in Resources */,
 				EA8987DB1D746D0C00A2A392 /* chat_location_annotation_someone@2x.png in Resources */,
 				EA8987DC1D746D0C00A2A392 /* chat_location_detail_disclosure.png in Resources */,
 				EA8987FF1D746D0C00A2A392 /* icon_018_cover.png in Resources */,
@@ -6399,6 +6412,7 @@
 				EA8DADC91D5A18D000487BF4 /* RACErrorSignal.m in Sources */,
 				EA8987AC1D746D0C00A2A392 /* EaseLocationViewController.m in Sources */,
 				EA8DADEA1D5A18D000487BF4 /* RACUnit.m in Sources */,
+				EAE241CA1DE6D1050049EAEF /* HeChatBlockUserVC.m in Sources */,
 				EA8987A51D746D0C00A2A392 /* EaseMessageReadManager.m in Sources */,
 				EA8987301D746D0C00A2A392 /* ChatGroupDetailViewController.m in Sources */,
 				EA8DAD8B1D5A18D000487BF4 /* NSMutableAttributedString+MLLabel.m in Sources */,

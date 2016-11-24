@@ -11,6 +11,7 @@
 #import "HeFeedbackVC.h"
 #import "HeModifyUserInfoVC.h"
 #import "HeBlockUserVC.h"
+#import "HeChatBlockUserVC.h"
 
 @interface HeSettingVC ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 @property(strong,nonatomic)NSArray *dataSource;
@@ -53,7 +54,7 @@
 - (void)initializaiton
 {
     [super initializaiton];
-    dataSource = @[@[@"昵称",@"手机号",@"清理缓存",@"意见反馈",@"联系我们",@"黑名单"]];
+    dataSource = @[@[@"昵称",@"手机号",@"清理缓存",@"意见反馈",@"联系我们",@"话题黑名单",@"聊天黑名单"]];
 }
 
 - (void)initView
@@ -312,6 +313,12 @@
                 }
                 case 5:{
                     HeBlockUserVC *blockUserVC = [[HeBlockUserVC alloc] init];
+                    blockUserVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:blockUserVC animated:YES];
+                    break;
+                }
+                case 6:{
+                    HeChatBlockUserVC *blockUserVC = [[HeChatBlockUserVC alloc] init];
                     blockUserVC.hidesBottomBarWhenPushed = YES;
                     [self.navigationController pushViewController:blockUserVC animated:YES];
                     break;
