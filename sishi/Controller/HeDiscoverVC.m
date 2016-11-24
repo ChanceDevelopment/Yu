@@ -247,6 +247,12 @@
                 
                 NSArray *blockArray = [[NSUserDefaults standardUserDefaults] objectForKey:blockKey];
                 
+                NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+                NSString *contactKey = [NSString stringWithFormat:@"%@_%@",USERCONTACTKEY,userId];
+                
+                NSDictionary *contactDict = [[NSUserDefaults standardUserDefaults] objectForKey:contactKey];
+                
+                NSMutableDictionary *myContactDict = [[NSMutableDictionary alloc] initWithDictionary:contactDict];
                 
                 for (NSDictionary *zoneDict in resultArray) {
                     BOOL isBlock = NO;
@@ -286,16 +292,12 @@
                         topicUserId = @"";
                     }
                     NSDictionary *userDictInfo = @{@"huanxId":huanxId,@"userHeader":header,@"userNick":nick,@"userSex":sex,@"userId":topicUserId};
-                    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
-                    NSString *contactKey = [NSString stringWithFormat:@"%@_%@",USERCONTACTKEY,userId];
-                    
-                    NSDictionary *contactDict = [[NSUserDefaults standardUserDefaults] objectForKey:contactKey];
-                    NSMutableDictionary *myContactDict = [[NSMutableDictionary alloc] initWithDictionary:contactDict];
                     [myContactDict setObject:userDictInfo forKey:huanxId];
-                    
-                    [[NSUserDefaults standardUserDefaults] setObject:myContactDict forKey:contactKey];
-                    
                 }
+                if (myContactDict) {
+                    [[NSUserDefaults standardUserDefaults] setObject:myContactDict forKey:contactKey];
+                }
+                
             }
             
             
