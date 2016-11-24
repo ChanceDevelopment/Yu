@@ -66,18 +66,18 @@
 
 - (IBAction)setLocationService:(id)sender
 {
-    if (ISIOS10) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-        return;
-    }
-    NSURL * url = [NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
-    
-    if([[UIApplication sharedApplication] canOpenURL:url]) {
-        
-        NSURL *url =[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
-        [[UIApplication sharedApplication] openURL:url];
-        
-    }
+//    if (ISIOS10) {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//        return;
+//    }
+//    NSURL * url = [NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
+//    
+//    if([[UIApplication sharedApplication] canOpenURL:url]) {
+//        
+//        NSURL *url =[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
+//        [[UIApplication sharedApplication] openURL:url];
+//        
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

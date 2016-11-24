@@ -13,12 +13,14 @@
 @interface HeBlockUserVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(strong,nonatomic)IBOutlet UITableView *tableview;
 @property(strong,nonatomic)NSMutableArray *dataSource;
+@property(strong,nonatomic)NSDictionary *userContactDict;
 
 @end
 
 @implementation HeBlockUserVC
 @synthesize tableview;
 @synthesize dataSource;
+@synthesize userContactDict;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +54,9 @@
     dataSource = [[NSMutableArray alloc] initWithCapacity:0];
     
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+    NSString *contactKey = [NSString stringWithFormat:@"%@_%@",USERCONTACTKEY,userId];
+    userContactDict = [[NSUserDefaults standardUserDefaults] objectForKey:contactKey];
+
     NSString *blockKey = [NSString stringWithFormat:@"%@_%@",BLOCKINGLIST,userId];
     NSArray *blockArray = [[NSUserDefaults standardUserDefaults] objectForKey:blockKey];
     [dataSource addObjectsFromArray:blockArray];
@@ -99,7 +104,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    NSString *userId = dict[@"userId"];
+//    NSDictionary *contactDict = userContactDict[userId];
     NSString *userNick = dict[@"userNick"];
+    if (userNick == nil) {
+        userNick = userId;
+    }
     cell.textLabel.text = [NSString stringWithFormat:@"%@",userNick];
     
     CGFloat buttonW = 100;
@@ -169,6 +179,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:mutableArray forKey:blockKey];
     dataSource = [[NSMutableArray alloc] initWithArray:mutableArray];
     [tableview reloadData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelblockUserSucceed" object:nil];
     [self showHint:@"成功移出"];
 }
 

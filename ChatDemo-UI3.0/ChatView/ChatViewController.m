@@ -32,10 +32,12 @@
 
 @property (nonatomic) NSMutableDictionary *emotionDic;
 @property (nonatomic, copy) EaseSelectAtTargetCallback selectedCallback;
+@property (nonatomic, strong) NSArray *blockList;
 
 @end
 
 @implementation ChatViewController
+@synthesize blockList;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +46,11 @@
     self.delegate = self;
     self.dataSource = self;
     
+    [[EMClient sharedClient].contactManager asyncGetBlackListFromServer:^(NSArray *array){
+        blockList = [[NSArray alloc] initWithArray:array];
+    } failure:^(EMError *eror){
+    
+    }];
     [self _setupBarButtonItem];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAllMessages:) name:KNOTIFICATIONNAME_DELETEALLMESSAGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitGroup) name:@"ExitGroup" object:nil];
@@ -151,6 +158,14 @@
     if ([userId isMemberOfClass:[NSNull class]]) {
         userId = @"";
     }
+    BOOL isUserBlock = NO;
+    for (NSString *blockUserId in blockList) {
+        if ([blockUserId isEqualToString:userId]) {
+            menuArray = @[@"删除记录",@"取消屏蔽该用户"];
+            isUserBlock = YES;
+            break;
+        }
+    }
     NSString *myuserId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
     
     
@@ -168,6 +183,36 @@
                                }
                                case 1:
                                {
+                                   
+                                   if (isUserBlock) {
+                                       //取消屏蔽
+                                       NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERIDKEY];
+                                       NSString *blockKey = [NSString stringWithFormat:@"%@_%@",CHATBLOCKINGLIST,userId];
+                                       NSArray *blockArray = [[NSUserDefaults standardUserDefaults] objectForKey:blockKey];
+                                       NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithArray:blockArray];
+                                       
+                                       NSString *blockUserId = self.conversation.conversationId;
+                                       for (NSDictionary *userDict in mutableArray) {
+                                           NSString *userid = userDict[@"userId"];
+                                           if ([userid isMemberOfClass:[NSNull class]]) {
+                                               userid = @"";
+                                           }
+                                           if ([userid isEqualToString:blockUserId]) {
+                                               [[EMClient sharedClient].contactManager asyncRemoveUserFromBlackList:blockUserId success:^{
+                                                   [mutableArray removeObject:userDict];
+                                                   [[NSUserDefaults standardUserDefaults] setObject:mutableArray forKey:blockKey];
+                                                   [self showHint:@"成功移出"];
+                                                   //更新黑名单
+                                                   blockList = [[EMClient sharedClient].contactManager getBlackListFromDB];
+                                                   
+                                               } failure:^(EMError *error){
+                                                   [self showHint:error.errorDescription];
+                                               }];
+                                               break;
+                                           }
+                                       }
+                                       return;
+                                   }
                                    //屏蔽用户
                                    [self blockUserButtonClick];
                                    break;

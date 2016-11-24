@@ -11,6 +11,7 @@
 #import <SMS_SDK/SMSSDK.h>
 #import "HeBasicInfoVC.h"
 #import "UIButton+countDown.h"
+#import "BrowserView.h"
 
 @interface HeEnrollVC ()<UITextFieldDelegate>
 @property(strong,nonatomic)IBOutlet UITextField *phoneField;
@@ -123,6 +124,14 @@
 //            [self showHint:errorString];
         }
     }];
+}
+
+- (IBAction)userProtocol:(id)sender
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"userProtocol" ofType:@"html"];
+    BrowserView *browserView = [[BrowserView alloc] initWithURL:path];
+    browserView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:browserView animated:YES];
 }
 
 - (IBAction)nextButtonClick:(id)sender

@@ -836,6 +836,7 @@
 		EAC718CA1D71326600BBC106 /* HeLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC718C81D71326600BBC106 /* HeLoginVC.xib */; };
 		EAE241CA1DE6D1050049EAEF /* HeChatBlockUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE241C81DE6D1050049EAEF /* HeChatBlockUserVC.m */; };
 		EAE241CB1DE6D1050049EAEF /* HeChatBlockUserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE241C91DE6D1050049EAEF /* HeChatBlockUserVC.xib */; };
+		EAEB6A6F1DE739E800C7F415 /* userProtocol.html in Resources */ = {isa = PBXBuildFile; fileRef = EAEB6A6E1DE739E800C7F415 /* userProtocol.html */; };
 		EAF95C2D1D81240B00B4422D /* add_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAF95C2C1D81240B00B4422D /* add_Icon.png */; };
 		EAFC13901D9B8F9A005D00AB /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */; };
 		EAFC13941D9BA6D5005D00AB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAFC13931D9BA6D5005D00AB /* UserNotifications.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -2312,6 +2313,7 @@
 		EAE241C71DE6D1050049EAEF /* HeChatBlockUserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeChatBlockUserVC.h; sourceTree = "<group>"; };
 		EAE241C81DE6D1050049EAEF /* HeChatBlockUserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeChatBlockUserVC.m; sourceTree = "<group>"; };
 		EAE241C91DE6D1050049EAEF /* HeChatBlockUserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeChatBlockUserVC.xib; sourceTree = "<group>"; };
+		EAEB6A6E1DE739E800C7F415 /* userProtocol.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = userProtocol.html; sourceTree = "<group>"; };
 		EAF95C2C1D81240B00B4422D /* add_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_Icon.png; sourceTree = "<group>"; };
 		EAFC138E1D9B8F9A005D00AB /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
 		EAFC138F1D9B8F9A005D00AB /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
@@ -3946,6 +3948,7 @@
 		EA8DA9621D5A171A00487BF4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EAEB6A6E1DE739E800C7F415 /* userProtocol.html */,
 				EAFC13911D9BA6C0005D00AB /* 遇.entitlements */,
 				EA8DAEDB1D5A19A300487BF4 /* appAPIDefine.h */,
 				EA8DA9631D5A171A00487BF4 /* main.m */,
@@ -5804,6 +5807,7 @@
 				EA8987F41D746D0C00A2A392 /* icon_002.gif in Resources */,
 				EA8DAD491D5A18D000487BF4 /* whiteArrow@2x.png in Resources */,
 				EA8DAE201D5A18D000487BF4 /* btn_021.disable@2x.png in Resources */,
+				EAEB6A6F1DE739E800C7F415 /* userProtocol.html in Resources */,
 				EA8987EE1D746D0C00A2A392 /* chat_sender_audio_playing_001@2x.png in Resources */,
 				EA89882E1D746D0C00A2A392 /* tabbar_contactsHL.png in Resources */,
 				07D2A4A71DBDDC160031DDE0 /* microphone@2x.png in Resources */,

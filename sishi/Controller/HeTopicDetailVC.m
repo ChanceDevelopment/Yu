@@ -178,11 +178,11 @@
             NSLog(@"cancelAction");
         }];
         UIAlertAction *blockAction = [UIAlertAction actionWithTitle:@"屏蔽" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            NSString *userId = topicDetailDict[@"userId"]; //发布人的ID
+            NSString *userId = topicDetailDict[@"topicUserId"]; //发布人的ID
             if ([userId isMemberOfClass:[NSNull class]] || userId == nil) {
                 userId = @"";
             }
-            NSString *userNick = topicDetailDict[@"userNick"];
+            NSString *userNick = topicDetailDict[@"nick"];
             if ([userNick isMemberOfClass:[NSNull class]] || userNick == nil) {
                 userNick = @"";
             }
@@ -205,11 +205,11 @@
         switch (buttonIndex) {
             case 1:
             {
-                NSString *userId = topicDetailDict[@"userId"]; //发布人的ID
+                NSString *userId = topicDetailDict[@"topicUserId"]; //发布人的ID
                 if ([userId isMemberOfClass:[NSNull class]] || userId == nil) {
                     userId = @"";
                 }
-                NSString *userNick = topicDetailDict[@"userNick"];
+                NSString *userNick = topicDetailDict[@"nick"];
                 if ([userNick isMemberOfClass:[NSNull class]] || userNick == nil) {
                     userNick = @"";
                 }

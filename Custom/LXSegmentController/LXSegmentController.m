@@ -650,6 +650,7 @@
                 CGFloat viewY = 10;
                 unReadMessageView = [[UIImageView alloc] initWithFrame:CGRectMake(viewX, viewY, viewW, viewH)];
                 ((UIImageView *)unReadMessageView).image = [UIImage imageNamed:@"redIcon"];
+                unReadMessageView.hidden = YES;
                 
             }
             if (i == 1) {

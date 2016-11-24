@@ -182,6 +182,7 @@
         }
         if ([userid isEqualToString:blockUserId]) {
             [[EMClient sharedClient].contactManager asyncRemoveUserFromBlackList:blockUserId success:^{
+                [mutableArray removeObject:userDict];
                 [[NSUserDefaults standardUserDefaults] setObject:mutableArray forKey:blockKey];
                 dataSource = [[NSMutableArray alloc] initWithArray:mutableArray];
                 [tableview reloadData];

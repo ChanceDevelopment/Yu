@@ -125,6 +125,7 @@
         [self presentViewController:alertController animated:YES completion:nil];
         return;
     }
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"确定退出登录?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.tag = 100;
     [alert show];
@@ -138,11 +139,19 @@
 }
 - (void)loginOut
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERACCOUNTKEY];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERPASSWORDKEY];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERIDKEY];
-    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self showHudInView:self.view hint:@"正在注销..."];
+    [[EMClient sharedClient] asyncLogout:YES success:^{
+        [self hideHud];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERACCOUNTKEY];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERPASSWORDKEY];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERIDKEY];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } failure:^(EMError *error){
+        [self hideHud];
+        [self showHint:@"注销失败"];
+    }];
+    
     
     return;
     [self showHudInView:self.view hint:@"正在注销..."];

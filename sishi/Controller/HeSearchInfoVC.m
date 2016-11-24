@@ -616,7 +616,16 @@
         if (size.height < 40) {
             size.height = 40;
         }
-        return 250 + (size.height - 40)  + (SCREENWIDTH * 0.618 - 120);
+        CGFloat imageW = SCREENWIDTH;
+        CGFloat imageH = imageW * 0.618;
+        NSString *img = dict[@"img"];
+        if ([img isMemberOfClass:[NSNull class]] || img == nil || [img hasSuffix:@"null"]) {
+            img = @"";
+        }
+        if ([img isEqualToString:@""]) {
+            return 250 + (size.height - 40) + (SCREENWIDTH * 0.618 - 120) - imageH;
+        }
+        return 250 + (size.height - 40) + (SCREENWIDTH * 0.618 - 120);
     }
     
     
